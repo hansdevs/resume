@@ -44,6 +44,35 @@ header p {
     text-shadow: 1px 1px #004b8d;
 }
 
+/* Navigation Menu Bar */
+nav {
+    background-color: #004b8d;
+}
+
+.menu-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-bar li {
+    margin: 0 15px;
+}
+
+.menu-bar li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 14px 20px;
+    display: block;
+}
+
+.menu-bar li a:hover {
+    background-color: #003366;
+}
+
 /* Contact Info styles */
 .contact-info {
     background-color: #e6f2ff;
@@ -65,7 +94,6 @@ header p {
 .contact-info a:hover {
     text-decoration: underline;
 }
-
 
 section {
     margin: 30px 10%;
@@ -113,7 +141,6 @@ h2 {
     cursor: pointer;
 }
 
-
 .education, .experience, .references {
     display: flex;
     flex-direction: column;
@@ -157,6 +184,25 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Project Logos */
+.project-logos, .applexcode-logo {
+    width: 65px;
+    height: 65px;
+    padding: 6px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.applexcode-logo {
+    width: 78px;
+    height: 78px;
+    padding: 0px;
+}
+
+.project-logos:hover, .applexcode-logo:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+    cursor: pointer;
+}
 
 @media (max-width: 768px) {
     .summary-content {
@@ -173,12 +219,4 @@ a:hover {
         transform: none;
         padding: 20px;
     }
-
-    .usu-logo {
-        position: static;
-        margin: 10px auto;
-        display: block;
-    }
 }
-
-/* This entire website is a refrence to a PDF resume I have, will attach for fun*/
