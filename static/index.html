@@ -22,8 +22,8 @@
             <h2 class="hero-subtitle">Developer & Computer Science Student</h2>
             <p class="hero-tagline">Building digital experiences that make a difference</p>
             <div class="hero-cta">
-                <a href="resume.html" class="cta-button primary">VIEW RESUME</a>
-                <a href="connect.html" class="cta-button secondary">GET IN TOUCH</a>
+                <a href="#" class="cta-button primary" data-slide="1">VIEW RESUME</a>
+                <a href="#" class="cta-button secondary" data-slide="2">GET IN TOUCH</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -36,330 +36,700 @@
     <nav class="main-nav sticky-nav">
         <div class="container">
             <ul>
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="resume.html" class="nav-link">Resume</a></li>
-                <li><a href="connect.html" class="nav-link">Connect</a></li>
+                <li><a href="#" class="nav-link active" data-slide="0">Home</a></li>
+                <li><a href="#" class="nav-link" data-slide="1">Resume</a></li>
+                <li><a href="#" class="nav-link" data-slide="2">Connect</a></li>
             </ul>
         </div>
     </nav>
 
-    <main>
-        <div class="container">
-            <!-- About Me Section -->
-            <section class="about-section">
-                <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
-                    <div class="section-divider"></div>
-                </div>
-                
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>Hello, I'm Hans</h3>
-                        <p>I'm a Computer Science student at Utah State University with a passion for technology and problem-solving. My journey in tech began with a curiosity about how things work, which led me to explore programming and software development.</p>
-                        <p>When I'm not coding or studying, you can find me exploring the beautiful landscapes of Utah, experimenting with new technologies, or contributing to open-source projects.</p>
+    <!-- Slider Container -->
+    <div class="slider-container">
+        <div class="slider-track">
+            <!-- Home Page Content (Slide 0) -->
+            <div class="slide" id="home-slide">
+                <div class="container">
+                    <!-- About Me Section -->
+                    <section class="about-section">
+                        <div class="section-header">
+                            <h2 class="section-title">About Me</h2>
+                            <div class="section-divider"></div>
+                        </div>
                         
-                        <div class="quote-box">
-                            <blockquote>
-                                "I believe in continuous learning and growth. Technology is always evolving, and I'm committed to staying at the forefront of innovation while using my skills to create meaningful solutions."
-                            </blockquote>
-                        </div>
-                    </div>
-                    
-                    <div class="interests-container">
-                        <h3>Interests & Passions</h3>
-                        <div class="interests-grid">
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-laptop-code"></i></div>
-                                <h4>Programming</h4>
-                                <p>Exploring new languages and frameworks, building applications, and solving coding challenges.</p>
+                        <div class="about-content">
+                            <div class="about-text">
+                                <h3>Hello, I'm Hans</h3>
+                                <p>I'm a Computer Science student at Utah State University with a passion for technology and problem-solving. My journey in tech began with a curiosity about how things work, which led me to explore programming and software development.</p>
+                                <p>When I'm not coding or studying, you can find me exploring the beautiful landscapes of Utah, experimenting with new technologies, or contributing to open-source projects.</p>
+                                
+                                <div class="quote-box">
+                                    <blockquote>
+                                        "I believe in continuous learning and growth. Technology is always evolving, and I'm committed to staying at the forefront of innovation while using my skills to create meaningful solutions."
+                                    </blockquote>
+                                </div>
                             </div>
                             
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-mobile-alt"></i></div>
-                                <h4>Mobile Development</h4>
-                                <p>Creating iOS applications using Swift and Xcode, with a focus on intuitive user interfaces.</p>
+                            <div class="interests-container">
+                                <h3>Interests & Passions</h3>
+                                <div class="interests-grid">
+                                    <div class="interest-card">
+                                        <div class="interest-icon"><i class="fas fa-laptop-code"></i></div>
+                                        <h4>Programming</h4>
+                                        <p>Exploring new languages and frameworks, building applications, and solving coding challenges.</p>
+                                    </div>
+                                    
+                                    <div class="interest-card">
+                                        <div class="interest-icon"><i class="fas fa-mobile-alt"></i></div>
+                                        <h4>Mobile Development</h4>
+                                        <p>Creating iOS applications using Swift and Xcode, with a focus on intuitive user interfaces.</p>
+                                    </div>
+                                    
+                                    <div class="interest-card">
+                                        <div class="interest-icon"><i class="fas fa-mountain"></i></div>
+                                        <h4>Outdoor Activities</h4>
+                                        <p>Hiking, camping, and exploring the natural beauty of Utah's landscapes.</p>
+                                    </div>
+                                    
+                                    <div class="interest-card">
+                                        <div class="interest-icon"><i class="fas fa-gamepad"></i></div>
+                                        <h4>Gaming</h4>
+                                        <p>Enjoying strategy and role-playing games that challenge problem-solving skills.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Journey Timeline Section -->
+                    <section class="journey-section">
+                        <div class="section-header">
+                            <h2 class="section-title">My Journey</h2>
+                            <div class="section-divider"></div>
+                        </div>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-date">2019</div>
+                                    <h3>First Leadership Role</h3>
+                                    <p>Started my professional journey as a Team Lead at Get Air Trampoline Parks, where I developed leadership and customer service skills.</p>
+                                </div>
                             </div>
                             
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-mountain"></i></div>
-                                <h4>Outdoor Activities</h4>
-                                <p>Hiking, camping, and exploring the natural beauty of Utah's landscapes.</p>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-date">2020</div>
+                                    <h3>Tech Career Begins</h3>
+                                    <p>Joined PC EMT as a Lead Laptop/Desktop Technician, diving deeper into the world of technology and hardware troubleshooting.</p>
+                                </div>
                             </div>
                             
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-gamepad"></i></div>
-                                <h4>Gaming</h4>
-                                <p>Enjoying strategy and role-playing games that challenge problem-solving skills.</p>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-date">2022</div>
+                                    <h3>Community Service</h3>
+                                    <p>Volunteered at Meals by Grace, developing a stronger sense of community service and responsibility.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-date">2023</div>
+                                    <h3>Academic Excellence</h3>
+                                    <p>Began my academic journey in Computer Science at the University of North Georgia, earning recognition on the President's List.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-date">2024</div>
+                                    <h3>New Horizons</h3>
+                                    <p>Transferred to Utah State University to continue my Computer Science education and started as a Student Web Developer at USU IT.</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Journey Timeline Section -->
-            <section class="journey-section">
-                <div class="section-header">
-                    <h2 class="section-title">My Journey</h2>
-                    <div class="section-divider"></div>
-                </div>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2019</div>
-                            <h3>First Leadership Role</h3>
-                            <p>Started my professional journey as a Team Lead at Get Air Trampoline Parks, where I developed leadership and customer service skills.</p>
-                        </div>
-                    </div>
+                    </section>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2020</div>
-                            <h3>Tech Career Begins</h3>
-                            <p>Joined PC EMT as a Lead Laptop/Desktop Technician, diving deeper into the world of technology and hardware troubleshooting.</p>
+                    <!-- Projects Section -->
+                    <section class="projects-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Featured Projects</h2>
+                            <div class="section-divider"></div>
                         </div>
-                    </div>
+                        
+                        <div class="featured-project">
+                            <div class="project-image">
+                                <img src="images/iosdev.png" alt="iOS Weather App" class="featured-img">
+                                <div class="project-overlay">
+                                    <div class="project-category">Mobile Development</div>
+                                </div>
+                            </div>
+                            <div class="project-details">
+                                <h3>iOS Weather Application</h3>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Swift</span>
+                                    <span class="tech-tag">UIKit</span>
+                                    <span class="tech-tag">CoreLocation</span>
+                                    <span class="tech-tag">Weather API</span>
+                                </div>
+                                <p class="project-description">
+                                    A comprehensive weather application built for iOS that provides real-time weather updates, forecasts, and location-based weather information. The app features a clean, intuitive interface with dynamic backgrounds that change based on current weather conditions.
+                                </p>
+                                <div class="project-links">
+                                    <a href="https://github.com/hansdevs" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                    <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <div class="project-card-image">
+                                    <img src="images/Xcode.png" alt="Task Manager App" class="project-icon">
+                                </div>
+                                <div class="project-card-content">
+                                    <h3>Task Manager App</h3>
+                                    <p>A productivity app built with Swift and UIKit that helps users organize tasks and set reminders.</p>
+                                    <div class="project-card-tech">
+                                        <span class="tech-tag">Swift</span>
+                                        <span class="tech-tag">UIKit</span>
+                                    </div>
+                                    <a href="#" class="project-card-link">View Details</a>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-card-image">
+                                    <img src="images/vscode.png" alt="Portfolio Website" class="project-icon">
+                                </div>
+                                <div class="project-card-content">
+                                    <h3>Personal Portfolio Website</h3>
+                                    <p>A responsive portfolio website built with HTML, CSS, and JavaScript to showcase my projects.</p>
+                                    <div class="project-card-tech">
+                                        <span class="tech-tag">HTML</span>
+                                        <span class="tech-tag">CSS</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                    </div>
+                                    <a href="#" class="project-card-link">View Details</a>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-card-image">
+                                    <img src="images/IntelliJDEAlogo.png" alt="Inventory System" class="project-icon">
+                                </div>
+                                <div class="project-card-content">
+                                    <h3>Inventory Management System</h3>
+                                    <p>A Java-based application for tracking inventory with database integration.</p>
+                                    <div class="project-card-tech">
+                                        <span class="tech-tag">Java</span>
+                                        <span class="tech-tag">SQLite</span>
+                                    </div>
+                                    <a href="#" class="project-card-link">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="github-section">
+                            <div class="github-card">
+                                <img src="images/gitlogo.png" alt="GitHub" class="github-logo">
+                                <div class="github-content">
+                                    <h3>More Projects on GitHub</h3>
+                                    <p>Check out my GitHub profile to see my contributions to open source projects and personal repositories.</p>
+                                    <a href="https://github.com/hansdevs" class="github-link" target="_blank">
+                                        <i class="fab fa-github"></i> Visit GitHub Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2022</div>
-                            <h3>Community Service</h3>
-                            <p>Volunteered at Meals by Grace, developing a stronger sense of community service and responsibility.</p>
+                    <!-- Skills Showcase Section -->
+                    <section class="skills-showcase">
+                        <div class="section-header">
+                            <h2 class="section-title">Skills & Technologies</h2>
+                            <div class="section-divider"></div>
                         </div>
-                    </div>
+                        
+                        <div class="skills-container">
+                            <div class="skills-category">
+                                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                                <div class="skills-list">
+                                    <div class="skill-item">
+                                        <div class="skill-name">Swift</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">JavaScript</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Java</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Python</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">C++</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h3><i class="fas fa-laptop-code"></i> Web Technologies</h3>
+                                <div class="skills-list">
+                                    <div class="skill-item">
+                                        <div class="skill-name">HTML/CSS</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">React</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">Node.js</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <div class="skill-name">TypeScript</div>
+                                        <div class="skill-bar">
+                                            <div class="skill-level" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-category">
+                                <h3><i class="fas fa-tools"></i> Tools & Software</h3>
+                                <div class="tools-grid">
+                                    <div class="tool-item">
+                                        <img src="images/Xcode.png" alt="Xcode" class="tool-icon">
+                                        <span>Xcode</span>
+                                    </div>
+                                    <div class="tool-item">
+                                        <img src="images/vscode.png" alt="VS Code" class="tool-icon">
+                                        <span>VS Code</span>
+                                    </div>
+                                    <div class="tool-item">
+                                        <img src="images/IntelliJDEAlogo.png" alt="IntelliJ IDEA" class="tool-icon">
+                                        <span>IntelliJ IDEA</span>
+                                    </div>
+                                    <div class="tool-item">
+                                        <img src="images/gitlogo.png" alt="Git" class="tool-icon">
+                                        <span>Git</span>
+                                    </div>
+                                    <div class="tool-item">
+                                        <img src="images/eclipselogo.png" alt="Eclipse" class="tool-icon">
+                                        <span>Eclipse</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2023</div>
-                            <h3>Academic Excellence</h3>
-                            <p>Began my academic journey in Computer Science at the University of North Georgia, earning recognition on the President's List.</p>
+                    <!-- Call to Action Section -->
+                    <section class="cta-section">
+                        <div class="cta-content">
+                            <h2>Let's Work Together</h2>
+                            <p>Interested in collaborating on a project or want to learn more about my work?</p>
+                            <div class="cta-buttons">
+                                <a href="#" class="cta-button primary" data-slide="1">View My Resume</a>
+                                <a href="#" class="cta-button secondary" data-slide="2">Get in Touch</a>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2024</div>
-                            <h3>New Horizons</h3>
-                            <p>Transferred to Utah State University to continue my Computer Science education and started as a Student Web Developer at USU IT.</p>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-            </section>
-            
-            <!-- Projects Section -->
-            <section class="projects-section">
-                <div class="section-header">
-                    <h2 class="section-title">Featured Projects</h2>
-                    <div class="section-divider"></div>
+            </div>
+
+            <!-- Resume Page Content (Slide 1) -->
+            <div class="slide" id="resume-slide">
+                <div class="container">
+                    <!-- Professional Summary -->
+                    <section class="resume-section">
+                        <h2 class="section-title">Professional Summary</h2>
+                        <div class="summary-content">
+                            <p>
+                                Dynamic and motivated Computer Science student at Utah State University with hands-on experience in web
+                                development and CMS management. Proven ability to handle customer inquiries with professionalism, efficiency, and
+                                attention to detail. Recognized for punctuality, strong leadership, and the ability to collaborate effectively within team
+                                environments.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Skills Section -->
+                    <section class="resume-section">
+                        <h2 class="section-title">Skills</h2>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h3>Technical Skills</h3>
+                                <ul class="skill-list">
+                                    <li><span class="skill-tag">Front-End Development (HTML, CSS, JavaScript)</span></li>
+                                    <li><span class="skill-tag">Back-End Development (Python, Java, Swift)</span></li>
+                                    <li><span class="skill-tag">Mobile & App Development (Swift, Xcode)</span></li>
+                                    <li><span class="skill-tag">Database Management (SQLite)</span></li>
+                                    <li><span class="skill-tag">TypeScript & Modern JavaScript Frameworks</span></li>
+                                    <li><span class="skill-tag">Assembly & Low-Level Programming (MIPS Assembly)</span></li>
+                                    <li><span class="skill-tag">Scripting & Terminal (ZSH)</span></li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Software & Tools</h3>
+                                <ul class="skill-list">
+                                    <li><span class="skill-tag">IntelliJ IDEA</span></li>
+                                    <li><span class="skill-tag">Visual Studio Code</span></li>
+                                    <li><span class="skill-tag">Eclipse IDE</span></li>
+                                    <li><span class="skill-tag">Xcode</span></li>
+                                    <li><span class="skill-tag">Git</span></li>
+                                </ul>
+                            </div>
+                            <div class="skill-category">
+                                <h3>Soft Skills</h3>
+                                <ul class="skill-list">
+                                    <li><span class="skill-tag">Strong Teamwork Capabilities</span></li>
+                                    <li><span class="skill-tag">Customer Support</span></li>
+                                    <li><span class="skill-tag">Problem-solving</span></li>
+                                    <li><span class="skill-tag">Hardware Troubleshooting</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Experience Section -->
+                    <section class="resume-section">
+                        <h2 class="section-title">Experience</h2>
+                        
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-title-company">
+                                    <h3>Student Web Developer</h3>
+                                    <h4>USU Information Technology</h4>
+                                </div>
+                                <div class="job-meta">
+                                    <div class="job-location">Logan, UT</div>
+                                    <div class="job-date">December 2024 - May 2025</div>
+                                </div>
+                            </div>
+                            <ul class="job-description">
+                                <li>Developed a website using HTML, CSS, and JavaScript to display student data.</li>
+                                <li>Provided technical support for users experiencing issues with web applications.</li>
+                                <li>Developed and maintained interfaces between multiple systems using XML, XMS, and XSLT.</li>
+                                <li>Built responsive websites using modern frameworks such as Bootstrap 4.0+.</li>
+                                <li>Provided technical support when needed, troubleshooting issues with web hosting providers or CMS systems.</li>
+                                <li>Provided customer service support for all incoming inquiries.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-title-company">
+                                    <h3>Lead Laptop / Desktop Tech</h3>
+                                    <h4>PC EMT</h4>
+                                </div>
+                                <div class="job-meta">
+                                    <div class="job-location">Johns Creek, GA</div>
+                                    <div class="job-date">August 2020 - May 2024</div>
+                                </div>
+                            </div>
+                            <ul class="job-description">
+                                <li>Provided technical support to end users for hardware and software issues related to desktop computers, laptops, peripherals, and network access.</li>
+                                <li>Trained new technicians in proper operation and servicing of equipment as needed.</li>
+                                <li>Established quality assurance protocols to ensure that products met industry standards.</li>
+                                <li>Managed inventory levels for spare parts, ordering replacements as required.</li>
+                                <li>Brainstormed creative ideas for tech solutions to address real-world problems.</li>
+                                <li>Developed and maintained technical project plans for large-scale projects, ensuring successful completion on time and within budget.</li>
+                                <li>Provided technical support on escalated customer issues and troubleshoot complex problems quickly.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-title-company">
+                                    <h3>Team Lead</h3>
+                                    <h4>Get Air Trampoline Parks</h4>
+                                </div>
+                                <div class="job-meta">
+                                    <div class="job-location">Alpharetta, GA</div>
+                                    <div class="job-date">April 2019 - September 2019</div>
+                                </div>
+                            </div>
+                            <ul class="job-description">
+                                <li>Enforced company policies while providing guidance and support as needed, revealing sound judgment and decision-making ability.</li>
+                                <li>Trained staff on product knowledge to ensure customers received accurate information, displaying excellent instructional abilities.</li>
+                                <li>Monitored daily operations, utilizing organizational and problem-solving skills to identify areas for improvement.</li>
+                                <li>Supervised the daily work of staff.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Education Section -->
+                    <section class="resume-section">
+                        <h2 class="section-title">Education</h2>
+                        
+                        <div class="education-item">
+                            <div class="education-header">
+                                <div class="degree-school">
+                                    <h3>Bachelor of Science (B.S.) in Computer Science Candidate</h3>
+                                    <h4>Utah State University</h4>
+                                </div>
+                                <div class="education-meta">
+                                    <div class="education-location">Logan, UT</div>
+                                    <div class="education-date">Expected graduation Dec 2026</div>
+                                </div>
+                            </div>
+                            <div class="education-details">
+                                <div class="coursework">
+                                    <h5>Relevant Coursework</h5>
+                                    <ul>
+                                        <li>Introduction to Event Driven Programming and GUIs · 2410</li>
+                                        <li>Algorithms and Data Structures CS3 (QI) · 2420</li>
+                                        <li>Developing Dynamic, Database-Driven, Web Applications · 2610</li>
+                                        <li>Computer Organization and Architecture · 2810</li>
+                                        <li>Operating Systems & Concurrency · 3100</li>
+                                        <li>Introduction To Software Engineering · 3450</li>
+                                    </ul>
+                                </div>
+                                <div class="honors">
+                                    <h5>Awards & Honors</h5>
+                                    <ul>
+                                        <li>Sandbox Student</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="education-item">
+                            <div class="education-header">
+                                <div class="degree-school">
+                                    <h3>Bachelor of Science (B.S.) in Computer Science Candidate</h3>
+                                    <h4>University of North Georgia</h4>
+                                </div>
+                                <div class="education-meta">
+                                    <div class="education-location">Dahlonega, GA</div>
+                                    <div class="education-date">Expected graduation May 2026</div>
+                                </div>
+                            </div>
+                            <div class="education-details">
+                                <div class="coursework">
+                                    <h5>Relevant Coursework</h5>
+                                    <ul>
+                                        <li>Computer Science I</li>
+                                        <li>Computer Science II</li>
+                                        <li>CyberSecurity 2050</li>
+                                    </ul>
+                                </div>
+                                <div class="honors">
+                                    <h5>Awards & Honors</h5>
+                                    <ul>
+                                        <li>President's List, Spring 2023</li>
+                                        <li>Dean's List, Fall 2023</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications Section -->
+                    <section class="resume-section">
+                        <h2 class="section-title">Certifications</h2>
+                        <ul class="certification-list">
+                            <li>Foundations of CyberSecurity Certification by Google</li>
+                            <li>2022 (NSA) Center of Academic Excellence in Cyber Defense</li>
+                        </ul>
+                    </section>
+
+                    <!-- Volunteer Experience Section -->
+                    <section class="resume-section">
+                        <h2 class="section-title">Volunteer Experience</h2>
+                        
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <div class="job-title-company">
+                                    <h3>Delivery Driver</h3>
+                                    <h4>Meals by Grace</h4>
+                                </div>
+                                <div class="job-meta">
+                                    <div class="job-location">Cumming, GA</div>
+                                    <div class="job-date">January 2022 - June 2022</div>
+                                </div>
+                            </div>
+                            <ul class="job-description">
+                                <li>Adhered to delivery schedules and deadlines.</li>
+                                <li>Observed rules and safety regulations of organization while carrying out assigned tasks.</li>
+                                <li>Developed strong communication skills while providing customer service to visitors at volunteer center.</li>
+                                <li>Participated in community clean-up and enrichment projects.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- References Section -->
+                    <section class="resume-section">
+                        <h2 class="section-title">References</h2>
+                        
+                        <div class="references-grid">
+                            <div class="reference-item">
+                                <h3>Chad Mano</h3>
+                                <p class="reference-title">Professor Of Computer Science</p>
+                                <p class="reference-relation">Mentor And Professor</p>
+                                <p class="reference-org">Utah State University</p>
+                                <div class="reference-contact">
+                                    <p><i class="fas fa-phone"></i> <a href="tel:+14357975794">(435) 797-5794</a></p>
+                                    <p><i class="fas fa-envelope"></i> <a href="mailto:chad.mano@usu.edu">chad.mano@usu.edu</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="reference-item">
+                                <h3>Phillip Williams</h3>
+                                <p class="reference-title">Computer Science Professor</p>
+                                <p class="reference-relation">Professor</p>
+                                <p class="reference-org">University Of North Georgia</p>
+                                <div class="reference-contact">
+                                    <p><i class="fas fa-phone"></i> <a href="tel:+17068672153">(706) 867-2153</a></p>
+                                    <p><i class="fas fa-envelope"></i> <a href="mailto:phillip.williams@ung.edu">phillip.williams@ung.edu</a></p>
+                                </div>
+                            </div>
+                            
+                            <div class="reference-item">
+                                <h3>Zo Gilani</h3>
+                                <p class="reference-title">CEO</p>
+                                <p class="reference-relation">Former Boss</p>
+                                <p class="reference-org">PC EMT</p>
+                                <div class="reference-contact">
+                                    <p><i class="fas fa-phone"></i> <a href="tel:+16789908302">(678) 990-8302</a></p>
+                                    <p><i class="fas fa-envelope"></i> <a href="mailto:zo@pcemt247.com">zo@pcemt247.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                
-                <div class="featured-project">
-                    <div class="project-image">
-                        <img src="images/iosdev.png" alt="iOS Weather App" class="featured-img">
-                        <div class="project-overlay">
-                            <div class="project-category">Mobile Development</div>
+            </div>
+
+            <!-- Connect Page Content (Slide 2) -->
+            <div class="slide" id="connect-slide">
+                <div class="container">
+                    <section class="connect-section">
+                        <h2 class="section-title">Get In Touch</h2>
+                        <p class="connect-intro">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out using the form below.</p>
+                        
+                        <div class="contact-form-container" id="contact-form">
+                            <form id="contactForm" action="https://formsubmit.co/miamihans@icloud.com" method="POST">
+                                <!-- FormSubmit.co configuration -->
+                                <input type="hidden" name="_subject" value="New contact from your website">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="thank-you.html">
+                                
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" name="subject" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="project-details">
-                        <h3>iOS Weather Application</h3>
-                        <div class="project-tech">
-                            <span class="tech-tag">Swift</span>
-                            <span class="tech-tag">UIKit</span>
-                            <span class="tech-tag">CoreLocation</span>
-                            <span class="tech-tag">Weather API</span>
+                    </section>
+
+                    <section class="connect-section">
+                        <h2 class="section-title">Other Ways to Connect</h2>
+                        
+                        <div class="connect-grid">
+                            <div class="connect-item">
+                                <div class="connect-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <h3>GitHub</h3>
+                                <p><a href="https://github.com/hansdevs" target="_blank">github.com/hansdevs</a></p>
+                            </div>
+                            
+                            <div class="connect-item">
+                                <div class="connect-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <h3>LinkedIn</h3>
+                                <p><a href="https://linkedin.com/in/hansgamlien" target="_blank">linkedin.com/in/hansgamlien</a></p>
+                            </div>
+                            
+                            <div class="connect-item">
+                                <div class="connect-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h3>Phone</h3>
+                                <p><a href="tel:+17703300922">+1 770 330 0922</a></p>
+                            </div>
                         </div>
-                        <p class="project-description">
-                            A comprehensive weather application built for iOS that provides real-time weather updates, forecasts, and location-based weather information. The app features a clean, intuitive interface with dynamic backgrounds that change based on current weather conditions.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/hansdevs" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-                
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/Xcode.png" alt="Task Manager App" class="project-icon">
+            </div>
+
+            <!-- Thank You Content (Hidden by default, shown after form submission) -->
+            <div class="slide" id="thank-you-slide" style="display: none;">
+                <div class="container">
+                    <section class="thank-you-section connect-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Thank You!</h2>
+                            <div class="section-divider"></div>
                         </div>
-                        <div class="project-card-content">
-                            <h3>Task Manager App</h3>
-                            <p>A productivity app built with Swift and UIKit that helps users organize tasks and set reminders.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">Swift</span>
-                                <span class="tech-tag">UIKit</span>
+                        
+                        <div class="thank-you-content" style="text-align: center; padding: 40px 0;">
+                            <div class="thank-you-icon" style="font-size: 4rem; color: var(--success-color); margin-bottom: 20px;">
+                                <i class="fas fa-check-circle"></i>
                             </div>
-                            <a href="#" class="project-card-link">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/vscode.png" alt="Portfolio Website" class="project-icon">
-                        </div>
-                        <div class="project-card-content">
-                            <h3>Personal Portfolio Website</h3>
-                            <p>A responsive portfolio website built with HTML, CSS, and JavaScript to showcase my projects.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">JavaScript</span>
+                            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Your message has been sent successfully</h3>
+                            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px;">Thank you for reaching out! I appreciate your interest and will get back to you as soon as possible.</p>
+                            <div class="thank-you-actions">
+                                <a href="#" class="cta-button primary" data-slide="0">Return to Home</a>
                             </div>
-                            <a href="#" class="project-card-link">View Details</a>
                         </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/IntelliJDEAlogo.png" alt="Inventory System" class="project-icon">
-                        </div>
-                        <div class="project-card-content">
-                            <h3>Inventory Management System</h3>
-                            <p>A Java-based application for tracking inventory with database integration.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">Java</span>
-                                <span class="tech-tag">SQLite</span>
-                            </div>
-                            <a href="#" class="project-card-link">View Details</a>
-                        </div>
-                    </div>
+                    </section>
                 </div>
-                
-                <div class="github-section">
-                    <div class="github-card">
-                        <img src="images/gitlogo.png" alt="GitHub" class="github-logo">
-                        <div class="github-content">
-                            <h3>More Projects on GitHub</h3>
-                            <p>Check out my GitHub profile to see my contributions to open source projects and personal repositories.</p>
-                            <a href="https://github.com/hansdevs" class="github-link" target="_blank">
-                                <i class="fab fa-github"></i> Visit GitHub Profile
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Skills Showcase Section -->
-            <section class="skills-showcase">
-                <div class="section-header">
-                    <h2 class="section-title">Skills & Technologies</h2>
-                    <div class="section-divider"></div>
-                </div>
-                
-                <div class="skills-container">
-                    <div class="skills-category">
-                        <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                        <div class="skills-list">
-                            <div class="skill-item">
-                                <div class="skill-name">Swift</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name">JavaScript</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name">Java</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name">Python</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 75%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name">C++</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skills-category">
-                        <h3><i class="fas fa-laptop-code"></i> Web Technologies</h3>
-                        <div class="skills-list">
-                            <div class="skill-item">
-                                <div class="skill-name">HTML/CSS</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name">React</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name">Node.js</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 75%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-name">TypeScript</div>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skills-category">
-                        <h3><i class="fas fa-tools"></i> Tools & Software</h3>
-                        <div class="tools-grid">
-                            <div class="tool-item">
-                                <img src="images/Xcode.png" alt="Xcode" class="tool-icon">
-                                <span>Xcode</span>
-                            </div>
-                            <div class="tool-item">
-                                <img src="images/vscode.png" alt="VS Code" class="tool-icon">
-                                <span>VS Code</span>
-                            </div>
-                            <div class="tool-item">
-                                <img src="images/IntelliJDEAlogo.png" alt="IntelliJ IDEA" class="tool-icon">
-                                <span>IntelliJ IDEA</span>
-                            </div>
-                            <div class="tool-item">
-                                <img src="images/gitlogo.png" alt="Git" class="tool-icon">
-                                <span>Git</span>
-                            </div>
-                            <div class="tool-item">
-                                <img src="images/eclipselogo.png" alt="Eclipse" class="tool-icon">
-                                <span>Eclipse</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Call to Action Section -->
-            <section class="cta-section">
-                <div class="cta-content">
-                    <h2>Let's Work Together</h2>
-                    <p>Interested in collaborating on a project or want to learn more about my work?</p>
-                    <div class="cta-buttons">
-                        <a href="resume.html" class="cta-button primary">View My Resume</a>
-                        <a href="connect.html" class="cta-button secondary">Get in Touch</a>
-                    </div>
-                </div>
-            </section>
+            </div>
         </div>
-    </main>
+    </div>
+
+    <!-- Pagination Indicators - Now positioned on the side -->
+    <div class="pagination">
+        <span class="pagination-dot active" data-slide="0" title="Home"></span>
+        <span class="pagination-dot" data-slide="1" title="Resume"></span>
+        <span class="pagination-dot" data-slide="2" title="Connect"></span>
+    </div>
 
     <footer>
         <div class="container">
@@ -369,9 +739,9 @@
                     <p>Computer Science Student at Utah State University</p>
                 </div>
                 <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="resume.html">Resume</a>
-                    <a href="connect.html">Connect</a>
+                    <a href="#" data-slide="0">Home</a>
+                    <a href="#" data-slide="1">Resume</a>
+                    <a href="#" data-slide="2">Connect</a>
                 </div>
                 <div class="footer-social">
                     <a href="https://github.com/hansdevs" target="_blank"><i class="fab fa-github"></i></a>
