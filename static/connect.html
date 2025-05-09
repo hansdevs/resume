@@ -8,56 +8,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <header class="main-header">
-            <div class="profile-container">
-                <div class="profile-picture-container">
-                    <!-- Placeholder for profile picture -->
-                    <div class="profile-picture-placeholder">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-                <div class="header-content">
-                    <h1>Hans Gamlien</h1>
-                    <h2>Computer Science Student</h2>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+17703300922">+1 770 330 0922</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:miamihans@icloud.com">miamihans@icloud.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Logan, UT 84341</span>
-                        </div>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="profile-picture-container">
+                <!-- Placeholder for profile picture -->
+                <div class="profile-picture-placeholder">
+                    <i class="fas fa-user"></i>
                 </div>
             </div>
-        </header>
+            <h1 class="hero-title">Hans Gamlien</h1>
+            <h2 class="hero-subtitle">Developer & Computer Science Student</h2>
+            <p class="hero-tagline">Building digital experiences that make a difference</p>
+            <div class="hero-cta">
+                <a href="resume.html" class="cta-button secondary">VIEW RESUME</a>
+                <a href="connect.html" class="cta-button primary">GET IN TOUCH</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL DOWN</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
 
-        <!-- Navigation -->
-        <nav class="main-nav">
+    <!-- Navigation -->
+    <nav class="main-nav sticky-nav">
+        <div class="container">
             <ul>
-                <li><a href="index.html">Resume</a></li>
-                <li><a href="connect.html" class="active">Connect</a></li>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="connect.html" class="nav-link active">Connect</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
 
-        <main>
+    <main>
+        <div class="container">
             <section class="connect-section">
                 <h2 class="section-title">Get In Touch</h2>
                 <p class="connect-intro">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out using the form below.</p>
                 
-                <div class="contact-form-container">
+                <div class="contact-form-container" id="contact-form">
                     <form id="contactForm" action="https://formsubmit.co/miamihans@icloud.com" method="POST">
                         <!-- FormSubmit.co configuration -->
                         <input type="hidden" name="_subject" value="New contact from your website">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                        <input type="hidden" name="_next" value="thank-you.html">
                         
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -113,17 +110,29 @@
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
+    </main>
 
-        <footer>
+    <footer>
+        <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 Hans Gamlien</p>
+                <div class="footer-info">
+                    <p>&copy; 2024 Hans Gamlien</p>
+                    <p>Computer Science Student at Utah State University</p>
+                </div>
                 <div class="footer-links">
-                    <a href="index.html">Resume</a>
+                    <a href="index.html">Home</a>
+                    <a href="resume.html">Resume</a>
                     <a href="connect.html">Connect</a>
                 </div>
+                <div class="footer-social">
+                    <a href="https://github.com/hansdevs" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/hansgamlien" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+
+    <script src="scripts/app.js"></script>
 </body>
 </html>
