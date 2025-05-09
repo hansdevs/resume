@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hans Gamlien - Connect</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="main-header">
+            <div class="profile-container">
+                <div class="profile-picture-container">
+                    <!-- Placeholder for profile picture -->
+                    <div class="profile-picture-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="header-content">
+                    <h1>Hans Gamlien</h1>
+                    <h2>Computer Science Student</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+17703300922">+1 770 330 0922</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:miamihans@icloud.com">miamihans@icloud.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Logan, UT 84341</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Resume</a></li>
+                <li><a href="connect.html" class="active">Connect</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section class="connect-section">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="connect-intro">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out using the form below.</p>
+                
+                <div class="contact-form-container">
+                    <form id="contactForm" action="https://formsubmit.co/miamihans@icloud.com" method="POST">
+                        <!-- FormSubmit.co configuration -->
+                        <input type="hidden" name="_subject" value="New contact from your website">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="connect-section">
+                <h2 class="section-title">Other Ways to Connect</h2>
+                
+                <div class="connect-grid">
+                    <div class="connect-item">
+                        <div class="connect-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p><a href="https://github.com/hansdevs" target="_blank">github.com/hansdevs</a></p>
+                    </div>
+                    
+                    <div class="connect-item">
+                        <div class="connect-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <p><a href="https://linkedin.com/in/hansgamlien" target="_blank">linkedin.com/in/hansgamlien</a></p>
+                    </div>
+                    
+                    <div class="connect-item">
+                        <div class="connect-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p><a href="tel:+17703300922">+1 770 330 0922</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 Hans Gamlien</p>
+                <div class="footer-links">
+                    <a href="index.html">Resume</a>
+                    <a href="connect.html">Connect</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
