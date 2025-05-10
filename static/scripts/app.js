@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll(".nav-link")
     const slideButtons = document.querySelectorAll("[data-slide]")
     const pagination = document.querySelector(".pagination")
+    const ctaButtons = document.querySelectorAll(".cta-button")
   
     let currentSlide = 0
     let startX, moveX
@@ -36,13 +37,32 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       })
   
-      // Add event listeners for all buttons with data-slide attribute
-      slideButtons.forEach((button) => {
+      // Add event listeners specifically for CTA buttons
+      ctaButtons.forEach((button) => {
         button.addEventListener("click", (e) => {
           e.preventDefault()
+          console.log("CTA button clicked")
+  
           const slideIndex = Number.parseInt(button.getAttribute("data-slide"))
           goToSlide(slideIndex)
+  
+          // Add a longer delay to ensure the slide transition completes
+          setTimeout(() => {
+            console.log("Scrolling to content after delay")
+            scrollToContent()
+          }, 800)
         })
+      })
+  
+      // Add event listeners for other buttons with data-slide attribute
+      slideButtons.forEach((button) => {
+        if (!button.classList.contains("cta-button")) {
+          button.addEventListener("click", (e) => {
+            e.preventDefault()
+            const slideIndex = Number.parseInt(button.getAttribute("data-slide"))
+            goToSlide(slideIndex)
+          })
+        }
       })
   
       // Touch events for mobile swipe
@@ -64,6 +84,34 @@ document.addEventListener("DOMContentLoaded", () => {
       pagination.addEventListener("mouseenter", () => {
         pagination.classList.remove("fade-out")
       })
+    }
+  
+    // Function to scroll to the content area
+    function scrollToContent() {
+      // Get the current slide
+      const currentSlideElement = slides[currentSlide]
+  
+      // Get the first section in the current slide
+      const firstSection = currentSlideElement.querySelector(".resume-section, .connect-section")
+  
+      if (firstSection) {
+        console.log("Found section to scroll to:", firstSection)
+  
+        // Calculate the position to scroll to
+        const nav = document.querySelector(".sticky-nav")
+        const navHeight = nav ? nav.offsetHeight : 0
+        const sectionTop = firstSection.offsetTop
+  
+        // Scroll the slide to the section
+        currentSlideElement.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        })
+  
+        console.log("Scrolled to position:", 0)
+      } else {
+        console.log("No section found to scroll to")
+      }
     }
   
     // Handle scroll events to hide/show pagination
