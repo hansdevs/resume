@@ -1028,6 +1028,7 @@ footer {
   padding: 40px 0;
 }
 
+
 .timeline::after {
   content: "";
   position: absolute;
@@ -1076,6 +1077,33 @@ footer {
   border-radius: 8px;
   box-shadow: var(--shadow);
   transition: var(--transition);
+}
+
+@media (max-width: 992px) {
+  .timeline::after {
+    left: 30px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    left: 0 !important; /* Force all items to align left on mobile */
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-dot {
+    left: 28px !important; /* Force consistent positioning for all dots */
+    right: auto;
+    margin-left: -8px; /* Center the dot on the line */
+  }
+
+  .timeline-content {
+    width: 100%; /* Ensure content takes full width */
+  }
 }
 
 .timeline-content:hover {
