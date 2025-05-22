@@ -722,7 +722,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
         <!-- Add a heading to make it clear this is an interactive form -->
         <h3 style="margin-bottom: 20px; color: var(--secondary-color); text-align: center;">Contact Form</h3>
         
-        <form id="contactForm" onsubmit="return handleFormSubmit(event)">
+        <form id="contactForm" action="javascript:void(0);" onsubmit="handleFormSubmit(event)">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
@@ -783,7 +783,6 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                     <div class="section-header">
                         <h2 class="section-title">Thank You!</h2>
                         <div class="section-divider"></div>
-                    </div>
                     
                     <div class="thank-you-content" style="text-align: center; padding: 40px 0;">
                         <div class="thank-you-icon" style="font-size: 4rem; color: var(--success-color); margin-bottom: 20px;">

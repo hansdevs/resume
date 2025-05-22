@@ -273,22 +273,109 @@ document.addEventListener("DOMContentLoaded", () => {
     moveX = null
   }
 
+  // Fix for slider-track capturing form events
+  const sliderTrackElement = document.querySelector(".slider-track")
+  const connectSection = document.querySelector(".connect-section")
+  const contactFormContainer = document.querySelector(".contact-form-container")
+
+  if (sliderTrackElement && connectSection && contactFormContainer) {
+    // Make the form container visually stand out
+    contactFormContainer.style.position = "relative"
+    contactFormContainer.style.zIndex = "1000"
+
+    // Prevent slider events from capturing form interactions
+    contactFormContainer.addEventListener(
+      "mousedown",
+      (e) => {
+        e.stopPropagation()
+        console.log("Form container clicked, stopping propagation")
+      },
+      true,
+    )
+
+    contactFormContainer.addEventListener(
+      "touchstart",
+      (e) => {
+        e.stopPropagation()
+        console.log("Form container touched, stopping propagation")
+      },
+      true,
+    )
+
+    // Add click handlers to each form element
+    const formElements = contactFormContainer.querySelectorAll("input, textarea, button")
+    formElements.forEach((element) => {
+      element.addEventListener(
+        "mousedown",
+        function (e) {
+          e.stopPropagation()
+          console.log(`${this.tagName} clicked, stopping propagation`)
+        },
+        true,
+      )
+
+      element.addEventListener(
+        "touchstart",
+        function (e) {
+          e.stopPropagation()
+          console.log(`${this.tagName} touched, stopping propagation`)
+        },
+        true,
+      )
+
+      element.addEventListener(
+        "click",
+        function (e) {
+          e.stopPropagation()
+          console.log(`${this.tagName} clicked`)
+          if (this.tagName === "INPUT" || this.tagName === "TEXTAREA") {
+            this.focus()
+          }
+        },
+        true,
+      )
+    })
+  }
+
   // Form submission handling
   const contactForm = document.getElementById("contactForm")
   if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      // You can add form validation here if needed
-      // If using AJAX form submission instead of page redirect:
-      // e.preventDefault();
-      //
-      // // Simulate form submission
-      // setTimeout(() => {
-      //   // Show thank you slide
-      //   document.getElementById('thank-you-slide').style.display = 'block';
-      //   goToSlide(3); // Assuming thank you is slide 3
-      // }, 1000);
-    })
+    contactForm.addEventListener("submit", handleFormSubmit)
+    console.log("Form submission event listener attached")
   }
+
+  // Handle form submission
+  function handleFormSubmit(event) {
+    event.preventDefault()
+    console.log("Form submission handler called")
+
+    // Get form values
+    const name = document.getElementById("name").value
+    const email = document.getElementById("email").value
+    const subject = document.getElementById("subject").value
+    const message = document.getElementById("message").value
+
+    // Construct the mailto URL with all form data
+    const mailtoUrl = `mailto:miamihans@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`
+
+    console.log("Opening email client with URL:", mailtoUrl)
+
+    // Use window.open to ensure it works across browsers
+    window.open(mailtoUrl, "_blank")
+
+    // Show thank you message
+    setTimeout(() => {
+      // Show thank you slide
+      document.getElementById("thank-you-slide").style.display = "block"
+      goToSlide(3) // Go to thank you slide
+    }, 500)
+
+    // Reset the form
+    document.getElementById("contactForm").reset()
+  }
+
+  // Make the function globally available
+  window.handleFormSubmit = handleFormSubmit
 
   // Scroll indicator functionality
   const scrollIndicator = document.querySelector(".scroll-indicator")
@@ -379,97 +466,4 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation()
     })
   }
-
-  // Fix for slider-track capturing form events
-  const sliderTrackElement = document.querySelector(".slider-track")
-  const connectSection = document.querySelector(".connect-section")
-  const contactFormContainer = document.querySelector(".contact-form-container")
-
-  if (sliderTrackElement && connectSection && contactFormContainer) {
-    // Make the form container visually stand out
-    contactFormContainer.style.position = "relative"
-    contactFormContainer.style.zIndex = "1000"
-
-    // Prevent slider events from capturing form interactions
-    contactFormContainer.addEventListener(
-      "mousedown",
-      (e) => {
-        e.stopPropagation()
-        console.log("Form container clicked, stopping propagation")
-      },
-      true,
-    )
-
-    contactFormContainer.addEventListener(
-      "touchstart",
-      (e) => {
-        e.stopPropagation()
-        console.log("Form container touched, stopping propagation")
-      },
-      true,
-    )
-
-    // Add click handlers to each form element
-    const formElements = contactFormContainer.querySelectorAll("input, textarea, button")
-    formElements.forEach((element) => {
-      element.addEventListener(
-        "mousedown",
-        function (e) {
-          e.stopPropagation()
-          console.log(`${this.tagName} clicked, stopping propagation`)
-        },
-        true,
-      )
-
-      element.addEventListener(
-        "touchstart",
-        function (e) {
-          e.stopPropagation()
-          console.log(`${this.tagName} touched, stopping propagation`)
-        },
-        true,
-      )
-
-      element.addEventListener(
-        "click",
-        function (e) {
-          e.stopPropagation()
-          console.log(`${this.tagName} clicked`)
-          if (this.tagName === "INPUT" || this.tagName === "TEXTAREA") {
-            this.focus()
-          }
-        },
-        true,
-      )
-    })
-  }
-
-  // Handle form submission
-  function handleFormSubmit(event) {
-    event.preventDefault()
-
-    // Get form values
-    const name = document.getElementById("name").value
-    const email = document.getElementById("email").value
-    const subject = document.getElementById("subject").value
-    const message = document.getElementById("message").value
-
-    // Construct the mailto URL with all form data
-    const mailtoUrl = `mailto:miamihans@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`
-
-    // Open the user's email client
-    window.location.href = mailtoUrl
-
-    // Show thank you message or redirect
-    // For now, we'll just alert the user
-    alert("Thank you for your message! Your default email client should open with your message pre-filled.")
-
-    // Reset the form
-    document.getElementById("contactForm").reset()
-
-    return false
-  }
-
-  // Make the function globally available
-  window.handleFormSubmit = handleFormSubmit
 })
