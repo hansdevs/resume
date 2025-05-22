@@ -267,7 +267,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                                     <span class="tech-tag">JavaScript</span>
                                 </div>
                                 <div class="project-links">
-                                    <a href="https://github.com/hansdevs/resume" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                    <a href="https://github.com/hansdevs/portfolio" class="project-link"><i class="fab fa-github"></i> View Code</a>
                                 </div>
                             </div>
                         </div>
@@ -722,7 +722,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
         <!-- Add a heading to make it clear this is an interactive form -->
         <h3 style="margin-bottom: 20px; color: var(--secondary-color); text-align: center;">Contact Form</h3>
         
-        <form id="contactForm" action="mailto:miamihans@icloud.com" method="POST" enctype="text/plain">
+        <form id="contactForm" onsubmit="return handleFormSubmit(event)">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>

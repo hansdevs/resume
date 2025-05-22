@@ -443,4 +443,33 @@ document.addEventListener("DOMContentLoaded", () => {
       )
     })
   }
+
+  // Handle form submission
+  function handleFormSubmit(event) {
+    event.preventDefault()
+
+    // Get form values
+    const name = document.getElementById("name").value
+    const email = document.getElementById("email").value
+    const subject = document.getElementById("subject").value
+    const message = document.getElementById("message").value
+
+    // Construct the mailto URL with all form data
+    const mailtoUrl = `mailto:miamihans@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`
+
+    // Open the user's email client
+    window.location.href = mailtoUrl
+
+    // Show thank you message or redirect
+    // For now, we'll just alert the user
+    alert("Thank you for your message! Your default email client should open with your message pre-filled.")
+
+    // Reset the form
+    document.getElementById("contactForm").reset()
+
+    return false
+  }
+
+  // Make the function globally available
+  window.handleFormSubmit = handleFormSubmit
 })

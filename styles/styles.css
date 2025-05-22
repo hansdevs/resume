@@ -490,6 +490,7 @@ main {
   border: 2px solid var(--secondary-color); /* Add a visible border */
   border-radius: 10px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden; /* Prevent content from spilling outside */
 }
 
 #contactForm {
@@ -525,6 +526,10 @@ main {
   z-index: 1004;
   background-color: white;
   pointer-events: auto !important;
+  resize: vertical; /* Allow only vertical resizing */
+  max-height: 300px; /* Set a maximum height */
+  min-height: 100px; /* Set a minimum height */
+  overflow-y: auto; /* Add scrollbar when content exceeds height */
 }
 
 .form-group input:focus,
