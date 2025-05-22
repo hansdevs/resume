@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const gameScore = document.getElementById("game-score")
   const hiddenStartBtn = document.getElementById("hidden-start-btn")
   const snakeGameWrapper = document.getElementById("snake-game-wrapper")
+  const sliderTrack = document.querySelector(".slider-track")
 
   // Game variables
   const gridSize = 20
@@ -269,9 +270,15 @@ document.addEventListener("DOMContentLoaded", () => {
     hiddenStartBtn.style.display = "none"
     // Initialize the game
     initGame()
+
+    // Disable slider track pointer events when game is visible
+    if (sliderTrack) {
+      sliderTrack.style.pointerEvents = "none"
+    }
   })
 
-  restartButton.addEventListener("click", () => {
+  restartButton.addEventListener("click", (e) => {
+    e.stopPropagation() // Prevent event from bubbling up
     restartGame()
     startGame()
   })
@@ -301,10 +308,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // Touch controls for mobile
+  // Touch controls for mobile - updated to prevent propagation
   canvas.addEventListener(
     "touchstart",
     (event) => {
+      // Always stop propagation to prevent slider from capturing the event
+      event.stopPropagation()
+
       if (!gameRunning) return
 
       touchStartX = event.touches[0].clientX
@@ -319,6 +329,9 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.addEventListener(
     "touchmove",
     (event) => {
+      // Always stop propagation
+      event.stopPropagation()
+
       // Prevent default to avoid scrolling
       event.preventDefault()
     },
@@ -328,6 +341,9 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.addEventListener(
     "touchend",
     (event) => {
+      // Always stop propagation
+      event.stopPropagation()
+
       if (!gameRunning) return
 
       const touchEndX = event.changedTouches[0].clientX
@@ -364,7 +380,9 @@ document.addEventListener("DOMContentLoaded", () => {
   )
 
   // Add click event to game overlay to start game
-  gameOverlay.addEventListener("click", () => {
+  gameOverlay.addEventListener("click", (e) => {
+    e.stopPropagation() // Prevent event from bubbling up
+
     if (!gameRunning) {
       startGame()
     }
