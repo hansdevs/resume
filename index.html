@@ -701,6 +701,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                             <p class="reference-relation">Former Boss</p>
                             <p class="reference-org">PC EMT</p>
                             <div class="reference-contact">
+                                <p><i class="fas fa-phone"></i> <a href="tel:+16789908302">(678) 990-8302</a></p>
                                 <p><i class="fas fa-envelope"></i> <a href="mailto:zo@pcemt247.com">zo@pcemt247.com</a></p>
                             </div>
                         </div>
@@ -754,8 +755,31 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                         </div>
                     </div>
                 </section>
+                
+                <!-- Invisible spacers to push the button down -->
+                <div class="invisible-spacer"></div>
+                <div class="invisible-spacer"></div>
+                <div class="invisible-spacer"></div>
+                
+                <!-- Hidden start button -->
+                <div class="hidden-start-container">
+                    <button id="hidden-start-btn" class="hidden-start-btn">Start</button>
+                </div>
+                
+                <!-- Snake game (hidden initially) -->
+                <div id="snake-game-wrapper" class="snake-game-wrapper">
+                    <canvas id="snake-canvas" width="400" height="400"></canvas>
+                    <div id="game-overlay" class="game-overlay">
+                        <div id="game-message">Press Start to Play</div>
+                        <div id="game-score">Score: 0</div>
+                        <button id="restart-game-btn" class="snake-game-button">Restart Game</button>
+                    </div>
+                    <div class="game-controls">
+                        <p>Desktop: Use W, A, S, D keys to move</p>
+                        <p>Mobile: Swipe in the direction you want to go</p>
+                    </div>
+                </div>
             </div>
-        </div>
 
         <!-- Thank You Content (Hidden by default, shown after form submission) -->
         <div class="slide" id="thank-you-slide" style="display: none;">
@@ -809,5 +833,6 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
 </footer>
 
 <script src="scripts/app.js"></script>
+<script src="scripts/snake-game.js"></script>
 </body>
 </html>
