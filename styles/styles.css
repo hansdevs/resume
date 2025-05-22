@@ -1,4 +1,3 @@
-/* Base Styles */
 :root {
   --primary-color: #2c3e50;
   --secondary-color: #3498db;
@@ -59,7 +58,6 @@ ul {
   list-style: none;
 }
 
-/* Header Styles */
 .main-header {
   background-color: var(--primary-color);
   color: white;
@@ -138,7 +136,6 @@ ul {
   text-decoration: underline;
 }
 
-/* Navigation */
 .sticky-nav {
   position: sticky;
   top: 0;
@@ -183,13 +180,11 @@ ul {
   color: var(--secondary-color);
 }
 
-/* Add styles for the navigation on scroll */
 .nav-scrolled {
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Main Content */
 main {
   margin-bottom: 50px;
 }
@@ -201,10 +196,9 @@ main {
   box-shadow: var(--shadow);
   padding: 30px;
   margin-bottom: 30px;
-  scroll-margin-top: 80px; /* Add scroll margin for better scrolling */
+  scroll-margin-top: 80px;
 }
 
-/* Add this new style to reduce the space on Resume and Connect slides */
 #resume-slide .resume-section:first-child,
 #connect-slide .connect-section:first-child {
   margin-top: 20px;
@@ -218,7 +212,6 @@ main {
   border-bottom: 2px solid var(--secondary-color);
 }
 
-/* Skills Section */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -253,7 +246,6 @@ main {
   transform: translateY(-2px);
 }
 
-/* Experience Section */
 .experience-item,
 .education-item {
   margin-bottom: 30px;
@@ -324,7 +316,6 @@ main {
   left: -15px;
 }
 
-/* Education Section */
 .education-details {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -358,7 +349,6 @@ main {
   left: -15px;
 }
 
-/* Certifications Section */
 .certification-list {
   padding-left: 20px;
 }
@@ -376,7 +366,6 @@ main {
   left: -15px;
 }
 
-/* References Section */
 .references-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -434,7 +423,6 @@ main {
   color: var(--secondary-color);
 }
 
-/* Connect Page Styles */
 .connect-intro {
   margin-bottom: 30px;
   font-size: 1.1rem;
@@ -446,7 +434,6 @@ main {
   margin: 0 auto;
 }
 
-/* Fix for form fields to ensure they're clickable */
 #connect-slide {
   position: relative;
   z-index: 1;
@@ -457,7 +444,6 @@ main {
   z-index: 2;
 }
 
-/* Add these styles to ensure the form is above the slider-track */
 .slider-container {
   position: relative;
   width: 100%;
@@ -467,33 +453,32 @@ main {
 .slider-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 300%; /* 100% for each slide */
+  width: 300%;
   height: 100%;
-  pointer-events: none; /* This allows clicks to pass through to elements below */
+  pointer-events: none;
 }
 
 .slide {
-  width: 33.333%; /* Each slide takes up 1/3 of the slider track */
+  width: 33.333%;
   flex-shrink: 0;
   overflow-y: auto;
   overflow-x: hidden;
   padding-bottom: 50px;
   padding-top: 0;
-  pointer-events: auto; /* Re-enable pointer events for the slide content */
+  pointer-events: auto;
 }
 
-/* Make the contact form container stand out and be above everything */
 .contact-form-container {
   max-width: 800px;
   margin: 0 auto;
   position: relative;
-  z-index: 1000; /* Very high z-index */
+  z-index: 1000;
   background-color: white;
   padding: 30px;
-  border: 2px solid var(--secondary-color); /* Add a visible border */
+  border: 2px solid var(--secondary-color);
   border-radius: 10px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-  overflow: hidden; /* Prevent content from spilling outside */
+  overflow: hidden;
 }
 
 #contactForm {
@@ -529,10 +514,10 @@ main {
   z-index: 1004;
   background-color: white;
   pointer-events: auto !important;
-  resize: vertical; /* Allow only vertical resizing */
-  max-height: 300px; /* Set a maximum height */
-  min-height: 100px; /* Set a minimum height */
-  overflow-y: auto; /* Add scrollbar when content exceeds height */
+  resize: vertical;
+  max-height: 300px;
+  min-height: 100px;
+  overflow-y: auto;
 }
 
 .form-group input:focus,
@@ -599,7 +584,6 @@ main {
   margin-bottom: 10px;
 }
 
-/* Add styles for the connect buttons */
 .connect-button {
   display: inline-flex;
   align-items: center;
@@ -622,7 +606,6 @@ main {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Add styles for the new contact card */
 .contact-card {
   background-color: white;
   border-radius: 10px;
@@ -678,13 +661,12 @@ main {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Snake Game Styles */
 .snake-game-wrapper {
   display: none;
   margin: 40px auto;
   max-width: 800px;
   position: relative;
-  z-index: 2000; /* Increase z-index to be above everything */
+  z-index: 2000;
 }
 
 #snake-canvas {
@@ -696,8 +678,8 @@ main {
   width: 400px;
   height: 400px;
   position: relative;
-  z-index: 2001; /* Make sure canvas is above other elements */
-  touch-action: none; /* Prevent browser handling of all touch actions */
+  z-index: 2001;
+  touch-action: none;
 }
 
 .game-overlay {
@@ -713,7 +695,7 @@ main {
   justify-content: center;
   align-items: center;
   color: white;
-  z-index: 2002; /* Make sure overlay is above canvas */
+  z-index: 2002;
   border-radius: 5px;
 }
 
@@ -723,10 +705,9 @@ main {
   font-size: 0.9rem;
   text-align: center;
   position: relative;
-  z-index: 2001; /* Match canvas z-index */
+  z-index: 2001;
 }
 
-/* Footer */
 footer {
   background-color: var(--primary-color);
   color: white;
@@ -757,7 +738,6 @@ footer {
   text-decoration: underline;
 }
 
-/* Hero Section Styles */
 .hero {
   height: 100vh;
   background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)),
@@ -833,7 +813,7 @@ footer {
   transition: var(--transition);
   text-transform: uppercase;
   letter-spacing: 1px;
-  cursor: pointer; /* Add cursor pointer to make it clear it's clickable */
+  cursor: pointer;
 }
 
 .cta-button.primary {
@@ -849,7 +829,6 @@ footer {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Add a pulse effect to primary buttons */
 .cta-button.primary::after {
   content: "";
   position: absolute;
@@ -933,7 +912,6 @@ footer {
   }
 }
 
-/* Section Styles for Home Page */
 .section-header {
   text-align: center;
   margin-bottom: 40px;
@@ -960,7 +938,6 @@ footer {
   padding: 80px 0;
 }
 
-/* About Section Styles */
 .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1044,7 +1021,6 @@ footer {
   margin-bottom: 10px;
 }
 
-/* Timeline Styles */
 .timeline {
   position: relative;
   max-width: 1000px;
@@ -1123,7 +1099,6 @@ footer {
   font-size: 1.3rem;
 }
 
-/* Projects Section Styles */
 .featured-project {
   display: flex;
   background-color: white;
@@ -1357,7 +1332,6 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Skills Showcase Styles */
 .skills-container {
   margin-top: 40px;
 }
@@ -1438,7 +1412,6 @@ footer {
   color: var(--primary-color);
 }
 
-/* CTA Section Styles */
 .cta-section {
   background-color: var(--primary-color);
   color: white;
@@ -1472,7 +1445,6 @@ footer {
   flex-wrap: wrap;
 }
 
-/* Enhanced Footer for Home Page */
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -1511,7 +1483,6 @@ footer {
   transform: translateY(-3px);
 }
 
-/* Responsive Styles */
 @media (max-width: 992px) {
   .education-details {
     grid-template-columns: 1fr;
@@ -1666,7 +1637,6 @@ footer {
   }
 }
 
-/* Print Styles */
 @media print {
   .main-nav,
   .hero,
@@ -1728,19 +1698,16 @@ footer {
   }
 }
 
-/* Content Loading Animation */
 #content-container.loading {
   opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 
-/* Page Transition Effects */
 #content-container {
   opacity: 1;
   transition: opacity 0.3s ease;
 }
 
-/* Preloader */
 .preloader {
   position: fixed;
   top: 0;
@@ -1778,7 +1745,6 @@ footer {
   }
 }
 
-/* Thank You Page Styles */
 .thank-you-section {
   text-align: center;
   padding: 60px 0;
@@ -1806,7 +1772,6 @@ footer {
   margin-top: 30px;
 }
 
-/* Loading Animation */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -1846,7 +1811,6 @@ footer {
   }
 }
 
-/* Slider Styles */
 .slider-container {
   width: 100%;
   overflow: hidden;
@@ -1856,26 +1820,24 @@ footer {
 .slider-track {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 300%; /* 100% for each slide */
+  width: 300%;
   height: 100%;
 }
 
 .slide {
-  width: 33.333%; /* Each slide takes up 1/3 of the slider track */
+  width: 33.333%;
   flex-shrink: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-bottom: 50px; /* Space for pagination */
-  padding-top: 0; /* Remove top padding */
+  padding-bottom: 50px;
+  padding-top: 0;
 }
 
-/* Add consistent container padding for all slides */
 .slide .container {
   padding-top: 20px;
   padding-bottom: 30px;
 }
 
-/* Pagination Styles - Repositioned to the side */
 .pagination {
   display: flex;
   flex-direction: column;
@@ -1886,7 +1848,7 @@ footer {
   right: 20px;
   transform: translateY(-50%);
   z-index: 100;
-  background-color: rgba(44, 62, 80, 0.7); /* Semi-transparent dark navy */
+  background-color: rgba(44, 62, 80, 0.7);
   padding: 15px 8px;
   margin: 0;
   border-radius: 30px;
@@ -1903,12 +1865,11 @@ footer {
 }
 
 .pagination-dot.active {
-  background-color: #3498db; /* Brighter blue for active dot */
+  background-color: #3498db;
   width: 14px;
   height: 14px;
 }
 
-/* Touch Swipe Indicator */
 .swipe-indicator {
   position: fixed;
   bottom: 100px;
@@ -1929,7 +1890,6 @@ footer {
   opacity: 1;
 }
 
-/* Animation for slide transitions */
 @keyframes slideInRight {
   from {
     transform: translateX(100%);
@@ -1966,30 +1926,25 @@ footer {
   }
 }
 
-/* Responsive adjustments for slider */
 @media (max-width: 768px) {
   .slider-container {
-    touch-action: pan-y; /* Enable vertical scrolling on touch devices */
+    touch-action: pan-y;
   }
 }
 
-/* Thank you slide styles */
 #thank-you-slide {
-  display: none; /* Hidden by default */
+  display: none;
 }
 
-/* Active slide indicator in navigation */
 .nav-link.active {
   border-bottom: 3px solid var(--secondary-color);
   color: var(--secondary-color);
 }
 
-/* Adjust footer to remove bottom margin since pagination is no longer at bottom */
 footer {
   margin-bottom: 0 !important;
 }
 
-/* Add a scroll indicator for content sections */
 .content-scroll-indicator {
   position: absolute;
   bottom: 20px;
@@ -2011,7 +1966,6 @@ footer {
   }
 }
 
-/* Add highlight effect for sections when scrolled to */
 .resume-section.highlight,
 .connect-section.highlight {
   animation: highlightSection 1s ease-out;
@@ -2029,20 +1983,17 @@ footer {
   }
 }
 
-/* Invisible spacers */
 .invisible-spacer {
   height: 100px;
   width: 100%;
 }
 
-/* Hidden Start Button Container */
 .hidden-start-container {
   display: flex;
   justify-content: center;
   margin: 40px 0;
 }
 
-/* Hidden Start Button */
 .hidden-start-btn {
   background-color: #3498db;
   color: white;
