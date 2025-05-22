@@ -443,7 +443,63 @@ main {
   margin: 0 auto;
 }
 
+/* Fix for form fields to ensure they're clickable */
+#connect-slide {
+  position: relative;
+  z-index: 1;
+}
+
+.connect-section {
+  position: relative;
+  z-index: 2;
+}
+
+/* Add these styles to ensure the form is above the slider-track */
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 300%; /* 100% for each slide */
+  height: 100%;
+  pointer-events: none; /* This allows clicks to pass through to elements below */
+}
+
+.slide {
+  width: 33.333%; /* Each slide takes up 1/3 of the slider track */
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+  padding-top: 0;
+  pointer-events: auto; /* Re-enable pointer events for the slide content */
+}
+
+/* Make the contact form container stand out and be above everything */
+.contact-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1000; /* Very high z-index */
+  background-color: white;
+  padding: 30px;
+  border: 2px solid var(--secondary-color); /* Add a visible border */
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+#contactForm {
+  position: relative;
+  z-index: 1001;
+}
+
 .form-group {
+  position: relative;
+  z-index: 1002;
   margin-bottom: 20px;
 }
 
@@ -452,6 +508,8 @@ main {
   margin-bottom: 8px;
   font-weight: 500;
   color: var(--primary-color);
+  position: relative;
+  z-index: 1003;
 }
 
 .form-group input,
@@ -463,6 +521,10 @@ main {
   font-family: inherit;
   font-size: 1rem;
   transition: var(--transition);
+  position: relative;
+  z-index: 1004;
+  background-color: white;
+  pointer-events: auto !important;
 }
 
 .form-group input:focus,
@@ -481,11 +543,21 @@ main {
   font-size: 1rem;
   cursor: pointer;
   transition: var(--transition);
+  position: relative;
+  z-index: 1005;
 }
 
 .submit-btn:hover {
   background-color: var(--primary-color);
   transform: translateY(-2px);
+}
+
+.slider-container {
+  pointer-events: auto;
+}
+
+.slide {
+  pointer-events: auto;
 }
 
 .connect-grid {
@@ -517,6 +589,29 @@ main {
 .connect-item h3 {
   color: var(--primary-color);
   margin-bottom: 10px;
+}
+
+/* Add styles for the connect buttons */
+.connect-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 12px 20px;
+  background-color: #f1f5f9;
+  color: var(--primary-color);
+  border-radius: 5px;
+  font-weight: 500;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.connect-button:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer */
@@ -997,6 +1092,7 @@ footer {
 .project-links {
   display: flex;
   gap: 15px;
+  margin-top: auto;
 }
 
 .project-link {
@@ -1030,6 +1126,9 @@ footer {
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
@@ -1044,6 +1143,13 @@ footer {
   align-items: center;
   background-color: #f8f9fa;
   padding: 20px;
+  overflow: hidden;
+}
+
+.project-card-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .project-icon {
@@ -1058,6 +1164,9 @@ footer {
 
 .project-card-content {
   padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card-content h3 {
@@ -1078,19 +1187,9 @@ footer {
   margin-bottom: 15px;
 }
 
-.project-card-link {
-  display: inline-block;
-  padding: 8px 15px;
-  background-color: var(--secondary-color);
-  color: white;
-  border-radius: 5px;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.project-card-link:hover {
-  background-color: var(--primary-color);
-  transform: translateY(-2px);
+.project-card .project-links {
+  margin-top: auto;
+  padding-top: 15px;
 }
 
 .github-section {

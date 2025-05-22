@@ -200,8 +200,8 @@
                                 Stay tuned — big things are on the way.
                             </p>
                             <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Read More</a>
-                            </div>
+                                <!-- <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Read More</a> -->
+</div>
                         </div>
                     </div>
                     
@@ -217,35 +217,43 @@
                             <div class="project-tech">
                                 <span class="tech-tag">Swift</span>
                                 <span class="tech-tag">Memory Managment</span>
-                                                                    <span class="tech-tag">Swift Student Challenge Submission</span>
-
+                                <span class="tech-tag">Swift Student Challenge Submission</span>
                             </div>
                             <p class="project-description">
-Ricochet is a fast-paced square-shooting game where you aim balls to destroy falling blocks before they reach the bottom. A 2024 Swift Student Challenge submission, it’s built entirely in Swift with no external libraries and features custom low-level memory handling for high-intensity gameplay.
+Ricochet is a fast-paced square-shooting game where you aim balls to destroy falling blocks before they reach the bottom. A 2024 Swift Student Challenge submission, it's built entirely in Swift with no external libraries and features custom low-level memory handling for high-intensity gameplay.
                             </p>
                             <div class="project-links">
-                                <a href="https://github.com/hansdevs" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="https://github.com/hansdevs/BallGame_Playgrounds" class="project-link"><i class="fab fa-github"></i> View Code</a>
+</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Replace this project card with a featured project -->
+                    <div class="featured-project">
+                        <div class="project-image">
+                            <img src="images/safespend.png" alt="SafeSpend - Swift Student Challenge 2023" class="featured-img">
+                            <div class="project-overlay">
+                                <div class="project-category">iOS Mobile Development</div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h3>Safe Spend</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Swift</span>
+                                <span class="tech-tag">UIKit</span>
+                                <span class="tech-tag">SwiftUI</span>
+                                <span class="tech-tag">Swift Student Challenge Submission</span>
+                            </div>
+                            <p class="project-description">
+                                A personal finance app with a loan calculator that helps users manage their finances and make informed decisions. The app provides intuitive tools for tracking expenses, setting budgets, and planning for future financial goals.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/hansdevs/SafeSpend" class="project-link"><i class="fab fa-github"></i> View Code</a>
                             </div>
                         </div>
                     </div>
                     
                     <div class="projects-grid">
-                        <div class="project-card">
-                            <div class="project-card-image">
-                                <img src="images/Xcode.png" alt="Task Manager App" class="project-icon">
-                            </div>
-                            <div class="project-card-content">
-                                <h3>Task Manager App</h3>
-                                <p>A productivity app built with Swift and UIKit that helps users organize tasks and set reminders.</p>
-                                <div class="project-card-tech">
-                                    <span class="tech-tag">Swift</span>
-                                    <span class="tech-tag">UIKit</span>
-                                </div>
-                                <a href="#" class="project-card-link">View Details</a>
-                            </div>
-                        </div>
-                        
                         <div class="project-card">
                             <div class="project-card-image">
                                 <img src="images/vscode.png" alt="Portfolio Website" class="project-icon">
@@ -258,22 +266,26 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                                     <span class="tech-tag">CSS</span>
                                     <span class="tech-tag">JavaScript</span>
                                 </div>
-                                <a href="#" class="project-card-link">View Details</a>
+                                <div class="project-links">
+                                    <a href="https://github.com/hansdevs/resume" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="project-card">
                             <div class="project-card-image">
-                                <img src="images/IntelliJDEAlogo.png" alt="Inventory System" class="project-icon">
+                                <img src="images/IntelliJDEAlogo.png" alt="BeladysAnomaly" class="project-icon">
                             </div>
                             <div class="project-card-content">
-                                <h3>Inventory Management System</h3>
-                                <p>A Java-based application for tracking inventory with database integration.</p>
+                                <h3>BeladysAnomaly</h3>
+                                <p>CS3100 project where we're tasked with programming the phenomenon in which increasing the number of page frames results in an increase in the number of page faults for certain memory access patterns. This phenomenon is commonly experienced when using the first-in first-out (FIFO) page replacement algorithm.</p>
                                 <div class="project-card-tech">
                                     <span class="tech-tag">Java</span>
-                                    <span class="tech-tag">SQLite</span>
+                                    <span class="tech-tag">Memory Management</span>
                                 </div>
-                                <a href="#" class="project-card-link">View Details</a>
+                                <div class="project-links">
+                                    <a href="https://github.com/hansdevs/BeladysAnomaly" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -701,41 +713,40 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
         <!-- Connect Page Content (Slide 2) -->
         <div class="slide" id="connect-slide">
             <div class="container">
-                <section class="connect-section">
-                    <h2 class="section-title">Get In Touch</h2>
-                    <p class="connect-intro">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out using the form below.</p>
-                    
-                    <div class="contact-form-container" id="contact-form">
-                        <form id="contactForm" action="https://formsubmit.co/miamihans@icloud.com" method="POST">
-                            <!-- FormSubmit.co configuration -->
-                            <input type="hidden" name="_subject" value="New contact from your website">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="thank-you.html">
-                            
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn">Send Message</button>
-                        </form>
-                    </div>
-                </section>
+                
+<section class="connect-section">
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="connect-intro">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out using the form below.</p>
+    
+    <div class="contact-form-container" id="contact-form">
+        <!-- Add a heading to make it clear this is an interactive form -->
+        <h3 style="margin-bottom: 20px; color: var(--secondary-color); text-align: center;">Contact Form</h3>
+        
+        <form id="contactForm" action="mailto:miamihans@icloud.com" method="POST" enctype="text/plain">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+</section>
 
                 <section class="connect-section">
                     <h2 class="section-title">Other Ways to Connect</h2>
@@ -746,7 +757,9 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                                 <i class="fab fa-github"></i>
                             </div>
                             <h3>GitHub</h3>
-                            <p><a href="https://github.com/hansdevs" target="_blank">github.com/hansdevs</a></p>
+                            <a href="https://github.com/hansdevs" target="_blank" class="connect-button">
+                                <i class="fab fa-github"></i> Visit GitHub Profile
+                            </a>
                         </div>
                         
                         <div class="connect-item">
@@ -754,15 +767,9 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                                 <i class="fab fa-linkedin"></i>
                             </div>
                             <h3>LinkedIn</h3>
-                            <p><a href="https://linkedin.com/in/hansgamlien" target="_blank">linkedin.com/in/hansgamlien</a></p>
-                        </div>
-                        
-                        <div class="connect-item">
-                            <div class="connect-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <h3>Phone</h3>
-                            <p><a href="tel:+17703300922">+1 770 330 0922</a></p>
+                            <a href="https://www.linkedin.com/in/hans-gamlien-59ab1a265/" target="_blank" class="connect-button">
+                                <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -815,7 +822,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
             </div>
             <div class="footer-social">
                 <a href="https://github.com/hansdevs" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/hansgamlien" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/hans-gamlien-59ab1a265/" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </div>
