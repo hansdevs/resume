@@ -215,17 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Mouse drag event handlers
   function handleDragStart(e) {
-    // Don't start dragging if the click is on a form element
-    if (
-      e.target.tagName === "INPUT" ||
-      e.target.tagName === "TEXTAREA" ||
-      e.target.tagName === "BUTTON" ||
-      e.target.closest(".contact-form-container")
-    ) {
-      console.log("Ignoring drag start on form element")
-      return
-    }
-
     isDragging = true
     startX = e.clientX
     sliderTrack.style.transition = "none"
@@ -336,46 +325,6 @@ document.addEventListener("DOMContentLoaded", () => {
       )
     })
   }
-
-  // Form submission handling
-  const contactForm = document.getElementById("contactForm")
-  if (contactForm) {
-    contactForm.addEventListener("submit", handleFormSubmit)
-    console.log("Form submission event listener attached")
-  }
-
-  // Handle form submission
-  function handleFormSubmit(event) {
-    event.preventDefault()
-    console.log("Form submission handler called")
-
-    // Get form values
-    const name = document.getElementById("name").value
-    const email = document.getElementById("email").value
-    const subject = document.getElementById("subject").value
-    const message = document.getElementById("message").value
-
-    // Construct the mailto URL with all form data
-    const mailtoUrl = `mailto:miamihans@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`
-
-    console.log("Opening email client with URL:", mailtoUrl)
-
-    // Use window.open to ensure it works across browsers
-    window.open(mailtoUrl, "_blank")
-
-    // Show thank you message
-    setTimeout(() => {
-      // Show thank you slide
-      document.getElementById("thank-you-slide").style.display = "block"
-      goToSlide(3) // Go to thank you slide
-    }, 500)
-
-    // Reset the form
-    document.getElementById("contactForm").reset()
-  }
-
-  // Make the function globally available
-  window.handleFormSubmit = handleFormSubmit
 
   // Scroll indicator functionality
   const scrollIndicator = document.querySelector(".scroll-indicator")
