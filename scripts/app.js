@@ -1,312 +1,138 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Portfolio site loaded with horizontal slider")
+(() => {
+  "use strict";
 
-  const sliderTrack = document.querySelector(".slider-track")
-  const slides = document.querySelectorAll(".slide")
-  const paginationDots = document.querySelectorAll(".pagination-dot")
-  const navLinks = document.querySelectorAll(".nav-link")
-  const slideButtons = document.querySelectorAll("[data-slide]")
-  const pagination = document.querySelector(".pagination")
-  const ctaButtons = document.querySelectorAll(".cta-button")
+  console.log("%c▶ app.js v17 loaded", "background:#e67e22;color:#fff;padding:2px 6px;border-radius:4px");
 
-  let currentSlide = 0
-  let startX, moveX
-  let isDragging = false
-  let scrollTimeout = null
+  document.querySelectorAll(".invisible-spacer").forEach((el) => el.remove());
 
-  function initSlider() {
-    goToSlide(currentSlide)
-    paginationDots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        const slideIndex = Number.parseInt(dot.getAttribute("data-slide"))
-        goToSlide(slideIndex)
-      })
+  const sliderContainer = document.querySelector(".slider-container");
+  const sliderTrack = document.querySelector(".slider-track");
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const dots = Array.from(document.querySelectorAll(".pagination-dot"));
+  const topNavLinks = Array.from(document.querySelectorAll(".main-nav .nav-link"));
+  const footerLinks = Array.from(document.querySelectorAll("footer .footer-links a[data-slide]"));
+  const heroCTAs = Array.from(document.querySelectorAll(".hero .cta-button[data-slide]"));
+  const stickyNav = document.querySelector(".sticky-nav");
+  const heroArrow = document.querySelector(".scroll-indicator");
+  const paginationUI = document.querySelector(".pagination");
+  let current = 0;
+  let dragXStart = 0;
+  let dragging = false;
+  let fadeT;
+  let hRAF;
+  const px = (v) => parseFloat(getComputedStyle(v).paddingTop) + parseFloat(getComputedStyle(v).paddingBottom);
+  const getSlideHeight = (s) => s.scrollHeight - px(s);
+  const syncHeight = () => {
+    cancelAnimationFrame(hRAF);
+    hRAF = requestAnimationFrame(() => {
+      if (!sliderContainer) return;
+      sliderContainer.style.height = `${getSlideHeight(slides[current])}px`;
+    });
+  };
+  const RO = new ResizeObserver(syncHeight);
+  const MO = new MutationObserver(syncHeight);
+  const watchSlide = () => {
+    RO.disconnect();
+    MO.disconnect();
+    const s = slides[current];
+    RO.observe(s);
+    MO.observe(s, { childList: true, subtree: true, attributes: true });
+    s.querySelectorAll("img").forEach((img) => !img.complete && img.addEventListener("load", syncHeight, { once: true }));
+    syncHeight();
+  };
+  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+  const sliderTop = () => sliderContainer.offsetTop;
+  const navH = () => (stickyNav ? stickyNav.offsetHeight : 0);
+  const inView = () => window.scrollY >= sliderTop() - navH() - 2;
+  const scrollToSlider = (force = false) =>
+    !inView() || force ? window.scrollTo({ top: sliderTop() - navH(), behavior: "smooth" }) : null;
+  const animateBars = () => {
+    if (current !== 1) return;
+    document.querySelectorAll(".skill-level").forEach((bar) => {
+      const w = bar.dataset.level || bar.style.width;
+      bar.dataset.level = w;
+      bar.style.width = "0";
+      requestAnimationFrame(() => (bar.style.width = w));
+    });
+  };
+  const go = (idx) => {
+    current = clamp(idx, 0, slides.length - 1);
+    sliderTrack.style.transition = "transform .55s ease";
+    sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
+    slides[current].scrollTop = 0;
+    dots.forEach((d, i) => d.classList.toggle("active", i === current));
+    topNavLinks.concat(footerLinks).forEach((l) => l.classList.toggle("active", +l.dataset.slide === current));
+    animateBars();
+    watchSlide();
+  };
+  const bind = (el) =>
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      go(+el.dataset.slide);
+      scrollToSlider(el.closest(".hero"));
+    });
+  [...topNavLinks, ...footerLinks, ...heroCTAs].forEach(bind);
+  dots.forEach((d, i) =>
+    d.addEventListener("click", (e) => {
+      e.preventDefault();
+      go(i);
+      scrollToSlider();
     })
-    navLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault()
-        const slideIndex = Number.parseInt(link.getAttribute("data-slide"))
-        goToSlide(slideIndex)
-      })
-    })
-    ctaButtons.forEach((button) => {
-      button.addEventListener("click", (e) => {
-        e.preventDefault()
-        console.log("CTA button clicked")
-        const slideIndex = Number.parseInt(button.getAttribute("data-slide"))
-        goToSlide(slideIndex)
-        setTimeout(() => {
-          console.log("Scrolling to content after delay")
-          scrollToContent()
-        }, 800)
-      })
-    })
-    slideButtons.forEach((button) => {
-      if (!button.classList.contains("cta-button")) {
-        button.addEventListener("click", (e) => {
-          e.preventDefault()
-          const slideIndex = Number.parseInt(button.getAttribute("data-slide"))
-          goToSlide(slideIndex)
-        })
-      }
-    })
-    sliderTrack.addEventListener("touchstart", handleTouchStart, false)
-    sliderTrack.addEventListener("touchmove", handleTouchMove, false)
-    sliderTrack.addEventListener("touchend", handleTouchEnd, false)
-    sliderTrack.addEventListener("mousedown", handleDragStart, false)
-    document.addEventListener("mousemove", handleDragMove, false)
-    document.addEventListener("mouseup", handleDragEnd, false)
-    slides.forEach((slide) => {
-      slide.addEventListener("scroll", handleScroll, false)
-    })
-    pagination.addEventListener("mouseenter", () => {
-      pagination.classList.remove("fade-out")
-    })
-  }
-
-  function scrollToContent() {
-    const currentSlideElement = slides[currentSlide]
-    const firstSection = currentSlideElement.querySelector(".resume-section, .connect-section")
-    if (firstSection) {
-      console.log("Found section to scroll to:", firstSection)
-      const nav = document.querySelector(".sticky-nav")
-      const navHeight = nav ? nav.offsetHeight : 0
-      const sectionTop = firstSection.offsetTop
-      currentSlideElement.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      })
-      console.log("Scrolled to position:", 0)
-    } else {
-      console.log("No section found to scroll to")
-    }
-  }
-
-  function handleScroll() {
-    pagination.classList.add("fade-out")
-    if (scrollTimeout) {
-      clearTimeout(scrollTimeout)
-    }
-    scrollTimeout = setTimeout(() => {
-      pagination.classList.remove("fade-out")
-    }, 1500)
-  }
-
-  function goToSlide(index) {
-    if (index < 0) index = 0
-    if (index >= slides.length) index = slides.length - 1
-    currentSlide = index
-    sliderTrack.style.transform = `translateX(-${currentSlide * 33.333}%)`
-    paginationDots.forEach((dot, i) => {
-      dot.classList.toggle("active", i === currentSlide)
-    })
-    navLinks.forEach((link, i) => {
-      link.classList.toggle("active", Number.parseInt(link.getAttribute("data-slide")) === currentSlide)
-    })
-    if (currentSlide === 1) {
-      animateSkillBars()
-    }
-    slides[currentSlide].scrollTop = 0
-    pagination.classList.remove("fade-out")
-    console.log(`Navigated to slide ${currentSlide}`)
-  }
-
-  function animateSkillBars() {
-    const skillLevels = document.querySelectorAll(".skill-level")
-    skillLevels.forEach((skill) => {
-      const width = skill.style.width
-      skill.style.width = "0"
-      setTimeout(() => {
-        skill.style.width = width
-      }, 100)
-    })
-  }
-
-  function handleTouchStart(e) {
-    startX = e.touches[0].clientX
-  }
-
-  function handleTouchMove(e) {
-    if (!startX) return
-    moveX = e.touches[0].clientX
-    const diff = startX - moveX
-    if (Math.abs(diff) > 5) {
-      e.preventDefault()
-    }
-  }
-
-  function handleTouchEnd(e) {
-    if (!startX || !moveX) return
-    const diff = startX - moveX
-    const threshold = window.innerWidth * 0.15
-    if (diff > threshold) {
-      goToSlide(currentSlide + 1)
-    } else if (diff < -threshold) {
-      goToSlide(currentSlide - 1)
-    }
-    startX = null
-    moveX = null
-  }
-
-  function handleDragStart(e) {
-    isDragging = true
-    startX = e.clientX
-    sliderTrack.style.transition = "none"
-    e.preventDefault()
-  }
-
-  function handleDragMove(e) {
-    if (!isDragging) return
-    moveX = e.clientX
-    const diff = startX - moveX
-    const currentTranslate = -currentSlide * 33.333
-    const newTranslate = currentTranslate - (diff / window.innerWidth) * 33.333
-    if (newTranslate <= 0 && newTranslate >= -66.666) {
-      sliderTrack.style.transform = `translateX(${newTranslate}%)`
-    }
-  }
-
-  function handleDragEnd(e) {
-    if (!isDragging) return
-    isDragging = false
-    sliderTrack.style.transition = "transform 0.5s ease-in-out"
-    if (!moveX) return
-    const diff = startX - moveX
-    const threshold = window.innerWidth * 0.15
-    if (diff > threshold) {
-      goToSlide(currentSlide + 1)
-    } else if (diff < -threshold) {
-      goToSlide(currentSlide - 1)
-    } else {
-      goToSlide(currentSlide)
-    }
-    startX = null
-    moveX = null
-  }
-
-  const sliderTrackElement = document.querySelector(".slider-track")
-  const connectSection = document.querySelector(".connect-section")
-  const contactFormContainer = document.querySelector(".contact-form-container")
-
-  if (sliderTrackElement && connectSection && contactFormContainer) {
-    contactFormContainer.style.position = "relative"
-    contactFormContainer.style.zIndex = "1000"
-    contactFormContainer.addEventListener(
-      "mousedown",
-      (e) => {
-        e.stopPropagation()
-        console.log("Form container clicked, stopping propagation")
-      },
-      true,
-    )
-    contactFormContainer.addEventListener(
-      "touchstart",
-      (e) => {
-        e.stopPropagation()
-        console.log("Form container touched, stopping propagation")
-      },
-      true,
-    )
-    const formElements = contactFormContainer.querySelectorAll("input, textarea, button")
-    formElements.forEach((element) => {
-      element.addEventListener(
-        "mousedown",
-        function (e) {
-          e.stopPropagation()
-          console.log(`${this.tagName} clicked, stopping propagation`)
-        },
-        true,
-      )
-      element.addEventListener(
-        "touchstart",
-        function (e) {
-          e.stopPropagation()
-          console.log(`${this.tagName} touched, stopping propagation`)
-        },
-        true,
-      )
-      element.addEventListener(
-        "click",
-        function (e) {
-          e.stopPropagation()
-          console.log(`${this.tagName} clicked`)
-          if (this.tagName === "INPUT" || this.tagName === "TEXTAREA") {
-            this.focus()
-          }
-        },
-        true,
-      )
-    })
-  }
-
-  const scrollIndicator = document.querySelector(".scroll-indicator")
-  if (scrollIndicator) {
-    scrollIndicator.addEventListener("click", () => {
-      const nav = document.querySelector(".sticky-nav")
-      if (nav) {
-        window.scrollTo({
-          top: nav.offsetTop,
-          behavior: "smooth",
-        })
-      }
-    })
-  }
-
+  );
+  heroArrow &&
+    heroArrow.addEventListener("click", () => stickyNav && window.scrollTo({ top: stickyNav.offsetTop, behavior: "smooth" }));
   window.addEventListener("scroll", () => {
-    const scrollIndicator = document.querySelector(".scroll-indicator")
-    const nav = document.querySelector(".sticky-nav")
-    if (window.scrollY > 100) {
-      if (scrollIndicator) scrollIndicator.style.opacity = "0"
-      if (nav) nav.classList.add("nav-scrolled")
-    } else {
-      if (scrollIndicator) scrollIndicator.style.opacity = "1"
-      if (nav) nav.classList.remove("nav-scrolled")
-    }
-  })
-
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-        })
-      }
+    if (!stickyNav) return;
+    const scrolled = window.scrollY > 100;
+    heroArrow && (heroArrow.style.opacity = scrolled ? "0" : "1");
+    stickyNav.classList.toggle("nav-scrolled", scrolled);
+  });
+  const thresh = () => window.innerWidth * 0.15;
+  const startDrag = (x) => {
+    dragging = true;
+    dragXStart = x;
+    sliderTrack.style.transition = "none";
+  };
+  const moveDrag = (x) => {
+    if (!dragging) return;
+    const diff = dragXStart - x;
+    const pct = -current * 33.3333 - (diff / window.innerWidth) * 33.3333;
+    if (pct <= 0 && pct >= -66.6666) sliderTrack.style.transform = `translateX(${pct}%)`;
+  };
+  const endDrag = (x) => {
+    if (!dragging) return;
+    dragging = false;
+    sliderTrack.style.transition = "transform .55s ease";
+    const diff = dragXStart - x;
+    if (diff > thresh()) go(current + 1);
+    else if (diff < -thresh()) go(current - 1);
+    else go(current);
+  };
+  sliderTrack.addEventListener("touchstart", (e) => startDrag(e.touches[0].clientX));
+  sliderTrack.addEventListener("touchmove", (e) => {
+    if (dragging) e.preventDefault();
+    moveDrag(e.touches[0].clientX);
+  });
+  sliderTrack.addEventListener("touchend", (e) => endDrag(e.changedTouches[0].clientX));
+  sliderTrack.addEventListener("mousedown", (e) => startDrag(e.clientX));
+  window.addEventListener("mousemove", (e) => moveDrag(e.clientX));
+  window.addEventListener("mouseup", (e) => endDrag(e.clientX));
+  slides.forEach((s) =>
+    s.addEventListener("scroll", () => {
+      paginationUI.classList.add("fade-out");
+      clearTimeout(fadeT);
+      fadeT = setTimeout(() => paginationUI.classList.remove("fade-out"), 1200);
     })
-  })
-
-  initSlider()
-
-  const formFields = document.querySelectorAll(".form-group input, .form-group textarea")
-  formFields.forEach((field) => {
-    field.addEventListener("click", (e) => {
-      e.stopPropagation()
-    })
-    field.disabled = false
-  })
-
-  const connectSlide = document.getElementById("connect-slide")
-  const formInputs = connectSlide.querySelectorAll("input, textarea")
-  formInputs.forEach((input) => {
-    const newInput = input.cloneNode(true)
-    input.parentNode.replaceChild(newInput, input)
-    newInput.addEventListener("click", function (e) {
-      e.stopPropagation()
-      this.focus()
-    })
-    newInput.addEventListener("focus", function (e) {
-      console.log("Input focused:", this.id)
-    })
-  })
-
-  const contactFormElement = document.getElementById("contactForm")
-  if (contactFormElement) {
-    contactFormElement.addEventListener("mousedown", (e) => {
-      e.stopPropagation()
-    })
-    contactFormElement.addEventListener("touchstart", (e) => {
-      e.stopPropagation()
-    })
+  );
+  const snakeBtn = document.getElementById("hidden-start-btn");
+  const snakeWrap = document.getElementById("snake-game-wrapper");
+  if (snakeBtn && snakeWrap) {
+    snakeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      snakeWrap.style.display = snakeWrap.style.display === "block" ? "none" : "block";
+      requestAnimationFrame(() => requestAnimationFrame(syncHeight));
+    });
   }
-})
+  window.addEventListener("resize", syncHeight);
+  go(0);
+})();
