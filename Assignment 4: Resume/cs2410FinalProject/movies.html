@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Movies</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="api.js" defer></script>
+    <script src="common.js" defer></script>
+    <script src="movies.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const currentTheme = localStorage.getItem('theme') || 'light-mode';
+        document.body.className = currentTheme;
+        document.getElementById('theme-toggle-checkbox').checked = (currentTheme === 'dark-mode');
+      });
+    </script>
+</head>
+<body>
+    <input class="label-check" id="label-check" type="checkbox">
+    <label for="label-check" class="hamburger-label">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </label>
+    <div class="nav-menu" id="nav-menu">
+        <div class="input">
+          <button class="value" onclick="window.location.href='index.html'">🏠 Dashboard</button>
+          <button class="value" onclick="window.location.href='movies.html'">🎬 Movies</button>
+          <button class="value" onclick="window.location.href='tv.html'">📺 Television</button>
+          <button class="value" onclick="window.location.href='people.html'">👤 People</button>
+        </div>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="wrapper">
+          <div class="circle"></div><div class="circle"></div><div class="circle"></div>
+          <div class="shadow"></div><div class="shadow"></div><div class="shadow"></div>
+      </div>
+    </div>
+
+    <header>
+        <input type="checkbox" class="theme-checkbox" id="theme-toggle-checkbox">
+        <div class="search">
+            <input type="text" class="search__input" id="page-search-text" placeholder="Search Movies...">
+            <button class="search__button" id="page-search-button">Search</button>
+        </div>
+        <div class="spacer"></div>
+    </header>
+
+    <main>
+      <h1 style="text-align:center;">Movies</h1>
+      <div class="card-grid" id="movie-results"></div>
+      <div id="movie-pagination"></div>
+    </main>
+    
+    <footer style="text-align:center; margin-top:50px; opacity:0.7;">© Hans Gamlien</footer>
+
+    <script>
+      const navOverlay = document.getElementById('nav-overlay');
+      navOverlay.addEventListener('click', () => {
+          document.getElementById('label-check').checked = false;
+      });
+      
+      const themeToggleCheckbox = document.getElementById('theme-toggle-checkbox');
+      themeToggleCheckbox.addEventListener('change', () => {
+          if(themeToggleCheckbox.checked) {
+              document.body.classList.remove('light-mode');
+              document.body.classList.add('dark-mode');
+              localStorage.setItem('theme','dark-mode');
+          } else {
+              document.body.classList.remove('dark-mode');
+              document.body.classList.add('light-mode');
+              localStorage.setItem('theme','light-mode');
+          }
+      });
+      
+      const pageSearchInput = document.getElementById('page-search-text');
+      const pageSearchButton = document.getElementById('page-search-button');
+      pageSearchButton.addEventListener('click', () => {
+          const query = pageSearchInput.value.trim();
+          if(query) window.location.href = `movies.html?query=${encodeURIComponent(query)}`;
+      });
+      pageSearchInput.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter') {
+              const query = pageSearchInput.value.trim();
+              if(query) window.location.href = `movies.html?query=${encodeURIComponent(query)}`;
+          }
+      });
+      
+      window.addEventListener('load', () => {
+          const overlay = document.getElementById('loading-overlay');
+          overlay.style.opacity = '0';
+          setTimeout(() => {
+              overlay.style.display = 'none';
+          }, 500);
+      });
+    </script>
+</body>
+</html>
