@@ -15,11 +15,10 @@
             <div class="logo"><img src="../images/coordinovalogo.png" alt="Cordinova Logo"></div>
         </header>
 
-        <!-- Master Access Form -->
         <div id="masterAccess" class="card">
             <h2>System Access</h2>
             <form id="masterForm">
-                <div class="form-group">
+    </div>            <div class="form-group">
                     <label for="masterCode">Master Access Code:</label>
                     <input type="password" id="masterCode" required>
                 </div>
@@ -27,18 +26,22 @@
             </form>
         </div>
 
-        <!-- Main Punch Clock Interface -->
         <div id="punchClockSystem" class="hidden">
+            <div class="notice-card">
+                <div class="notice-content">
+                    <h3>⚠️ Important Notice</h3>
+                    <p><strong>Please hit REFRESH</strong> before clocking in and before clocking out to ensure accurate time tracking and data synchronization.</p>
+                </div>
+            </div>
+            
             <div class="punch-clock-card">
                 <h2>Employee Punch Clock</h2>
                 
-                <!-- Code Display -->
                 <div class="code-display">
                     <input type="password" id="employeeCode" readonly placeholder="Enter Code">
                     <button type="button" id="clearCode" class="clear-btn">Clear</button>
                 </div>
                 
-                <!-- Numpad -->
                 <div class="numpad">
                     <button type="button" class="num-btn" data-num="1">1</button>
                     <button type="button" class="num-btn" data-num="2">2</button>
@@ -52,7 +55,6 @@
                     <button type="button" class="num-btn zero" data-num="0">0</button>
                 </div>
                 
-                <!-- Action Buttons -->
                 <div class="action-buttons">
                     <button type="button" id="punchInBtn" class="action-btn punch-in">Punch In</button>
                     <button type="button" id="punchOutBtn" class="action-btn punch-out">Punch Out</button>
@@ -61,7 +63,6 @@
                 <div id="currentStatus" class="status"></div>
             </div>
 
-            <!-- Always Visible Logs -->
             <div class="logs-card">
                 <h2>Time Logs</h2>
                 <div id="logsContent" class="logs-content">
@@ -69,7 +70,6 @@
                 </div>
             </div>
 
-            <!-- Daily Summary -->
             <div class="summary-card">
                 <h2>Daily Summary</h2>
                 <div id="dailySummary" class="daily-summary">
@@ -80,7 +80,6 @@
                 </div>
             </div>
 
-            <!-- Admin Panel -->
             <div class="admin-card">
                 <h2>Admin Controls</h2>
                 <div class="admin-controls">
@@ -90,7 +89,6 @@
             </div>
         </div>
 
-        <!-- Current Time Display -->
         <div class="time-display">
             <div id="currentTime"></div>
         </div>

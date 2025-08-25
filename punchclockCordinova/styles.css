@@ -62,6 +62,47 @@ header h1 {
     box-shadow: 0 12px 40px rgba(102, 51, 153, 0.12);
 }
 
+/* Notice Card */
+.notice-card {
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px rgba(253, 203, 110, 0.15);
+    border: 2px solid #fdcb6e;
+    animation: pulse-notice 2s ease-in-out infinite;
+}
+
+.notice-content h3 {
+    color: #2d3436;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.notice-content p {
+    color: #2d3436;
+    margin: 0;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+@keyframes pulse-notice {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 32px rgba(253, 203, 110, 0.15);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 12px 40px rgba(253, 203, 110, 0.25);
+    }
+}
+
 .punch-clock-card {
     text-align: center;
 }
