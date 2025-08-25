@@ -3,24 +3,24 @@ function hashMD5(text) {
 }
 
 const employees = {
-    '6748940b6e214bb0113c6558dd95e0f4': {
+    '99f97481f8214da999e3ccbe116f5334': {
         name: 'Hans Gamlien',
         id: 'hans',
         code: '****'
     },
-    '12fed9daa86e2cd5d610beedb2333aa7': {
+    '1da785ade1299722ea5094d2ff0c4dbe': {
         name: 'Eh the Moo Htoo',
         id: 'eh',
         code: '****'
     },
-    'e2fc714c4727ee9395f324cd2e7f331f': {
+    'c90b7f4378a55a9170642af29922cf5c': {
         name: 'Ryan',
         id: 'ryan',
         code: '****'
     }
 };
 
-const MASTER_CODE_HASH = 'a8f5f167f44f4964e6c998dee827110c';
+const MASTER_CODE_HASH = '37f203943db163d65db3568889b5068a';
 
 let isSystemUnlocked = false;
 let currentEmployee = null;

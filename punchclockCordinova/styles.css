@@ -5,11 +5,12 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     min-height: 100vh;
     padding: 20px;
-    color: #333;
+    color: #2c3e50;
+    line-height: 1.6;
 }
 
 .container {
@@ -19,36 +20,46 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     color: #663399;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    font-weight: 600;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .logo {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .logo img {
-    max-width: 150px;
-    max-height: 80px;
+    max-width: 280px;
+    max-height: 100px;
     object-fit: contain;
-    filter: brightness(0) saturate(100%) invert(32%) sepia(42%) saturate(2034%) hue-rotate(267deg) brightness(92%) contrast(89%);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 /* Card Styles */
 .card, .punch-clock-card, .logs-card, .summary-card, .admin-card {
     background: white;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(102, 51, 153, 0.1);
-    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px rgba(102, 51, 153, 0.08);
+    border: 1px solid rgba(102, 51, 153, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover, .punch-clock-card:hover, .logs-card:hover, .summary-card:hover, .admin-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(102, 51, 153, 0.12);
 }
 
 .punch-clock-card {
@@ -57,9 +68,12 @@ header h1 {
 
 .punch-clock-card h2, .logs-card h2, .summary-card h2, .admin-card h2 {
     color: #663399;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    font-weight: 600;
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 2px solid #f8f9fa;
+    padding-bottom: 15px;
 }
 
 /* Master Access Form */
@@ -77,33 +91,39 @@ header h1 {
 
 .form-group input {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    padding: 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .form-group input:focus {
     outline: none;
     border-color: #663399;
+    box-shadow: 0 0 0 3px rgba(102, 51, 153, 0.1);
 }
 
 button[type="submit"] {
     width: 100%;
-    padding: 12px;
-    background: #663399;
+    padding: 16px;
+    background: linear-gradient(135deg, #663399 0%, #552288 100%);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(102, 51, 153, 0.2);
 }
 
 button[type="submit"]:hover {
-    background: #552288;
+    background: linear-gradient(135deg, #552288 0%, #441177 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 51, 153, 0.3);
 }
 
 /* Code Display */
@@ -116,62 +136,71 @@ button[type="submit"]:hover {
 
 #employeeCode {
     flex: 1;
-    padding: 15px;
-    font-size: 24px;
+    padding: 20px;
+    font-size: 28px;
     text-align: center;
     border: 3px solid #663399;
-    border-radius: 8px;
-    background: white;
-    letter-spacing: 4px;
-    font-weight: bold;
+    border-radius: 16px;
+    background: #f8f9fa;
+    letter-spacing: 6px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .clear-btn {
-    padding: 15px 20px;
-    background: #666;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 16px;
     font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.2);
 }
 
 .clear-btn:hover {
-    background: #555;
+    background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(108, 117, 125, 0.3);
 }
 
 /* Numpad */
 .numpad {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
-    max-width: 300px;
+    gap: 20px;
+    margin-bottom: 30px;
+    max-width: 320px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .num-btn {
     aspect-ratio: 1;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 700;
     background: white;
-    border: 2px solid #663399;
-    border-radius: 12px;
+    border: 3px solid #663399;
+    border-radius: 16px;
     cursor: pointer;
     transition: all 0.2s ease;
     color: #663399;
+    box-shadow: 0 4px 12px rgba(102, 51, 153, 0.1);
 }
 
 .num-btn:hover {
-    background: #663399;
+    background: linear-gradient(135deg, #663399 0%, #552288 100%);
     color: white;
-    transform: scale(1.05);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 51, 153, 0.25);
 }
 
 .num-btn:active {
-    transform: scale(0.95);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 51, 153, 0.2);
 }
 
 .num-btn.zero {
