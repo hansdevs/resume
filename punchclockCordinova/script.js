@@ -26,7 +26,15 @@ class JSONBinStorage {
             }
 
             const data = await response.json();
-            const cleanedData = tamperProtection.cleanupTamperedData(data.record);
+            
+            let dataRecord = data.record;
+            if (!dataRecord || !dataRecord.logs) {
+                console.log('📦 Initializing empty JSONBin');
+                dataRecord = { logs: [], hash: hashMD5('[]'), lastUpdated: new Date().toISOString() };
+                await this.writeData(dataRecord);
+            }
+            
+            const cleanedData = tamperProtection.cleanupTamperedData(dataRecord);
             console.log('✅ Data loaded from JSONBin');
             return cleanedData;
         } catch (error) {
@@ -138,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('masterForm').addEventListener('submit', handleMasterAccess);
     document.getElementById('punchInBtn').addEventListener('click', () => handlePunch('in'));
     document.getElementById('punchOutBtn').addEventListener('click', () => handlePunch('out'));
+    document.getElementById('refreshDataBtn').addEventListener('click', () => refreshData());
     document.getElementById('generateReportBtn').addEventListener('click', generateWeeklyReport);
     document.getElementById('clearLogsBtn').addEventListener('click', () => clearLogs());
     document.getElementById('clearCode').addEventListener('click', clearEmployeeCode);
@@ -175,7 +184,15 @@ function handleMasterAccess(e) {
         document.getElementById('punchClockSystem').classList.remove('hidden');
         showStatus('System unlocked successfully!', 'success');
         
-        loadStoredData().then(() => {
+        console.log('🔓 Master access granted, loading data...');
+        loadStoredData().then(async () => {
+            console.log('📊 Initial data load complete, displaying logs...');
+            await displayLogs();
+            await updateDailySummary();
+            updateConnectionStatus();
+        }).catch(error => {
+            console.error('❌ Failed to load initial data:', error);
+            showStatus('Warning: Could not load existing data', 'warning');
             displayLogs();
             updateDailySummary();
         });
@@ -286,6 +303,20 @@ async function getStoredLogs() {
     } catch (error) {
         console.error('Error loading stored logs:', error);
         return [];
+    }
+}
+
+async function refreshData() {
+    try {
+        showStatus('Refreshing data...', 'info');
+        const data = await jsonBinStorage.readData();
+        await displayLogs();
+        await updateDailySummary();
+        updateConnectionStatus();
+        showStatus('Data refreshed successfully!', 'success');
+    } catch (error) {
+        console.error('❌ Failed to refresh data:', error);
+        showStatus('Failed to refresh data', 'error');
     }
 }
 
@@ -400,12 +431,8 @@ async function displayLogs() {
     logsContent.innerHTML = html;
 }
 
-function loadStoredData() {
-    getStoredLogs();
-}
-
-function generateWeeklyReport() {
-    const logs = getStoredLogs();
+async function generateWeeklyReport() {
+    const logs = await getStoredLogs();
     if (logs.length === 0) {
         showStatus('No data available for report generation.', 'error');
         return;
