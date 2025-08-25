@@ -1,0 +1,412 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #663399;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.logo {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-width: 150px;
+    max-height: 80px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(32%) sepia(42%) saturate(2034%) hue-rotate(267deg) brightness(92%) contrast(89%);
+}
+
+/* Card Styles */
+.card, .punch-clock-card, .logs-card, .summary-card, .admin-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(102, 51, 153, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.punch-clock-card {
+    text-align: center;
+}
+
+.punch-clock-card h2, .logs-card h2, .summary-card h2, .admin-card h2 {
+    color: #663399;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Master Access Form */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #663399;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #663399;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #663399;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background: #552288;
+}
+
+/* Code Display */
+.code-display {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+#employeeCode {
+    flex: 1;
+    padding: 15px;
+    font-size: 24px;
+    text-align: center;
+    border: 3px solid #663399;
+    border-radius: 8px;
+    background: white;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.clear-btn {
+    padding: 15px 20px;
+    background: #666;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.clear-btn:hover {
+    background: #555;
+}
+
+/* Numpad */
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.num-btn {
+    aspect-ratio: 1;
+    font-size: 24px;
+    font-weight: bold;
+    background: white;
+    border: 2px solid #663399;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #663399;
+}
+
+.num-btn:hover {
+    background: #663399;
+    color: white;
+    transform: scale(1.05);
+}
+
+.num-btn:active {
+    transform: scale(0.95);
+}
+
+.num-btn.zero {
+    grid-column: 2;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.action-btn {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.punch-in {
+    background: #663399;
+    color: white;
+}
+
+.punch-in:hover {
+    background: #552288;
+    transform: translateY(-2px);
+}
+
+.punch-out {
+    background: #666;
+    color: white;
+}
+
+.punch-out:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
+
+/* Status Messages */
+.status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.status.success {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+}
+
+.status.error {
+    background: #fff3e0;
+    color: #f57c00;
+    border: 1px solid #ff9800;
+}
+
+/* Logs Card */
+.logs-content {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    background: #fafafa;
+}
+
+.no-logs {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.log-entry {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #663399;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.log-entry:last-child {
+    margin-bottom: 0;
+}
+
+.log-entry.completed {
+    border-left-color: #4caf50;
+}
+
+.log-entry.active {
+    border-left-color: #ff9800;
+    background: #fff9e0;
+}
+
+.employee-summary {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.employee-summary h3 {
+    color: #663399;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+/* Daily Summary */
+.daily-summary {
+    display: grid;
+    gap: 15px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #663399;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.summary-label {
+    font-size: 16px;
+}
+
+.summary-value {
+    font-size: 20px;
+    color: #fff;
+}
+
+/* Admin Controls */
+.admin-controls {
+    display: grid;
+    gap: 10px;
+}
+
+.admin-btn {
+    padding: 12px;
+    background: #663399;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.admin-btn:hover {
+    background: #552288;
+}
+
+.admin-btn.danger {
+    background: #666;
+}
+
+.admin-btn.danger:hover {
+    background: #555;
+}
+
+/* Time Display */
+.time-display {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(102, 51, 153, 0.1);
+    font-weight: bold;
+    font-size: 14px;
+    color: #663399;
+    border: 1px solid #e0e0e0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .card, .punch-clock-card, .logs-card, .summary-card, .admin-card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .numpad {
+        gap: 10px;
+        max-width: 250px;
+    }
+    
+    .num-btn {
+        font-size: 20px;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .time-display {
+        position: static;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 12px;
+    }
+    
+    .code-display {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .clear-btn {
+        width: 100%;
+    }
+}

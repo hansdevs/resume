@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cordinova Punch Clock System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cordinova Punch Clock System</h1>
+            <div class="logo"><img src="../images/coordinovalogo.png" alt="Cordinova Logo"></div>
+        </header>
+
+        <!-- Master Access Form -->
+        <div id="masterAccess" class="card">
+            <h2>System Access</h2>
+            <form id="masterForm">
+                <div class="form-group">
+                    <label for="masterCode">Master Access Code:</label>
+                    <input type="password" id="masterCode" required>
+                </div>
+                <button type="submit">Access System</button>
+            </form>
+        </div>
+
+        <!-- Main Punch Clock Interface -->
+        <div id="punchClockSystem" class="hidden">
+            <div class="punch-clock-card">
+                <h2>Employee Punch Clock</h2>
+                
+                <!-- Code Display -->
+                <div class="code-display">
+                    <input type="password" id="employeeCode" readonly placeholder="Enter Code">
+                    <button type="button" id="clearCode" class="clear-btn">Clear</button>
+                </div>
+                
+                <!-- Numpad -->
+                <div class="numpad">
+                    <button type="button" class="num-btn" data-num="1">1</button>
+                    <button type="button" class="num-btn" data-num="2">2</button>
+                    <button type="button" class="num-btn" data-num="3">3</button>
+                    <button type="button" class="num-btn" data-num="4">4</button>
+                    <button type="button" class="num-btn" data-num="5">5</button>
+                    <button type="button" class="num-btn" data-num="6">6</button>
+                    <button type="button" class="num-btn" data-num="7">7</button>
+                    <button type="button" class="num-btn" data-num="8">8</button>
+                    <button type="button" class="num-btn" data-num="9">9</button>
+                    <button type="button" class="num-btn zero" data-num="0">0</button>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button type="button" id="punchInBtn" class="action-btn punch-in">Punch In</button>
+                    <button type="button" id="punchOutBtn" class="action-btn punch-out">Punch Out</button>
+                </div>
+                
+                <div id="currentStatus" class="status"></div>
+            </div>
+
+            <!-- Always Visible Logs -->
+            <div class="logs-card">
+                <h2>Time Logs</h2>
+                <div id="logsContent" class="logs-content">
+                    <p class="no-logs">No time logs yet. Start punching in to see activity.</p>
+                </div>
+            </div>
+
+            <!-- Daily Summary -->
+            <div class="summary-card">
+                <h2>Daily Summary</h2>
+                <div id="dailySummary" class="daily-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Total Hours Today:</span>
+                        <span class="summary-value" id="totalHoursToday">0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Panel -->
+            <div class="admin-card">
+                <h2>Admin Controls</h2>
+                <div class="admin-controls">
+                    <button id="generateReportBtn" class="admin-btn">Generate Weekly Report (PDF)</button>
+                    <button id="clearLogsBtn" class="admin-btn danger">Clear All Logs</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Time Display -->
+        <div class="time-display">
+            <div id="currentTime"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
