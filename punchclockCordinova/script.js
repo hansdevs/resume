@@ -2,6 +2,107 @@ function hashMD5(text) {
     return CryptoJS.MD5(text).toString();
 }
 
+class JSONBinStorage {
+    constructor() {
+        this.baseUrl = 'https://api.jsonbin.io/v3/b';
+        this.isOnline = true;
+    }
+
+    async readData() {
+        try {
+            if (!config.isLoaded()) {
+                throw new Error('Credentials not loaded');
+            }
+
+            const response = await fetch(`${this.baseUrl}/${config.getBinId()}/latest`, {
+                method: 'GET',
+                headers: {
+                    'X-Master-Key': config.getApiKey()
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`JSONBin read failed: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const cleanedData = tamperProtection.cleanupTamperedData(data.record);
+            console.log('✅ Data loaded from JSONBin');
+            return cleanedData;
+        } catch (error) {
+            console.error('❌ JSONBin read error:', error);
+            this.isOnline = false;
+            return this.getLocalFallback();
+        }
+    }
+
+    async writeData(data) {
+        try {
+            if (!config.isLoaded()) {
+                throw new Error('Credentials not loaded');
+            }
+
+            const cleanedData = tamperProtection.cleanupTamperedData(data);
+            const payload = {
+                ...cleanedData,
+                lastUpdated: new Date().toISOString(),
+                hash: hashMD5(JSON.stringify(cleanedData.logs))
+            };
+
+            const response = await fetch(`${this.baseUrl}/${config.getBinId()}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': config.getApiKey()
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error(`JSONBin write failed: ${response.status}`);
+            }
+
+            console.log('✅ Data saved to JSONBin');
+            this.isOnline = true;
+            
+            // Also save locally as backup
+            localStorage.setItem('cordinova_punch_logs', JSON.stringify(data.logs));
+            localStorage.setItem('cordinova_punch_hash', payload.hash);
+            
+            return true;
+        } catch (error) {
+            console.error('❌ JSONBin write error:', error);
+            this.isOnline = false;
+            // Fallback to local storage
+            this.saveLocalFallback(data);
+            return false;
+        }
+    }
+
+    getLocalFallback() {
+        console.log('📱 Using local storage fallback');
+        try {
+            const logs = JSON.parse(localStorage.getItem('cordinova_punch_logs') || '[]');
+            const hash = localStorage.getItem('cordinova_punch_hash') || hashMD5('[]');
+            return { logs, hash, lastUpdated: new Date().toISOString() };
+        } catch (error) {
+            return { logs: [], hash: hashMD5('[]'), lastUpdated: new Date().toISOString() };
+        }
+    }
+
+    saveLocalFallback(data) {
+        console.log('📱 Saving to local storage fallback');
+        localStorage.setItem('cordinova_punch_logs', JSON.stringify(data.logs));
+        localStorage.setItem('cordinova_punch_hash', hashMD5(JSON.stringify(data.logs)));
+    }
+
+    getStatus() {
+        return this.isOnline ? '🌐 Online' : '📱 Offline (Local)';
+    }
+}
+
+const jsonBinStorage = new JSONBinStorage();
+
 const employees = {
     '99f97481f8214da999e3ccbe116f5334': {
         name: 'Hans Gamlien',
@@ -17,6 +118,11 @@ const employees = {
         name: 'Ryan',
         id: 'ryan',
         code: '****'
+    },
+    '5359c847ef4975cdc646e8be8cb5621f': {
+        name: 'Ally Eldredge',
+        id: 'ally',
+        code: '****'
     }
 };
 
@@ -29,26 +135,19 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCurrentTime();
     setInterval(updateCurrentTime, 1000);
     
-    // Event listeners
     document.getElementById('masterForm').addEventListener('submit', handleMasterAccess);
     document.getElementById('punchInBtn').addEventListener('click', () => handlePunch('in'));
     document.getElementById('punchOutBtn').addEventListener('click', () => handlePunch('out'));
     document.getElementById('generateReportBtn').addEventListener('click', generateWeeklyReport);
-    document.getElementById('clearLogsBtn').addEventListener('click', clearLogs);
+    document.getElementById('clearLogsBtn').addEventListener('click', () => clearLogs());
     document.getElementById('clearCode').addEventListener('click', clearEmployeeCode);
     
-    // Numpad functionality
     document.querySelectorAll('.num-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const num = this.getAttribute('data-num');
             addToEmployeeCode(num);
         });
     });
-    
-    // Load existing data and display logs immediately
-    loadStoredData();
-    displayLogs();
-    updateDailySummary();
 });
 
 function updateCurrentTime() {
@@ -70,18 +169,23 @@ function handleMasterAccess(e) {
     const inputCode = document.getElementById('masterCode').value;
     const inputHash = hashMD5(inputCode);
     
-    if (inputHash === MASTER_CODE_HASH) {
+    if (inputHash === MASTER_CODE_HASH && config.deriveCredentials(inputCode)) {
         isSystemUnlocked = true;
         document.getElementById('masterAccess').classList.add('hidden');
         document.getElementById('punchClockSystem').classList.remove('hidden');
         showStatus('System unlocked successfully!', 'success');
+        
+        loadStoredData().then(() => {
+            displayLogs();
+            updateDailySummary();
+        });
     } else {
         showStatus('Invalid master code!', 'error');
         document.getElementById('masterCode').value = '';
     }
 }
 
-function handlePunch(action) {
+async function handlePunch(action) {
     const employeeCode = document.getElementById('employeeCode').value;
     if (!employeeCode) {
         showStatus('Please enter employee code!', 'error');
@@ -100,7 +204,7 @@ function handlePunch(action) {
     const now = new Date();
     const timestamp = now.getTime();
     
-    const logs = getStoredLogs();
+    const logs = await getStoredLogs();
     const employeeLogs = logs.filter(log => log.employeeId === employee.id);
     const lastLog = employeeLogs[employeeLogs.length - 1];
     
@@ -120,10 +224,10 @@ function handlePunch(action) {
             punchOut: null
         };
         
-        savePunchRecord(punchRecord);
+        await savePunchRecord(punchRecord);
         showStatus(`${employee.name} punched in successfully!`, 'success');
-        displayLogs();
-        updateDailySummary();
+        await displayLogs();
+        await updateDailySummary();
         
     } else if (action === 'out') {
         if (!lastLog || lastLog.action === 'out' || lastLog.punchOut) {
@@ -135,10 +239,10 @@ function handlePunch(action) {
         lastLog.punchOutDatetime = now.toISOString();
         lastLog.hoursWorked = calculateHours(lastLog.timestamp, timestamp);
         
-        updatePunchRecord(lastLog);
+        await updatePunchRecord(lastLog);
         showStatus(`${employee.name} punched out successfully! Hours worked: ${lastLog.hoursWorked.toFixed(2)}`, 'success');
-        displayLogs();
-        updateDailySummary();
+        await displayLogs();
+        await updateDailySummary();
     }
     
     document.getElementById('employeeCode').value = '';
@@ -152,44 +256,64 @@ function calculateHours(startTime, endTime) {
     return (endTime - startTime) / (1000 * 60 * 60);
 }
 
-function savePunchRecord(record) {
-    const logs = getStoredLogs();
-    logs.push(record);
-    const hashedData = hashMD5(JSON.stringify(logs));
-    localStorage.setItem('cordinova_punch_logs', JSON.stringify(logs));
-    localStorage.setItem('cordinova_punch_hash', hashedData);
+async function savePunchRecord(record) {
+    const currentData = await jsonBinStorage.readData();
+    currentData.logs.push(record);
+    await jsonBinStorage.writeData(currentData);
 }
 
-function updatePunchRecord(updatedRecord) {
-    const logs = getStoredLogs();
-    const index = logs.findIndex(log => log.id === updatedRecord.id);
+async function updatePunchRecord(updatedRecord) {
+    const currentData = await jsonBinStorage.readData();
+    const index = currentData.logs.findIndex(log => log.id === updatedRecord.id);
     if (index !== -1) {
-        logs[index] = updatedRecord;
-        const hashedData = hashMD5(JSON.stringify(logs));
-        localStorage.setItem('cordinova_punch_logs', JSON.stringify(logs));
-        localStorage.setItem('cordinova_punch_hash', hashedData);
+        currentData.logs[index] = updatedRecord;
+        await jsonBinStorage.writeData(currentData);
     }
 }
 
-function getStoredLogs() {
+async function getStoredLogs() {
     try {
-        const storedLogs = localStorage.getItem('cordinova_punch_logs');
-        const storedHash = localStorage.getItem('cordinova_punch_hash');
+        const data = await jsonBinStorage.readData();
         
-        if (!storedLogs) return [];
-        
-        const logs = JSON.parse(storedLogs);
-        const calculatedHash = hashMD5(JSON.stringify(logs));
-        
-        if (storedHash !== calculatedHash) {
-            console.warn('Data integrity check failed! Logs may have been tampered with.');
-            return [];
+        // Verify data integrity
+        const calculatedHash = hashMD5(JSON.stringify(data.logs));
+        if (data.hash !== calculatedHash) {
+            console.warn('⚠️ Data integrity check failed! Data may have been tampered with.');
+            showStatus('Data integrity warning - please refresh', 'error');
         }
         
-        return logs;
+        return data.logs || [];
     } catch (error) {
         console.error('Error loading stored logs:', error);
         return [];
+    }
+}
+
+async function loadStoredData() {
+    try {
+        const data = await jsonBinStorage.readData();
+        console.log(`📊 Loaded ${data.logs.length} records from ${jsonBinStorage.getStatus()}`);
+        
+        updateConnectionStatus();
+        
+        return data;
+    } catch (error) {
+        console.error('Error loading data:', error);
+        showStatus('Failed to load data - using local backup', 'warning');
+    }
+}
+
+function updateConnectionStatus() {
+    const timeDisplay = document.querySelector('.time-display');
+    if (timeDisplay) {
+        let statusDiv = document.getElementById('connectionStatus');
+        if (!statusDiv) {
+            statusDiv = document.createElement('div');
+            statusDiv.id = 'connectionStatus';
+            statusDiv.style.cssText = 'text-align: center; margin-top: 10px; font-size: 12px; opacity: 0.7;';
+            timeDisplay.appendChild(statusDiv);
+        }
+        statusDiv.textContent = `${jsonBinStorage.getStatus()}`;
     }
 }
 
@@ -204,8 +328,8 @@ function clearEmployeeCode() {
     document.getElementById('employeeCode').value = '';
 }
 
-function updateDailySummary() {
-    const logs = getStoredLogs();
+async function updateDailySummary() {
+    const logs = await getStoredLogs();
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const tomorrow = new Date(today);
@@ -224,8 +348,8 @@ function updateDailySummary() {
     document.getElementById('totalHoursToday').textContent = totalHours.toFixed(2);
 }
 
-function displayLogs() {
-    const logs = getStoredLogs();
+async function displayLogs() {
+    const logs = await getStoredLogs();
     const logsContent = document.getElementById('logsContent');
     
     if (logs.length === 0) {
@@ -233,10 +357,8 @@ function displayLogs() {
         return;
     }
 
-    // Sort logs by timestamp (newest first)
     const sortedLogs = logs.sort((a, b) => b.timestamp - a.timestamp);
     
-    // Group logs by employee
     const employeeGroups = {};
     sortedLogs.forEach(log => {
         if (!employeeGroups[log.employeeId]) {
@@ -366,13 +488,17 @@ function generateWeeklyReport() {
     showStatus('Weekly report generated and downloaded!', 'success');
 }
 
-function clearLogs() {
+async function clearLogs() {
     if (confirm('Are you sure you want to clear all time logs? This action cannot be undone.')) {
+        const emptyData = { logs: [], hash: hashMD5('[]'), lastUpdated: new Date().toISOString() };
+        await jsonBinStorage.writeData(emptyData);
+        
         localStorage.removeItem('cordinova_punch_logs');
         localStorage.removeItem('cordinova_punch_hash');
+        
         showStatus('All logs cleared successfully!', 'success');
-        displayLogs();
-        updateDailySummary();
+        await displayLogs();
+        await updateDailySummary();
     }
 }
 
