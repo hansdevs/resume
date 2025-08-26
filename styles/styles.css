@@ -1088,7 +1088,7 @@ footer {
     width: 100%;
     padding-left: 70px;
     padding-right: 25px;
-    left: 0 !important; /* Force all items to align left on mobile */
+    left: 0 !important;
   }
 
   .timeline-item:nth-child(even) {
@@ -1096,13 +1096,13 @@ footer {
   }
 
   .timeline-dot {
-    left: 28px !important; /* Force consistent positioning for all dots */
+    left: 28px !important;
     right: auto;
-    margin-left: -8px; /* Center the dot on the line */
+    margin-left: -8px;
   }
 
   .timeline-content {
-    width: 100%; /* Ensure content takes full width */
+    width: 100%;
   }
 }
 
