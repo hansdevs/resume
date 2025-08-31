@@ -33,7 +33,6 @@ Only 4 valid employee IDs can punch in/out:
 function deriveCredentials(masterCode) {
     const salt = "********************";
     const seed = MD5(masterCode + salt);
-    // Maps to actual JSONBin API key/bin ID
     return { apiKey: "...", binId: "..." };
 }
 ```

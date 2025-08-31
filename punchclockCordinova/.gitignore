@@ -1,8 +1,0 @@
-# Cordinova Punch Clock - Security Files
-# DO NOT COMMIT THESE FILES TO GITHUB
-
-SECURE_CONFIG.txt
-*.secret
-*.private
-.env
-config.local.*

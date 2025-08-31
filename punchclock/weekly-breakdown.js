@@ -151,7 +151,6 @@ class WeeklyBreakdown {
             }
             
             const logDate = new Date(log.timestamp);
-            // Convert JavaScript day (0=Sunday) to Monday-start week format
             const jsDay = logDate.getDay();
             const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             const dayKey = dayNames[jsDay];
