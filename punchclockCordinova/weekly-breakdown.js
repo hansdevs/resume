@@ -77,7 +77,9 @@ class WeeklyBreakdown {
     getWeekDates(offset = 0) {
         const now = new Date();
         const currentWeekStart = new Date(now);
-        currentWeekStart.setDate(now.getDate() - now.getDay() + (offset * 7));
+        
+        const daysSinceMonday = (now.getDay() + 6) % 7;
+        currentWeekStart.setDate(now.getDate() - daysSinceMonday + (offset * 7));
         currentWeekStart.setHours(0, 0, 0, 0);
         
         const weekEnd = new Date(currentWeekStart);
@@ -149,7 +151,10 @@ class WeeklyBreakdown {
             }
             
             const logDate = new Date(log.timestamp);
-            const dayKey = logDate.toLocaleDateString('en-US', { weekday: 'short' });
+            // Convert JavaScript day (0=Sunday) to Monday-start week format
+            const jsDay = logDate.getDay();
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const dayKey = dayNames[jsDay];
             
             if (employeeData[empId].days[dayKey]) {
                 employeeData[empId].days[dayKey].hours += log.hoursWorked;
@@ -174,7 +179,7 @@ class WeeklyBreakdown {
 
     initializeDays(weekDates) {
         const days = {};
-        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         
         for (let i = 0; i < 7; i++) {
             const date = new Date(weekDates.start);
