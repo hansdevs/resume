@@ -150,4 +150,14 @@
   }
   window.addEventListener("resize", syncHeight);
   go(0);
+  
+  //(anti-scraper protection)
+  window.revealEmail = function() {
+    const revealBtn = document.getElementById("reveal-email-btn");
+    const emailLink = document.getElementById("email-link");
+    if (revealBtn && emailLink) {
+      revealBtn.style.display = "none";
+      emailLink.style.display = "inline-block";
+    }
+  };
 })();
