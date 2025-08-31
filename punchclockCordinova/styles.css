@@ -431,6 +431,267 @@ button[type="submit"]:hover {
     border: 1px solid #e0e0e0;
 }
 
+/* Weekly Breakdown Styles */
+.weekly-breakdown-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px rgba(102, 51, 153, 0.08);
+    border: 1px solid rgba(102, 51, 153, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.weekly-breakdown-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(102, 51, 153, 0.12);
+}
+
+.weekly-toggle.active {
+    background: linear-gradient(135deg, #552288 0%, #441177 100%);
+    transform: translateY(-2px);
+}
+
+.weekly-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.weekly-header h2 {
+    color: #663399;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+.week-nav-btn {
+    background: #663399;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.week-nav-btn:hover {
+    background: #552288;
+    transform: translateY(-2px);
+}
+
+.weekly-content {
+    max-height: 600px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.loading-spinner {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+}
+
+.no-data {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.employee-breakdown {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.employee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.employee-header h3 {
+    color: #663399;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.employee-total {
+    background: linear-gradient(135deg, #663399 0%, #552288 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.day-card {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.day-card.has-hours {
+    border-color: #663399;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f6ff 100%);
+}
+
+.day-card.no-hours {
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+.day-header {
+    margin-bottom: 8px;
+}
+
+.day-name {
+    font-weight: 700;
+    color: #663399;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.day-date {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.day-hours {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #663399;
+    margin-bottom: 8px;
+}
+
+.day-card.no-hours .day-hours {
+    color: #adb5bd;
+}
+
+.sessions {
+    border-top: 1px solid #e9ecef;
+    padding-top: 8px;
+    margin-top: 8px;
+}
+
+.session {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+    padding: 4px;
+    background: rgba(102, 51, 153, 0.05);
+    border-radius: 4px;
+}
+
+.session:last-child {
+    margin-bottom: 0;
+}
+
+.session-hours {
+    font-weight: 700;
+    color: #663399;
+}
+
+.weekly-summary {
+    background: linear-gradient(135deg, #663399 0%, #552288 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Mobile Responsiveness for Weekly Breakdown */
+@media (max-width: 600px) {
+    .weekly-breakdown-card {
+        padding: 15px;
+    }
+    
+    .weekly-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .weekly-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .week-nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .days-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .day-card {
+        padding: 8px;
+    }
+    
+    .employee-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .employee-total {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+    
+    .session {
+        flex-direction: column;
+        gap: 2px;
+        text-align: center;
+    }
+    
+    .weekly-content {
+        max-height: 400px;
+    }
+}
+
 .hidden {
     display: none;
 }
