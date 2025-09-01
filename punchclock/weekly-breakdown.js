@@ -90,8 +90,8 @@ class WeeklyBreakdown {
     }
 
     async loadWeeklyData() {
-        const weekDates = this.getWeekDates(this.currentWeekOffset);
         const logs = await getStoredLogs();
+        const weekDates = this.getWeekDates(this.currentWeekOffset);
         
         this.updateWeekHeader(weekDates);
         

@@ -440,7 +440,8 @@ async function generateWeeklyReport() {
     
     const now = new Date();
     const startOfWeek = new Date(now);
-    startOfWeek.setDate(now.getDate() - now.getDay());
+    const daysSinceMonday = (now.getDay() + 6) % 7;
+    startOfWeek.setDate(now.getDate() - daysSinceMonday);
     startOfWeek.setHours(0, 0, 0, 0);
     
     const endOfWeek = new Date(startOfWeek);
