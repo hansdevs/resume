@@ -111,6 +111,11 @@ class JSONBinStorage {
 
 const jsonBinStorage = new JSONBinStorage();
 
+function getMountainTime() {
+    const now = new Date();
+    return new Date(now.toLocaleString("en-US", {timeZone: "America/Denver"}));
+}
+
 const employees = {
     '99f97481f8214da999e3ccbe116f5334': {
         name: 'Hans Gamlien',
@@ -161,14 +166,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updateCurrentTime() {
     const now = new Date();
-    const timeString = now.toLocaleString('en-US', {
+    const mountainTime = new Date(now.toLocaleString("en-US", {timeZone: "America/Denver"}));
+    const timeString = mountainTime.toLocaleString('en-US', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
+        timeZone: 'America/Denver'
     });
     document.getElementById('currentTime').textContent = timeString;
 }
@@ -218,7 +225,7 @@ async function handlePunch(action) {
         return;
     }
     
-    const now = new Date();
+    const now = getMountainTime();
     const timestamp = now.getTime();
     
     const logs = await getStoredLogs();
@@ -361,7 +368,7 @@ function clearEmployeeCode() {
 
 async function updateDailySummary() {
     const logs = await getStoredLogs();
-    const today = new Date();
+    const today = getMountainTime();
     today.setHours(0, 0, 0, 0);
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
@@ -438,7 +445,7 @@ async function generateWeeklyReport() {
         return;
     }
     
-    const now = new Date();
+    const now = getMountainTime();
     const startOfWeek = new Date(now);
     const daysSinceMonday = (now.getDay() + 6) % 7;
     startOfWeek.setDate(now.getDate() - daysSinceMonday);

@@ -5,6 +5,11 @@ class WeeklyBreakdown {
         this.init();
     }
 
+    getMountainTime() {
+        const now = new Date();
+        return new Date(now.toLocaleString("en-US", {timeZone: "America/Denver"}));
+    }
+
     init() {
         this.createUI();
         this.bindEvents();
@@ -75,7 +80,7 @@ class WeeklyBreakdown {
     }
 
     getWeekDates(offset = 0) {
-        const now = new Date();
+        const now = this.getMountainTime();
         const currentWeekStart = new Date(now);
         
         const daysSinceMonday = (now.getDay() + 6) % 7;
