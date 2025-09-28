@@ -27,7 +27,7 @@
             <div class="article-meta">
                 <div class="author-info">
                     <span class="author">Written by Hans Gamlien</span>
-                    <span class="date">Last Updated: September 3, 2025</span>
+                    <span class="date">Last Updated: September 27, 2025</span>
                 </div>
             </div>
             <div class="hero-badge">Sandbox Startup</div>
@@ -110,7 +110,7 @@
                         </div>
                         
                         <div class="feature-highlights">
-                            <h4>Core Platform Modules</h4>
+                            <h4>Core Beta Platform Modules</h4>
                             <div class="features-grid">
                                 <div class="feature-item">
                                     <i class="fas fa-chart-line"></i>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="feature-item">
                                     <i class="fas fa-clock"></i>
-                                    <span>GPS-Verified Time Tracking</span>
+                                    <span>Punch-Clock Integration</span>
                                 </div>
                                 <div class="feature-item">
                                     <i class="fas fa-comments"></i>
@@ -161,8 +161,13 @@
                         <p>
                             Here's a glimpse of what we're working on—a platform that will genuinely transform how teams approach workforce management.
                         </p>
-                        <div class="preview-image-container">
-                            <img src="../../images/application1.png" alt="Cordinova Application Preview" class="preview-image">
+                        <div class="slideshow-container">
+                            <div class="slide active">
+                                <img src="../../images/application1.png" alt="Cordinova Application Preview - Main Dashboard" class="preview-image">
+                            </div>
+                            <div class="slide">
+                                <img src="../../images/cordinovapreview2.png" alt="Cordinova Application Preview - Additional Features" class="preview-image">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -189,7 +194,7 @@
                             <h3>Hans Gamlien</h3>
                             <p class="founder-title">Business Operations & Software Development</p>
                             <p class="founder-bio">
-                                I initiated the concept and created the early beta prototypes, but our success is built on the collaborative effort of our entire team working toward a shared vision.
+                                I initiated the concept and created the early beta prototypes, but our success is built on the collaborative effort of our entire team working toward a shared vision. I'm currently steering the strategic direction while actively engaging with potential business clients and continuing hands-on development work to ensure we're building exactly what the market needs.
                             </p>
                         </div>
                         <div class="founder-card">
@@ -197,7 +202,7 @@
                             <h3>Eh The Moo Htoo</h3>
                             <p class="founder-title">Developer & Business Relations</p>
                             <p class="founder-bio">
-                                Bringing exceptional development skills and strategic business insight, helping us bridge the gap between technical innovation and real market needs while adding invaluable features to our vision.
+                                Bringing exceptional back-end development skills and database insight, helping us create a functional and snappy web application. Able to help bridge to reach businesses.
                             </p>
                         </div>
                         <div class="founder-card">
@@ -282,6 +287,19 @@
     </footer>
 
     <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showNextSlide() {
+            slides[currentSlideIndex].classList.remove('active');
+            
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            
+            slides[currentSlideIndex].classList.add('active');
+        }
+        
+        setInterval(showNextSlide, 5000);
+
         // Beta Launch Countdown Timer
         function updateCountdown() {
             // October 1st, 2025 12:00 AM Pacific Time
