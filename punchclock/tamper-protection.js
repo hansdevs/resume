@@ -43,10 +43,6 @@ class TamperProtection {
         const validLogs = logs.filter(log => this.validateLogEntry(log));
         const removedCount = logs.length - validLogs.length;
         
-        if (removedCount > 0) {
-            console.warn(`Removed ${removedCount} invalid entries`);
-        }
-        
         return validLogs;
     }
 
@@ -77,10 +73,6 @@ class TamperProtection {
         
         const cleanLogs = this.sanitizeData(data.logs);
         const anomalies = this.detectAnomalies(cleanLogs);
-        
-        if (anomalies.length > 0) {
-            console.warn('Anomalies detected:', anomalies);
-        }
         
         return {
             logs: cleanLogs,

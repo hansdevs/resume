@@ -298,7 +298,6 @@ async function getStoredLogs() {
         // Verify data integrity
         const calculatedHash = hashMD5(JSON.stringify(data.logs));
         if (data.hash !== calculatedHash) {
-            console.warn('Data integrity check failed! Data may have been tampered with.');
             showStatus('Data integrity warning - please refresh', 'error');
         }
         
