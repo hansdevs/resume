@@ -29,16 +29,14 @@ class JSONBinStorage {
             
             let dataRecord = data.record;
             if (!dataRecord || !dataRecord.logs) {
-                console.log('📦 Initializing empty JSONBin');
                 dataRecord = { logs: [], hash: hashMD5('[]'), lastUpdated: new Date().toISOString() };
                 await this.writeData(dataRecord);
             }
             
             const cleanedData = tamperProtection.cleanupTamperedData(dataRecord);
-            console.log('✅ Data loaded from JSONBin');
             return cleanedData;
         } catch (error) {
-            console.error('❌ JSONBin read error:', error);
+            console.error('JSONBin read error:', error);
             this.isOnline = false;
             return this.getLocalFallback();
         }
@@ -70,7 +68,6 @@ class JSONBinStorage {
                 throw new Error(`JSONBin write failed: ${response.status}`);
             }
 
-            console.log('✅ Data saved to JSONBin');
             this.isOnline = true;
             
             // Also save locally as backup
@@ -79,7 +76,7 @@ class JSONBinStorage {
             
             return true;
         } catch (error) {
-            console.error('❌ JSONBin write error:', error);
+            console.error('JSONBin write error:', error);
             this.isOnline = false;
             // Fallback to local storage
             this.saveLocalFallback(data);
@@ -88,7 +85,6 @@ class JSONBinStorage {
     }
 
     getLocalFallback() {
-        console.log('📱 Using local storage fallback');
         try {
             const logs = JSON.parse(localStorage.getItem('cordinova_punch_logs') || '[]');
             const hash = localStorage.getItem('cordinova_punch_hash') || hashMD5('[]');
@@ -99,13 +95,12 @@ class JSONBinStorage {
     }
 
     saveLocalFallback(data) {
-        console.log('📱 Saving to local storage fallback');
         localStorage.setItem('cordinova_punch_logs', JSON.stringify(data.logs));
         localStorage.setItem('cordinova_punch_hash', hashMD5(JSON.stringify(data.logs)));
     }
 
     getStatus() {
-        return this.isOnline ? '🌐 Online' : '📱 Offline (Local)';
+        return this.isOnline ? 'Online' : 'Offline (Local)';
     }
 }
 
@@ -151,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('masterForm').addEventListener('submit', handleMasterAccess);
     document.getElementById('punchInBtn').addEventListener('click', () => handlePunch('in'));
     document.getElementById('punchOutBtn').addEventListener('click', () => handlePunch('out'));
+    document.getElementById('manualEntryForm').addEventListener('submit', handleManualEntry);
     document.getElementById('refreshDataBtn').addEventListener('click', () => refreshData());
     document.getElementById('generateReportBtn').addEventListener('click', generateWeeklyReport);
     document.getElementById('clearLogsBtn').addEventListener('click', () => clearLogs());
@@ -191,17 +187,17 @@ function handleMasterAccess(e) {
         document.getElementById('punchClockSystem').classList.remove('hidden');
         showStatus('System unlocked successfully!', 'success');
         
-        console.log('🔓 Master access granted, loading data...');
         loadStoredData().then(async () => {
-            console.log('📊 Initial data load complete, displaying logs...');
             await displayLogs();
             await updateDailySummary();
+            await displayEditableLogsList();
             updateConnectionStatus();
         }).catch(error => {
-            console.error('❌ Failed to load initial data:', error);
+            console.error('Failed to load initial data:', error);
             showStatus('Warning: Could not load existing data', 'warning');
             displayLogs();
             updateDailySummary();
+            displayEditableLogsList();
         });
     } else {
         showStatus('Invalid master code!', 'error');
@@ -302,7 +298,7 @@ async function getStoredLogs() {
         // Verify data integrity
         const calculatedHash = hashMD5(JSON.stringify(data.logs));
         if (data.hash !== calculatedHash) {
-            console.warn('⚠️ Data integrity check failed! Data may have been tampered with.');
+            console.warn('Data integrity check failed! Data may have been tampered with.');
             showStatus('Data integrity warning - please refresh', 'error');
         }
         
@@ -319,10 +315,11 @@ async function refreshData() {
         const data = await jsonBinStorage.readData();
         await displayLogs();
         await updateDailySummary();
+        await displayEditableLogsList();
         updateConnectionStatus();
         showStatus('Data refreshed successfully!', 'success');
     } catch (error) {
-        console.error('❌ Failed to refresh data:', error);
+        console.error('Failed to refresh data:', error);
         showStatus('Failed to refresh data', 'error');
     }
 }
@@ -330,10 +327,7 @@ async function refreshData() {
 async function loadStoredData() {
     try {
         const data = await jsonBinStorage.readData();
-        console.log(`📊 Loaded ${data.logs.length} records from ${jsonBinStorage.getStatus()}`);
-        
         updateConnectionStatus();
-        
         return data;
     } catch (error) {
         console.error('Error loading data:', error);
@@ -351,7 +345,7 @@ function updateConnectionStatus() {
             statusDiv.style.cssText = 'text-align: center; margin-top: 10px; font-size: 12px; opacity: 0.7;';
             timeDisplay.appendChild(statusDiv);
         }
-        statusDiv.textContent = `${jsonBinStorage.getStatus()}`;
+        statusDiv.innerHTML = `<i class="fas ${jsonBinStorage.isOnline ? 'fa-globe' : 'fa-mobile-alt'}"></i> ${jsonBinStorage.getStatus()}`;
     }
 }
 
@@ -364,6 +358,73 @@ function addToEmployeeCode(num) {
 
 function clearEmployeeCode() {
     document.getElementById('employeeCode').value = '';
+}
+
+async function handleManualEntry(e) {
+    e.preventDefault();
+    
+    const employeeCode = document.getElementById('manualEmployeeCode').value;
+    const employeeHash = hashMD5(employeeCode);
+    const employee = employees[employeeHash];
+    
+    if (!employee) {
+        showStatus('Invalid employee code!', 'error');
+        return;
+    }
+    
+    const startDate = document.getElementById('manualStartDate').value;
+    const startTime = document.getElementById('manualStartTime').value;
+    const endDate = document.getElementById('manualEndDate').value;
+    const endTime = document.getElementById('manualEndTime').value;
+    
+    // Create timestamps from date and time inputs
+    const startDateTime = new Date(`${startDate}T${startTime}`);
+    const endDateTime = new Date(`${endDate}T${endTime}`);
+    
+    // Validate times
+    if (endDateTime <= startDateTime) {
+        showStatus('End time must be after start time!', 'error');
+        return;
+    }
+    
+    const startTimestamp = startDateTime.getTime();
+    const endTimestamp = endDateTime.getTime();
+    
+    // Check for duplicate entries
+    const logs = await getStoredLogs();
+    const isDuplicate = logs.some(log => 
+        log.employeeId === employee.id &&
+        log.timestamp === startTimestamp &&
+        log.punchOut === endTimestamp
+    );
+    
+    if (isDuplicate) {
+        showStatus('Duplicate entry detected! This exact time entry already exists.', 'error');
+        return;
+    }
+    
+    const hoursWorked = calculateHours(startTimestamp, endTimestamp);
+    
+    const punchRecord = {
+        id: generateId(),
+        employeeId: employee.id,
+        employeeName: employee.name,
+        action: 'in',
+        timestamp: startTimestamp,
+        datetime: startDateTime.toISOString(),
+        punchOut: endTimestamp,
+        punchOutDatetime: endDateTime.toISOString(),
+        hoursWorked: hoursWorked
+    };
+    
+    await savePunchRecord(punchRecord);
+    showStatus(`Manual entry logged for ${employee.name}: ${hoursWorked.toFixed(2)} hours`, 'success');
+    
+    // Clear form
+    document.getElementById('manualEntryForm').reset();
+    
+    await displayLogs();
+    await updateDailySummary();
 }
 
 async function updateDailySummary() {
@@ -534,7 +595,119 @@ async function clearLogs() {
         showStatus('All logs cleared successfully!', 'success');
         await displayLogs();
         await updateDailySummary();
+        await displayEditableLogsList();
     }
+}
+
+async function displayEditableLogsList() {
+    const logs = await getStoredLogs();
+    const editLogsDiv = document.getElementById('editableLogsList');
+    
+    if (!editLogsDiv) return;
+    
+    if (logs.length === 0) {
+        editLogsDiv.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">No logs to edit.</p>';
+        return;
+    }
+    
+    const sortedLogs = logs.sort((a, b) => b.timestamp - a.timestamp);
+    
+    let html = '<div style="max-height: 400px; overflow-y: auto;">';
+    sortedLogs.forEach(log => {
+        const date = new Date(log.timestamp).toLocaleDateString();
+        const timeIn = new Date(log.timestamp).toLocaleTimeString();
+        const timeOut = log.punchOut ? new Date(log.punchOut).toLocaleTimeString() : 'N/A';
+        const hours = log.hoursWorked || 0;
+        
+        html += `
+            <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 8px; background: white;">
+                <div><strong>${log.employeeName}</strong> - ${date}</div>
+                <div style="font-size: 0.9em; color: #666;">
+                    In: ${timeIn} | Out: ${timeOut} | Hours: ${hours.toFixed(2)}
+                </div>
+                <div style="margin-top: 8px;">
+                    <button onclick="editLog('${log.id}')" style="padding: 5px 10px; background: #333; color: white; border: none; cursor: pointer; margin-right: 5px;">Edit</button>
+                    <button onclick="deleteLog('${log.id}')" style="padding: 5px 10px; background: #dc3545; color: white; border: none; cursor: pointer;">Delete</button>
+                </div>
+            </div>
+        `;
+    });
+    html += '</div>';
+    
+    editLogsDiv.innerHTML = html;
+}
+
+async function editLog(logId) {
+    const logs = await getStoredLogs();
+    const log = logs.find(l => l.id === logId);
+    
+    if (!log) {
+        showStatus('Log not found!', 'error');
+        return;
+    }
+    
+    const startDate = new Date(log.timestamp);
+    const endDate = log.punchOut ? new Date(log.punchOut) : new Date();
+    
+    const newStartTime = prompt(
+        `Edit Start Time for ${log.employeeName}\nCurrent: ${startDate.toLocaleString()}\n\nEnter new start time (format: YYYY-MM-DD HH:MM):`,
+        `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, '0')}-${String(startDate.getDate()).padStart(2, '0')} ${String(startDate.getHours()).padStart(2, '0')}:${String(startDate.getMinutes()).padStart(2, '0')}`
+    );
+    
+    if (!newStartTime) return;
+    
+    const newEndTime = prompt(
+        `Edit End Time for ${log.employeeName}\nCurrent: ${endDate.toLocaleString()}\n\nEnter new end time (format: YYYY-MM-DD HH:MM):`,
+        `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')} ${String(endDate.getHours()).padStart(2, '0')}:${String(endDate.getMinutes()).padStart(2, '0')}`
+    );
+    
+    if (!newEndTime) return;
+    
+    try {
+        const newStart = new Date(newStartTime);
+        const newEnd = new Date(newEndTime);
+        
+        if (isNaN(newStart.getTime()) || isNaN(newEnd.getTime())) {
+            showStatus('Invalid date format!', 'error');
+            return;
+        }
+        
+        if (newEnd <= newStart) {
+            showStatus('End time must be after start time!', 'error');
+            return;
+        }
+        
+        log.timestamp = newStart.getTime();
+        log.datetime = newStart.toISOString();
+        log.punchOut = newEnd.getTime();
+        log.punchOutDatetime = newEnd.toISOString();
+        log.hoursWorked = calculateHours(log.timestamp, log.punchOut);
+        
+        await updatePunchRecord(log);
+        showStatus('Log updated successfully!', 'success');
+        await displayLogs();
+        await updateDailySummary();
+        await displayEditableLogsList();
+    } catch (error) {
+        showStatus('Error updating log!', 'error');
+    }
+}
+
+async function deleteLog(logId) {
+    if (!confirm('Are you sure you want to delete this log entry? This action cannot be undone.')) {
+        return;
+    }
+    
+    const currentData = await jsonBinStorage.readData();
+    const updatedLogs = currentData.logs.filter(log => log.id !== logId);
+    
+    currentData.logs = updatedLogs;
+    await jsonBinStorage.writeData(currentData);
+    
+    showStatus('Log deleted successfully!', 'success');
+    await displayLogs();
+    await updateDailySummary();
+    await displayEditableLogsList();
 }
 
 function showStatus(message, type) {
