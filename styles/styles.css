@@ -194,8 +194,8 @@ main {
   background-color: white;
   border-radius: 8px;
   box-shadow: var(--shadow);
-  padding: 30px;
-  margin-bottom: 30px;
+  padding: 35px;
+  margin-bottom: 25px;
   scroll-margin-top: 80px;
 }
 
@@ -1661,8 +1661,8 @@ footer {
 
   .hero {
     height: 100vh;
-    max-height: 600px;
-    min-height: 450px;
+    max-height: 550px;
+    min-height: 400px;
   }
 
   .hero .profile-picture-placeholder {
