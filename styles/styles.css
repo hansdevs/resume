@@ -574,6 +574,7 @@ main {
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
 }
 
 .slide::-webkit-scrollbar {
@@ -927,7 +928,6 @@ main {
   height: 400px;
   position: relative;
   z-index: 2001;
-  touch-action: none;
 }
 
 .game-overlay {
@@ -2436,6 +2436,8 @@ footer {
   overflow-x: hidden;
   padding-bottom: 50px;
   padding-top: 0;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
 }
 
 .slide .container {
