@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hans Gamlien - Developer & CS Student</title>
+<script>
+if (window.location.pathname.endsWith('/index.html')) {
+    window.history.replaceState(null, '', window.location.pathname.replace('/index.html', '/') + window.location.search + window.location.hash);
+}
+</script>
 <link rel="stylesheet" href="styles/styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -231,7 +236,7 @@
                             An anonymous social experiment exploring how marginalized groups experience nightlife venues, collecting user-generated data to identify patterns in venue comfort and accessibility.
                         </p>
                         <div class="project-links">
-                            <a href="capstone/index.html" class="project-link"><i class="fas fa-lock"></i> View Project</a>
+                            <a href="capstone/" class="project-link"><i class="fas fa-lock"></i> View Project</a>
                         </div>
                     </div>
                 </div>
@@ -256,7 +261,7 @@
                             A competitive coffee shop tycoon game where players compete on the same block, strategically managing their business to attract customers while sabotaging rivals to dominate the neighborhood market.
                         </p>
                         <div class="project-links">
-                            <a href="coffeegame/index.html" class="project-link"><i class="fas fa-gamepad"></i> View Project</a>
+                            <a href="coffeegame/" class="project-link"><i class="fas fa-gamepad"></i> View Project</a>
                         </div>
                     </div>
                 </div>
@@ -383,7 +388,7 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/hansdevs/2410FinalProject2024" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="/cs2410FinalProject/index.html" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                                <a href="/cs2410FinalProject/" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
                             </div>
                         </div>
                     </div>
