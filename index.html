@@ -11,11 +11,8 @@
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="hero-content">
-    <h1 class="hero-title">Hans Gamlien</h1>
-    <h2 class="hero-subtitle">Developer & Computer Science Student</h2>
-    <div class="hero-cta">
-        <a href="#" class="cta-button primary" data-slide="1">VIEW RESUME</a>
-        <a href="#" class="cta-button secondary" data-slide="2">GET IN TOUCH</a>
+    <div class="typing-container">
+        <div class="typing-text" id="typing-text"></div>
     </div>
 </div>
 <div class="scroll-indicator">
@@ -38,130 +35,157 @@
         <div class="container">
             <section class="about-section">
                 <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
+                    <h2 class="section-title">About</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="about-content">
                     <div class="about-text">
-                        <h3>Hello, I'm Hans</h3>
-                        <p>I'm a Computer Science student at Utah State University and founder of Cordinova, where I'm building the future of workforce management through the Sandbox program. I'm passionate about iOS development and have participated in multiple Swift Student Challenges, but I'm equally excited about full-stack web development with React, Next.js, and TypeScript.</p>
-                        <p>I transferred from the University of North Georgia to pursue opportunities in Utah's tech scene. I love the creativity and problem-solving that comes with coding, whether it's building mobile apps or architecting scalable web platforms. I'm always looking for opportunities to learn, collaborate, and grow in the tech space—especially in fast-paced startup environments where I can make a real impact.</p>
-                    </div>
-                    <div class="interests-container">
-                        <h3>Interests & Passions</h3>
-                        <div class="interests-grid">
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-laptop-code"></i></div>
-                                <h4>Programming</h4>
-                                <p>Exploring new languages and frameworks, building applications, and solving coding challenges.</p>
-                            </div>
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-mobile-alt"></i></div>
-                                <h4>Mobile Development</h4>
-                                <p>Creating iOS applications using Swift and Xcode, with a focus on intuitive user interfaces.</p>
-                            </div>
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-mountain"></i></div>
-                                <h4>Outdoor Adventures</h4>
-                                <p>Hiking, camping, off-roading, and exploring Utah's stunning natural landscapes.</p>
-                            </div>
-                            <div class="interest-card">
-                                <div class="interest-icon"><i class="fas fa-gamepad"></i></div>
-                                <h4>Gaming</h4>
-                                <p>Enjoying strategy and role-playing games that challenge problem-solving skills.</p>
-                            </div>
-                        </div>
+                        <p>Hey! I'm a Computer Science student at Utah State University and the founder of Cordinova, where we're building the future of workforce management through the USU Sandbox program. I love creating with React, Next.js, and TypeScript for the web, and Swift for iOS. Whether it's a startup idea or a passion project, I'm all about building solutions that actually make people's lives easier.</p>
                     </div>
                 </div>
             </section>
-            <section class="journey-section">
+            <section class="skills-showcase">
                 <div class="section-header">
-                    <h2 class="section-title">My Journey</h2>
+                    <h2 class="section-title">Technical Skills</h2>
                     <div class="section-divider"></div>
                 </div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2019</div>
-                            <h3>First Leadership Role</h3>
-                            <p>Started my professional journey as a Team Lead at Get Air Trampoline Parks, where I developed leadership and customer service skills.</p>
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-name">HTML/CSS</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-98"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">TypeScript</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">JavaScript</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Python3</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-60"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">PostgreSQL</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-50"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Java</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-45"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Swift</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-45"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Lua</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-35"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2020</div>
-                            <h3>Tech Career Begins</h3>
-                            <p>Joined <a href="https://www.pcemt247.com/">PC EMT</a> as a Lead Laptop/Desktop Technician, diving deeper into the world of technology and hardware troubleshooting.</p>
+                    <div class="skills-category">
+                        <h3>Web Technologies</h3>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-name">React</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-88"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Next.js</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Tailwind CSS</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Node.js</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-70"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Bootstrap</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-65"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Django</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level skill-45"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">2022</div>
-                            <h3>High School Graduation</h3>
-                            <p>Graduated high school and began attending <a href="https://ung.edu/campuses/dahlonega/index.php"> University of North Georgia</a> full-time to study Cybersecurity.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">November 2023</div>
-                            <h3>NSA Hackathon</h3>
-                        <p>Competed in the NSA-sponsored cybersecurity hackathon at <a href="https://ung.edu/" target="_blank" rel="noopener noreferrer" class="timeline-link">University of North Georgia</a>, earning recognition from the National Security Agency for demonstrated skills in security analysis and problem-solving.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">January 2024</div>
-                            <h3>Swift Student Challenge</h3>
-                        <p>Participated in the Swift Student Challenge, developing <a href="https://github.com/hansdevs/SafeSpend" target="_blank" rel="noopener noreferrer" class="timeline-link">SafeSpend</a>, an iOS app focused on personal finance management.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">August 2024</div>
-                            <h3>New Horizons</h3>
-                            <p>Transferred to <a href="https://www.usu.edu/">Utah State University</a> to continue my Computer Science education.</p>
-                        </div>
-                    </div>   
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">December 2024</div>
-                            <h3>Student Web Developer</h3>
-                            <p>Started as a Student Web Developer for USU IT, contributing to the development and maintenance of university web systems.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">January 2025</div>
-                            <h3>Swift Student Challenge &amp; Sandbox Program</h3>
-                            <p>Participated in the Swift Student Challenge, developing <a href="https://github.com/hansdevs/BallGame_Playgrounds" target="_blank" rel="noopener noreferrer" class="timeline-link">Ricochet</a>, a fast-paced iOS game built with custom memory management.</p>
-                            <br>
-                            <p>Selected for the <a href="https://sandbox.ing/" target="_blank" rel="noopener noreferrer" class="timeline-link">Sandbox program</a> — a no-risk, competitive, venture-backed startup incubator that counts toward 18 CS credits while launching a real-world product.</p>
-                        </div>
-                    </div>
-                     <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-
-                        <div class="timeline-content">
-                            <div class="timeline-date">May 2025</div>
-                            <h3>Tech Repair &amp; Launched Cordinova</h3>
-                            <p>Started as a Tech Repair &amp; Service Coordinator for <a href="https://techycompany.com/north-logan-ut" target="_blank" rel="noopener noreferrer" class="timeline-link">Techy</a> contributing to full-spectrum device repair, front desk operations, and customer-facing sales in a fast-paced retail environment.</p> 
-                            <br>
-                            <p>Launched <a href="https://cordinova.com/" target="_blank" rel="noopener noreferrer" class="timeline-link">Cordinova</a> in the USU Sandbox SB05 program, building the future of workforce management with a revolutionary scheduling platform.</p>
+                    <div class="skills-category tools-category">
+                        <h3>Tools & Software</h3>
+                        <div class="tools-grid">
+                            <div class="tool-item">
+                                <img src="images/Xcode.png" alt="Xcode">
+                                <span>Xcode</span>
+                            </div>
+                            <div class="tool-item">
+                                <img src="images/vscode.png" alt="Visual Studio Code">
+                                <span>VS Code</span>
+                            </div>
+                            <div class="tool-item">
+                                <img src="images/IntelliJDEAlogo.png" alt="IntelliJ IDEA">
+                                <span>IntelliJ</span>
+                            </div>
+                            <div class="tool-item">
+                                <img src="images/gitlogo.png" alt="Git">
+                                <span>Git</span>
+                            </div>
+                            <div class="tool-item">
+                                <img src="images/eclipselogo.png" alt="Eclipse">
+                                <span>Eclipse</span>
+                            </div>
+                            <div class="tool-item">
+                                <img src="images/supabase.png" alt="Supabase">
+                                <span>Supabase</span>
+                            </div>
+                            <div class="tool-item">
+                                <img src="images/docker.png" alt="Docker">
+                                <span>Docker</span>
+                            </div>
+                            <div class="tool-item">
+                                <img src="images/jira.svg" alt="Jira">
+                                <span>Jira</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             <section class="projects-section">
                 <div class="section-header">
-                    <h2 class="section-title">Featured Projects</h2>
+                    <h2 class="section-title">Current Projects</h2>
                     <div class="section-divider"></div>
                 </div>
                 <div class="featured-project">
@@ -181,7 +205,7 @@
                             <span class="tech-tag">Supabase</span>
                         </div>
                         <p class="project-description">
-                            The future of workforce management — a powerful web application built to simplify scheduling like never before, with a sleek, intuitive UI and a seamlessly manageable punch clock system.
+                            Reimagining workforce management, helping businesses not duct-tape different tools together to function. Save money, use Cordinova.
                         </p>
                         <div class="project-links">
                             <a href="https://cordinova.com/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Visit Website</a>
@@ -191,52 +215,78 @@
                 </div>
                 <div class="featured-project">
                     <div class="project-image">
-                        <img src="images/dispatchsaas.png" alt="Dispatch SaaS - Project Management" class="featured-img">
+                        <img src="images/usuhonorsprogramlogo.png" alt="Honors Capstone" class="featured-img">
                         <div class="project-overlay">
-                            <div class="project-category">Web Application Demo</div>
+                            <div class="project-category">Honors Capstone</div>
                         </div>
                     </div>
                     <div class="project-details">
-                        <h3>Dispatch SaaS</h3>
+                        <h3>Nightlife Social Dynamics Research</h3>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">Supabase</span>
-                            <span class="tech-tag">Vercel</span>
+                            <span class="tech-tag">Social Research</span>
+                            <span class="tech-tag">Data Analysis</span>
+                            <span class="tech-tag">UX Research</span>
                         </div>
                         <p class="project-description">
-                            A comprehensive project management SaaS platform designed to streamline team collaboration and project tracking. Built as a solo startup venture, Dispatch SaaS offers intuitive project organization, real-time collaboration tools, and efficient workflow management for modern teams.
+                            An anonymous social experiment exploring how marginalized groups experience nightlife venues, collecting user-generated data to identify patterns in venue comfort and accessibility.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.dispatchsaas.com/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                            <a href="capstone/index.html" class="project-link"><i class="fas fa-lock"></i> View Project</a>
                         </div>
                     </div>
                 </div>
                 <div class="featured-project">
                     <div class="project-image">
-                        <img src="images/ricochet.jpg" alt="iOS Game App" class="featured-img">
+                        <img src="images/thecozycoffeecompany.png" alt="The Cozy Coffee Company" class="featured-img">
                         <div class="project-overlay">
-                            <div class="project-category">Swift Student Challenge 2025</div>
+                            <div class="project-category">Video Game</div>
                         </div>
                     </div>
                     <div class="project-details">
-                        <h3>Ricochet</h3>
+                        <h3>The Cozy Coffee Company</h3>
                         <div class="project-tech">
-                            <span class="tech-tag">Swift</span>
-                            <span class="tech-tag">Memory Management</span>
+                            <span class="tech-tag">Lua</span>
+                            <span class="tech-tag">Defold Engine</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">iOS/iPadOS</span>
+                            <span class="tech-tag">Google Play</span>
+                            <span class="tech-tag">Steam</span>
                         </div>
                         <p class="project-description">
-Ricochet is a fast-paced square-shooting game where you aim balls to destroy falling blocks before they reach the bottom. A 2025 Swift Student Challenge submission, it's built entirely in Swift with no external libraries and features custom low-level memory handling for high-intensity gameplay.
+                            A competitive coffee shop tycoon game where players compete on the same block, strategically managing their business to attract customers while sabotaging rivals to dominate the neighborhood market.
                         </p>
                         <div class="project-links">
-                            <a href="https://github.com/hansdevs/BallGame_Playgrounds" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="coffeegame/index.html" class="project-link"><i class="fas fa-gamepad"></i> View Project</a>
                         </div>
                     </div>
+                </div>
+                <div class="section-header" style="margin-top: 60px;">
+                    <h2 class="section-title">Past Projects</h2>
+                    <div class="section-divider"></div>
                 </div>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-card-image">
-                            <img src="images/safespend.png" alt="SafeSpend - Swift Student Challenge 2023" class="project-icon">
+                            <img src="images/ricochet.jpg" alt="Ricochet - Swift Student Challenge 2025" class="project-icon">
+                            <div class="project-overlay">
+                                <div class="project-category">Swift Student Challenge 2025</div>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Ricochet</h3>
+                            <p>A fast-paced square-shooting game where you aim balls to destroy falling blocks before they reach the bottom. Built entirely in Swift with no external libraries for high-intensity gameplay.</p>
+                            <div class="project-card-tech">
+                                <span class="tech-tag">Swift</span>
+                                <span class="tech-tag">Game Development</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/hansdevs/BallGame_Playgrounds" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="images/safespend.png" alt="SafeSpend - Swift Student Challenge 2024" class="project-icon">
                             <div class="project-overlay">
                                 <div class="project-category">Swift Student Challenge 2024</div>
                             </div>
@@ -274,66 +324,70 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                         </div>
                     </div>
                     <div class="project-card">
-<div class="project-card-image">
-    <img src="images/vscode.png" alt="Web Development Final Project" class="project-icon">
-    <div class="project-overlay">
-        <div class="project-category">Class Assignment</div>
-    </div>
-</div>
-<div class="project-card-content">
-    <h3>Intro To Web Development Final Project</h3>
-    <p>CS2410 Final Project, Fall 2024 with Dr. Chad Mano. Created a Movies, TV, and People website with comprehensive browsing and information features. See readme.md for more details.</p>
-    <div class="project-card-tech">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">API Integration</span>
-    </div>
-    <div class="project-links">
-        <a href="https://github.com/hansdevs/2410FinalProject2024" class="project-link"><i class="fab fa-github"></i> View Code</a>
-        <a href="/cs2410FinalProject/index.html" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
-    </div>
-</div>
-</div>
-<div class="project-card">
-<div class="project-card-image">
-    <img src="images/freelance-project.png" alt="Fun Project" class="project-icon">
-    <div class="project-overlay">
-        <div class="project-category">Web Application Demo</div>
-    </div>
-</div>
-<div class="project-card-content">
-<h3>Freelance Jobboard Website</h3>
-<p>A modern job board platform concept where companies can post remote freelance opportunities and users can easily browse and apply for gigs.</p>
-    <div class="project-card-tech">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JavaScript</span>
-    </div>
-    <div class="project-links">
-        <a href="https://github.com/hansdevs/Freelance_Concept" class="project-link"><i class="fab fa-github"></i> View Code</a>
-        <a href="freelancedashboard/" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
-    </div>
-</div>
-</div>
-<div class="project-card">
-<div class="project-card-image">
-    <img src="images/vscode.png" alt="Portfolio Website" class="project-icon">
-</div>
-<div class="project-card-content">
-    <h3>Personal Portfolio Website</h3>
-    <p>A responsive portfolio website built with HTML, CSS, and JavaScript to showcase my projects.</p>
-    <div class="project-card-tech">
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JavaScript</span>
-    </div>
-    <div class="project-links">
-        <a href="https://github.com/hansdevs/resume" class="project-link"><i class="fab fa-github"></i> View Code</a>
-    </div>
-</div>
-</div>
-</div>
+                        <div class="project-card-image">
+                            <img src="images/dispatchsaas.png" alt="Dispatch SaaS" class="project-icon">
+                            <div class="project-overlay">
+                                <div class="project-category">Web Application Demo</div>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Dispatch SaaS</h3>
+                            <p>A comprehensive project management SaaS platform designed to streamline team collaboration and project tracking. Built as a solo startup venture, Dispatch SaaS offers intuitive project organization, real-time collaboration tools, and efficient workflow management for modern teams.</p>
+                            <div class="project-card-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">SQL</span>
+                                <span class="tech-tag">Supabase</span>
+                                <span class="tech-tag">Vercel</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://www.dispatchsaas.com/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="images/freelance-project.png" alt="Freelance Jobboard" class="project-icon">
+                            <div class="project-overlay">
+                                <div class="project-category">Web Application Demo</div>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Freelance Jobboard Website</h3>
+                            <p>A modern job board platform concept where companies can post remote freelance opportunities and users can easily browse and apply for gigs.</p>
+                            <div class="project-card-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/hansdevs/Freelance_Concept" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="freelancedashboard/" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-card-image">
+                            <img src="images/vscode.png" alt="Web Development Final Project" class="project-icon">
+                            <div class="project-overlay">
+                                <div class="project-category">Class Assignment</div>
+                            </div>
+                        </div>
+                        <div class="project-card-content">
+                            <h3>Intro To Web Development Final Project</h3>
+                            <p>CS2410 Final Project, Fall 2024 with Dr. Chad Mano. Created a Movies, TV, and People website with comprehensive browsing and information features. See readme.md for more details.</p>
+                            <div class="project-card-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">API Integration</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/hansdevs/2410FinalProject2024" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                                <a href="/cs2410FinalProject/index.html" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="github-section">
                     <div class="github-card">
                         <img src="images/gitlogo.png" alt="GitHub" class="github-logo">
@@ -347,147 +401,6 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                     </div>
                 </div>
             </section>
-            <section class="skills-showcase">
-                <div class="section-header">
-                    <h2 class="section-title">Skills & Technologies</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="skills-container">
-<div class="skills-category">
-<h3><i class="fas fa-code"></i> Programming Languages</h3>
-<div class="skills-list">
-    <div class="skill-item">
-        <div class="skill-name">HTML</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 100%"></div>
-        </div>
-    </div>
-     <div class="skill-item">
-        <div class="skill-name">CSS</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 87%"></div>
-        </div>
-    </div>
-     <div class="skill-item">
-        <div class="skill-name">JavaScript</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 80%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">TypeScript</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 80%"></div>
-        </div>
-    </div>
-     <div class="skill-item">
-        <div class="skill-name">Python 3.13</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 67%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">Python 3.14</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 50%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">PostgreSQL</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 45%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">Java</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 40%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">Swift</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 40%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">MIPS Assembly</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 30%"></div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="skills-category">
-<h3><i class="fas fa-laptop-code"></i> Web Technologies</h3>
-<div class="skills-list">
-    <div class="skill-item">
-        <div class="skill-name">React</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 88%"></div>
-        </div>
-        </div>
-         <div class="skill-item">
-        <div class="skill-name">Next.js</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 85%"></div>
-        </div>
-        </div>
-    <div class="skill-item">
-        <div class="skill-name">Tailwind CSS</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 80%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">Node.js</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 70%"></div>
-        </div>
-    </div>
-    <div class="skill-item">
-        <div class="skill-name">Bootstrap</div>
-        <div class="skill-bar">
-            <div class="skill-level" style="width: 65%"></div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="skills-category">
-<h3><i class="fas fa-tools"></i> Tools & Software</h3>
-<div class="tools-grid">
-    <div class="tool-item">
-        <img src="images/Xcode.png" alt="Xcode" class="tool-icon">
-        <span>Xcode</span>
-    </div>
-    <div class="tool-item">
-        <img src="images/vscode.png" alt="VS Code" class="tool-icon">
-        <span>Visual Studio Code</span>
-    </div>
-    <div class="tool-item">
-        <img src="images/IntelliJDEAlogo.png" alt="IntelliJ IDEA" class="tool-icon">
-        <span>IntelliJ IDEA</span>
-    </div>
-    <div class="tool-item">
-        <img src="images/gitlogo.png" alt="Git" class="tool-icon">
-        <span>Git</span>
-    </div>
-    <div class="tool-item">
-        <img src="images/eclipselogo.png" alt="Eclipse" class="tool-icon">
-        <span>Eclipse</span>
-    </div>
-      <div class="tool-item">
-        <img src="images/supabase.png" alt="Supabase logo" class="tool-icon">
-        <span>Supabase</span>
-    </div>
-      <div class="tool-item">
-        <img src="images/docker.png" alt="Docker logo" class="tool-icon">
-        <span>Docker</span>
-    </div>
-</div>
-</div>
-                </div>
-            </section>
         </div>
     </div>
     <div class="slide" id="resume-slide">
@@ -496,10 +409,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                 <h2 class="section-title">Professional Summary</h2>
                 <div class="summary-content">
                     <p>
-                        Dynamic and motivated Computer Science student at Utah State University with hands-on experience in web
-                        development and CMS management. Proven ability to handle customer inquiries with professionalism, efficiency, and
-                        attention to detail. Recognized for punctuality, strong leadership, and the ability to collaborate effectively within team
-                        environments.
+                        Computer Science student and startup founder driving innovation as CEO of Cordinova through the USU Sandbox program. Combines strong technical expertise in full-stack development (React, Next.js, TypeScript) with exceptional communication skills to lead product development and team collaboration. Proven ability to translate complex technical concepts into user-friendly solutions, with a track record of building scalable workforce management platforms and award-winning applications. Thrives in fast-paced environments where technical excellence meets strategic thinking.
                     </p>
                 </div>
             </section>
@@ -507,34 +417,32 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                 <h2 class="section-title">Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Technical Skills</h3>
+                        <h3>Languages & Frameworks</h3>
                         <ul class="skill-list">
-                            <li><span class="skill-tag">Front-End Development (HTML, CSS, JavaScript)</span></li>
-                            <li><span class="skill-tag">Back-End Development (Python, Java, Swift)</span></li>
-                            <li><span class="skill-tag">Mobile & App Development (Swift, Xcode)</span></li>
-                            <li><span class="skill-tag">Database Management (SQLite)</span></li>
-                            <li><span class="skill-tag">TypeScript & Modern JavaScript Frameworks</span></li>
-                            <li><span class="skill-tag">Assembly & Low-Level Programming (MIPS Assembly)</span></li>
-                            <li><span class="skill-tag">Scripting & Terminal (ZSH)</span></li>
+                            <li><span class="skill-tag">TypeScript, JavaScript, HTML/CSS</span></li>
+                            <li><span class="skill-tag">React, Next.js, Tailwind CSS</span></li>
+                            <li><span class="skill-tag">Python, Java, Swift</span></li>
+                            <li><span class="skill-tag">Node.js, PostgreSQL</span></li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>Software & Tools</h3>
+                        <h3>Tools & Technologies</h3>
                         <ul class="skill-list">
-                            <li><span class="skill-tag">IntelliJ IDEA</span></li>
-                            <li><span class="skill-tag">Visual Studio Code</span></li>
-                            <li><span class="skill-tag">Eclipse IDE</span></li>
-                            <li><span class="skill-tag">Xcode</span></li>
-                            <li><span class="skill-tag">Git</span></li>
+                            <li><span class="skill-tag">Git, GitHub, VS Code</span></li>
+                            <li><span class="skill-tag">Xcode, IntelliJ IDEA</span></li>
+                            <li><span class="skill-tag">Supabase, Jira</span></li>
+                            <li><span class="skill-tag">Figma, Lucidchart</span></li>
+                            <li><span class="skill-tag">Terminal, ZSH</span></li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h3>Soft Skills</h3>
+                        <h3>Core Strengths</h3>
                         <ul class="skill-list">
-                            <li><span class="skill-tag">Strong Teamwork Capabilities</span></li>
-                            <li><span class="skill-tag">Customer Support</span></li>
-                            <li><span class="skill-tag">Problem-solving</span></li>
-                            <li><span class="skill-tag">Hardware Troubleshooting</span></li>
+                            <li><span class="skill-tag">Full-Stack Development</span></li>
+                            <li><span class="skill-tag">Technical Leadership</span></li>
+                            <li><span class="skill-tag">Team Communication</span></li>
+                            <li><span class="skill-tag">Problem Solving</span></li>
+                            <li><span class="skill-tag">Startup Operations</span></li>
                         </ul>
                     </div>
                 </div>
@@ -583,7 +491,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                 <div class="experience-item">
                     <div class="experience-header">
                         <div class="job-title-company">
-                            <h3>Student Web Developer</h3>
+                            <h3>Student Web Developer (Spring 2025 Semester)</h3>
                             <h4>USU Information Technology</h4>
                         </div>
                         <div class="job-meta">
@@ -621,24 +529,6 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                         <li>Provided technical support on escalated customer issues and troubleshoot complex problems quickly.</li>
                     </ul>
                 </div>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="job-title-company">
-                            <h3>Team Lead</h3>
-                            <h4>Get Air Trampoline Parks</h4>
-                        </div>
-                        <div class="job-meta">
-                            <div class="job-location">Alpharetta, GA</div>
-                            <div class="job-date">April 2019 - September 2019</div>
-                        </div>
-                    </div>
-                    <ul class="job-description">
-                        <li>Enforced company policies while providing guidance and support as needed, revealing sound judgment and decision-making ability.</li>
-                        <li>Trained staff on product knowledge to ensure customers received accurate information, displaying excellent instructional abilities.</li>
-                        <li>Monitored daily operations, utilizing organizational and problem-solving skills to identify areas for improvement.</li>
-                        <li>Supervised the daily work of staff.</li>
-                    </ul>
-                </div>
             </section>
             <section class="resume-section">
                 <h2 class="section-title">Education</h2>
@@ -674,6 +564,8 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                             <ul>
                                 <li><a href="https://web.sandbox.ing/" target="_blank" rel="noopener noreferrer">Sandbox Student</a></li>
                                 <li><a href="https://www.usu.edu/honors/" target="_blank" rel="noopener noreferrer">Honors Student</a></li>
+                                <li>Cum Laude</li>
+                                <li>Undergraduate Research</li>
                             </ul>
                         </div>
                     </div>
@@ -745,28 +637,22 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
     <div class="slide" id="connect-slide">
         <div class="container">
             <section class="connect-section">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="connect-intro">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. The best ways to contact me are through email or LinkedIn.</p>
-        <div class="contact-card">
-<div class="contact-card-icon">
-    <i class="fas fa-envelope"></i>
-</div>
-<h3>Email Me</h3>
-<p>Preferred contact method. I typically respond within 24–48 hours.</p>
-<p style="font-size: 0.9em; color: #888;">
-    <strong>Note:</strong> Sales pitches or unsolicited service offers (e.g. redesigns, SEO, marketing) will not be reviewed.
-</p>
-<button id="reveal-email-btn" class="contact-card-button" onclick="revealEmail()">
-    <i class="fas fa-envelope"></i> Click to Reveal Email
-</button>
-<a href="mailto:hansgamlien@gmail.com" class="contact-card-button" id="email-link" style="display: none;">
-    <i class="fas fa-envelope"></i> hansgamlien@gmail.com
-</a>
-</div>
-
+                <h2 class="section-title">Contact</h2>
+                <div class="email-contact">
+                    <div class="email-icon" id="email-icon" onclick="revealEmail()">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p class="email-description">Preferred method of contact. Response within 24-48 hours.<br>
+                    <span class="email-note">Note: Sales and marketing inquiries will not be reviewed.</span></p>
+                    <div class="email-reveal" id="email-reveal">
+                        <label for="email-text" class="sr-only">Email address</label>
+                        <input type="text" value="hansgamlien@gmail.com" id="email-text" readonly aria-label="Email address">
+                    </div>
+                </div>
             </section>
             <section class="connect-section">
-                <h2 class="section-title">Other Ways to Connect</h2>
+                <h2 class="section-title">Connect</h2>
                 <div class="connect-grid">
                     <div class="connect-item">
                         <div class="connect-icon">
@@ -804,18 +690,18 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
                 </div>
             </div>
         </div>
-        <div class="slide" id="thank-you-slide" style="display: none;">
+        <div class="slide thank-you-slide" id="thank-you-slide">
             <div class="container">
                 <section class="thank-you-section connect-section">
                     <div class="section-header">
                         <h2 class="section-title">Thank You!</h2>
                         <div class="section-divider"></div>
-                    <div class="thank-you-content" style="text-align: center; padding: 40px 0;">
-                        <div class="thank-you-icon" style="font-size: 4rem; color: var(--success-color); margin-bottom: 20px;">
+                    <div class="thank-you-content">
+                        <div class="thank-you-icon">
                             <i class="fas fa-check-circle"></i>
                         </div>
-                        <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Your message has been sent successfully</h3>
-                        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px;">Thank you for reaching out! I appreciate your interest and will get back to you as soon as possible.</p>
+                        <h3 class="thank-you-heading">Your message has been sent successfully</h3>
+                        <p class="thank-you-text">Thank you for reaching out! I appreciate your interest and will get back to you as soon as possible.</p>
                         <div class="thank-you-actions">
                             <a href="#" class="cta-button primary" data-slide="0">Return to Home</a>
                         </div>
@@ -831,8 +717,7 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
 <div class="container">
     <div class="footer-content">
         <div class="footer-info">
-            <p>&copy; 2025 Hans Gamlien</p>
-            <p>Computer Science Student at Utah State University</p>
+            <p>&copy; 2026 Hans Gamlien</p>
         </div>
         <div class="footer-links">
             <a href="#" data-slide="0">Home</a>
@@ -840,8 +725,9 @@ Ricochet is a fast-paced square-shooting game where you aim balls to destroy fal
             <a href="#" data-slide="2">Connect</a>
         </div>
         <div class="footer-social">
-            <a href="https://github.com/hansdevs" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/hans-gamlien-59ab1a265/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/hansdevs" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/hans-gamlien-59ab1a265/" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/hansdevs/resume" target="_blank" rel="noopener noreferrer" aria-label="View Portfolio Source Code"><i class="fas fa-code"></i></a>
         </div>
     </div>
 </div>

@@ -18,7 +18,7 @@
     </script>
 </head>
 <body>
-    <input class="label-check" id="label-check" type="checkbox">
+    <input class="label-check" id="label-check" type="checkbox" aria-label="Toggle navigation menu">
     <label for="label-check" class="hamburger-label">
       <div class="line1"></div>
       <div class="line2"></div>
@@ -26,10 +26,10 @@
     </label>
     <div class="nav-menu" id="nav-menu">
         <div class="input">
-          <button class="value" onclick="window.location.href='index.html'">🏠 Dashboard</button>
-          <button class="value" onclick="window.location.href='movies.html'">🎬 Movies</button>
-          <button class="value" onclick="window.location.href='tv.html'">📺 Television</button>
-          <button class="value" onclick="window.location.href='people.html'">👤 People</button>
+          <button class="value" onclick="window.location.href='index.html'">Dashboard</button>
+          <button class="value" onclick="window.location.href='movies.html'">Movies</button>
+          <button class="value" onclick="window.location.href='tv.html'">Television</button>
+          <button class="value" onclick="window.location.href='people.html'">People</button>
         </div>
     </div>
     <div class="nav-overlay" id="nav-overlay"></div>
@@ -46,7 +46,7 @@
     </div>
     
     <header>
-        <input type="checkbox" class="theme-checkbox" id="theme-toggle-checkbox">
+        <input type="checkbox" class="theme-checkbox" id="theme-toggle-checkbox" aria-label="Toggle dark mode">
         <div class="search">
             <input type="text" class="search__input" id="page-search-text" placeholder="Search movies...">
             <button class="search__button" id="page-search-button">Search</button>

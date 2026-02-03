@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honors Capstone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div class="content">
+        <div class="logo-container">
+            <img src="../images/usuhonorsprogramlogo.png" alt="USU Honors Program" class="logo">
+        </div>
+        
+        <h1 class="coming-soon">Coming Soon</h1>
+        <div class="date">December 2026</div>
+        <p class="subtitle">Honors Capstone Project</p>
+        
+        <a href="../index.html" class="back-link">← RETURN TO PORTFOLIO</a>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let time = 0;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        class EnergyParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.8 + 0.2;
+                this.life = Math.random() * 100 + 100;
+                this.maxLife = this.life;
+                this.hue = Math.random() * 60 + 240;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life--;
+
+                if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                const lifeRatio = this.life / this.maxLife;
+                ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity * lifeRatio})`;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = `hsla(${this.hue}, 70%, 60%, 0.8)`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        class Grid {
+            draw(time) {
+                const gridSize = 80;
+                ctx.strokeStyle = 'rgba(139, 92, 246, 0.1)';
+                ctx.lineWidth = 1;
+
+                for (let x = 0; x < canvas.width; x += gridSize) {
+                    ctx.beginPath();
+                    for (let y = 0; y < canvas.height; y += 5) {
+                        const distortion = Math.sin(time * 0.02 + x * 0.01 + y * 0.01) * 10;
+                        const posX = x + distortion;
+                        if (y === 0) {
+                            ctx.moveTo(posX, y);
+                        } else {
+                            ctx.lineTo(posX, y);
+                        }
+                    }
+                    ctx.stroke();
+                }
+
+                for (let y = 0; y < canvas.height; y += gridSize) {
+                    ctx.beginPath();
+                    for (let x = 0; x < canvas.width; x += 5) {
+                        const distortion = Math.sin(time * 0.02 + x * 0.01 + y * 0.01) * 10;
+                        const posY = y + distortion;
+                        if (x === 0) {
+                            ctx.moveTo(x, posY);
+                        } else {
+                            ctx.lineTo(x, posY);
+                        }
+                    }
+                    ctx.stroke();
+                }
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 60; i++) {
+            particles.push(new EnergyParticle());
+        }
+
+        const grid = new Grid();
+
+        function animate() {
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, 'rgba(15, 15, 35, 0.3)');
+            gradient.addColorStop(1, 'rgba(26, 26, 46, 0.3)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            time += 0.5;
+
+            grid.draw(time);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 120) {
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${0.2 * (1 - distance / 120)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            const burstRadius = 100 + Math.sin(time * 0.05) * 30;
+            const burstGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, burstRadius);
+            burstGradient.addColorStop(0, 'rgba(139, 92, 246, 0.15)');
+            burstGradient.addColorStop(0.5, 'rgba(167, 139, 250, 0.08)');
+            burstGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+            ctx.fillStyle = burstGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
