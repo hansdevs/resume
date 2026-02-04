@@ -1,7 +1,84 @@
 (() => {
   "use strict";
 
-  console.log("%c▶ app.js v19 loaded", "background:#8b5cf6;color:#fff;padding:2px 6px;border-radius:4px");
+  const initSkillsAnimation = () => {
+    const skillTags = document.querySelectorAll('#skill-tags .skill-tag-animated');
+    const experienceLabel = document.querySelector('.experience-label');
+    const experienceTags = document.querySelectorAll('#experience-tags .skill-tag-animated');
+    const toolIcons = document.querySelectorAll('#tools-showcase .tool-icon-animated');
+    const skillsSection = document.getElementById('skills-section');
+    
+    if (!skillsSection) return;
+    
+    let hasAnimated = false;
+    
+    const animateWithEasedStagger = (items, baseDelay = 0, initialStagger = 80, decay = 0.92) => {
+      let currentDelay = baseDelay;
+      let currentStagger = initialStagger;
+      
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, currentDelay);
+        
+        currentDelay += currentStagger;
+        currentStagger *= decay;
+      });
+      
+      return currentDelay;
+    };
+    
+    const runAnimation = () => {
+      if (hasAnimated) return;
+      hasAnimated = true;
+      
+      const phase1End = animateWithEasedStagger(skillTags, 0, 90, 0.9);
+      
+      setTimeout(() => {
+        if (experienceLabel) experienceLabel.classList.add('visible');
+      }, phase1End + 150);
+      
+      const phase2Start = phase1End + 300;
+      animateWithEasedStagger(experienceTags, phase2Start, 70, 0.88);
+      
+      const phase3Start = phase2Start + (experienceTags.length * 50) + 200;
+      animateWithEasedStagger(toolIcons, phase3Start, 100, 0.85);
+    };
+    
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          runAnimation();
+        }
+      });
+    };
+    
+    const homeSlide = document.getElementById('home-slide');
+    if (homeSlide) {
+      homeSlide.addEventListener('scroll', () => {
+        if (!hasAnimated) {
+          const rect = skillsSection.getBoundingClientRect();
+          const slideRect = homeSlide.getBoundingClientRect();
+          if (rect.top < slideRect.bottom - 100) {
+            runAnimation();
+          }
+        }
+      });
+    }
+    
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.15,
+      rootMargin: '0px'
+    });
+    
+    observer.observe(skillsSection);
+  };
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSkillsAnimation);
+  } else {
+    initSkillsAnimation();
+  }
   
   const codeSnippets = [
     'print("Hi, I\'m Hans")'
@@ -280,8 +357,8 @@
   let safetyInterval = null;
   let lastTouchTime = 0;
   let touchId = null;
-  const DECISION_THRESHOLD = 20;
-  const thresh = () => window.innerWidth * 0.25;
+  const DECISION_THRESHOLD = 25;
+  const thresh = () => window.innerWidth * 0.28;
   
   const resetTouchState = () => {
     dragging = false;
@@ -292,30 +369,26 @@
       clearTimeout(touchTimeout);
       touchTimeout = null;
     }
-    sliderTrack.style.transition = "transform .55s ease";
+    sliderTrack.style.transition = "transform .4s ease";
     sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
   };
   
-  // Aggressive safety net - runs every 500ms to check for stuck states
   const startSafetyCheck = () => {
     if (safetyInterval) clearInterval(safetyInterval);
     safetyInterval = setInterval(() => {
-      if (dragging && Date.now() - lastTouchTime > 1500) {
-        console.log("Safety reset triggered");
+      if (dragging && Date.now() - lastTouchTime > 600) {
         resetTouchState();
       }
-    }, 500);
+    }, 200);
   };
   startSafetyCheck();
   
   const startTouch = (x, y, id) => {
     const now = Date.now();
-    // Debounce rapid touches
-    if (now - lastTouchTime < 50) {
+    if (now - lastTouchTime < 30) {
       return;
     }
     
-    // If we're already in a touch and get a new one, reset
     if (dragging) {
       resetTouchState();
       return;
@@ -325,10 +398,7 @@
     touchId = id;
     
     if (touchTimeout) clearTimeout(touchTimeout);
-    touchTimeout = setTimeout(() => {
-      console.log("Touch timeout reset");
-      resetTouchState();
-    }, 1500);
+    touchTimeout = setTimeout(resetTouchState, 800);
     
     dragging = true;
     decided = false;
@@ -351,11 +421,9 @@
     
     if (!decided) {
       if (Math.abs(dx) < DECISION_THRESHOLD && Math.abs(dy) < DECISION_THRESHOLD) return;
-      // Much stronger vertical bias - horizontal must be 2.5x vertical
       horizDrag = Math.abs(dx) > Math.abs(dy) * 2.5;
       decided = true;
       if (!horizDrag) {
-        // Vertical scroll - immediately release
         dragging = false;
         horizDrag = false;
         if (touchTimeout) clearTimeout(touchTimeout);
@@ -381,7 +449,6 @@
       touchTimeout = null;
     }
     
-    // Validate this is the same touch
     if (touchId !== null && id !== touchId) {
       resetTouchState();
       return;
@@ -391,7 +458,6 @@
     const wasDragging = dragging;
     const startX = touchStartX;
     
-    // Reset all state immediately
     dragging = false;
     horizDrag = false;
     decided = false;
@@ -435,19 +501,16 @@
   
   sliderTrack.addEventListener("touchcancel", resetTouchState);
   
-  // Mouse events (desktop)
   sliderTrack.addEventListener("mousedown", (e) => startTouch(e.clientX, e.clientY, 'mouse'));
   window.addEventListener("mousemove", (e) => moveTouch(e.clientX, e.clientY, 'mouse'));
   window.addEventListener("mouseup", (e) => endTouch(e.clientX, 'mouse'));
   
-  // Reset on any potential interruption
   document.addEventListener("visibilitychange", resetTouchState);
   window.addEventListener("blur", resetTouchState);
   window.addEventListener("pagehide", resetTouchState);
   window.addEventListener("focus", resetTouchState);
   document.addEventListener("contextmenu", resetTouchState);
   
-  // Reset when scrolling happens (means vertical scroll won)
   slides.forEach((s) => s.addEventListener("scroll", () => {
     resetTouchState();
     paginationUI && paginationUI.classList.add("fade-out");
@@ -455,7 +518,6 @@
     fadeT = setTimeout(() => paginationUI && paginationUI.classList.remove("fade-out"), 1200);
   }));
   
-  // Also reset on window scroll
   window.addEventListener("scroll", () => {
     if (dragging) resetTouchState();
   }, { passive: true });

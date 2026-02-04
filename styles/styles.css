@@ -1837,6 +1837,192 @@ footer {
   display: inline-block;
 }
 
+/* Consolidated Skills Section with Scroll-Triggered Animations */
+.skills-consolidated {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
+}
+
+.skill-tags-container,
+.experience-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.experience-tags-container {
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.experience-label {
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience-label.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.skill-tag-animated {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(167, 139, 250, 0.08) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--text-color);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  filter: blur(8px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  cursor: default;
+  will-change: transform, opacity, filter;
+}
+
+.skill-tag-animated.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.skill-tag-animated:hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.35) 0%, rgba(167, 139, 250, 0.25) 100%);
+  border-color: var(--primary-color);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.25);
+}
+
+.skill-tag-animated.visible:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+
+.skill-tag-animated.secondary {
+  background: rgba(139, 92, 246, 0.06);
+  border-color: rgba(139, 92, 246, 0.2);
+  color: var(--text-light);
+  padding: 10px 20px;
+  font-size: 0.88rem;
+}
+
+.skill-tag-animated.secondary:hover {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.35);
+  color: var(--text-color);
+}
+
+.tools-showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  justify-content: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(139, 92, 246, 0.12);
+  width: 100%;
+  max-width: 700px;
+}
+
+.tool-icon-animated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(25px) scale(0.9);
+  filter: blur(6px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  will-change: transform, opacity, filter;
+}
+
+.tool-icon-animated.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.tool-icon-animated:hover {
+  transform: translateY(-6px) scale(1.12);
+}
+
+.tool-icon-animated.visible:hover {
+  transform: translateY(-6px) scale(1.12);
+}
+
+.tool-icon-animated:hover img {
+  filter: drop-shadow(0 12px 25px rgba(139, 92, 246, 0.5));
+}
+
+.tool-icon-animated img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tool-icon-animated span {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.tool-icon-animated:hover span {
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .skill-tags-container,
+  .experience-tags {
+    gap: 8px;
+  }
+  
+  .skill-tag-animated {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
+  
+  .skill-tag-animated.secondary {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+  
+  .tools-showcase {
+    gap: 24px;
+  }
+  
+  .tool-icon-animated img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .skills-bullet-list {
   list-style: none;
   padding: 0;
