@@ -276,15 +276,39 @@
   let decided = false;
   let touchStartX = 0;
   let touchStartY = 0;
-  const DECISION_THRESHOLD = 8;
-  const thresh = () => window.innerWidth * 0.15;
+  let touchTimeout = null;
+  let lastTouchTime = 0;
+  const DECISION_THRESHOLD = 15;
+  const thresh = () => window.innerWidth * 0.2;
+  
+  const resetTouchState = () => {
+    dragging = false;
+    horizDrag = false;
+    decided = false;
+    if (touchTimeout) {
+      clearTimeout(touchTimeout);
+      touchTimeout = null;
+    }
+    sliderTrack.style.transition = "transform .55s ease";
+    sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
+  };
+  
   const startTouch = (x, y) => {
+    const now = Date.now();
+    if (now - lastTouchTime < 100) {
+      resetTouchState();
+      return;
+    }
+    lastTouchTime = now;
+    
+    if (touchTimeout) clearTimeout(touchTimeout);
+    touchTimeout = setTimeout(resetTouchState, 3000);
+    
     dragging = true;
     decided = false;
     horizDrag = false;
     touchStartX = x;
     touchStartY = y;
-    sliderTrack.style.transition = "none";
   };
   const moveTouch = (x, y) => {
     if (!dragging) return;
@@ -292,41 +316,89 @@
     const dy = y - touchStartY;
     if (!decided) {
       if (Math.abs(dx) < DECISION_THRESHOLD && Math.abs(dy) < DECISION_THRESHOLD) return;
-      horizDrag = Math.abs(dx) > Math.abs(dy);
+      horizDrag = Math.abs(dx) > Math.abs(dy) * 2;
       decided = true;
+      if (!horizDrag) {
+        dragging = false;
+        if (touchTimeout) clearTimeout(touchTimeout);
+        touchTimeout = null;
+        return;
+      }
+      sliderTrack.style.transition = "none";
     }
     if (!horizDrag) {
-      dragging = false;
+      resetTouchState();
       return;
     }
     const pct = -current * 33.3333 - (dx / window.innerWidth) * 33.3333;
     if (pct <= 0 && pct >= -66.6666) sliderTrack.style.transform = `translateX(${pct}%)`;
   };
   const endTouch = (x) => {
-    if (!dragging || !horizDrag) {
-      dragging = false;
+    if (touchTimeout) {
+      clearTimeout(touchTimeout);
+      touchTimeout = null;
+    }
+    
+    const wasHorizDrag = horizDrag;
+    const wasDragging = dragging;
+    const startX = touchStartX;
+    
+    dragging = false;
+    horizDrag = false;
+    decided = false;
+    sliderTrack.style.transition = "transform .55s ease";
+    
+    if (!wasDragging || !wasHorizDrag) {
+      sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
       return;
     }
-    dragging = false;
-    sliderTrack.style.transition = "transform .55s ease";
-    const diff = touchStartX - x;
+    const diff = startX - x;
     if (diff > thresh()) go(current + 1);
     else if (diff < -thresh()) go(current - 1);
     else go(current);
   };
-  sliderTrack.addEventListener("touchstart", (e) => startTouch(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+  
+  sliderTrack.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      startTouch(e.touches[0].clientX, e.touches[0].clientY);
+    } else {
+      resetTouchState();
+    }
+  }, { passive: true });
   sliderTrack.addEventListener("touchmove", (e) => {
+    if (e.touches.length !== 1) {
+      resetTouchState();
+      return;
+    }
     moveTouch(e.touches[0].clientX, e.touches[0].clientY);
-    if (horizDrag) e.preventDefault();
+    if (horizDrag && decided) e.preventDefault();
   }, { passive: false });
-  sliderTrack.addEventListener("touchend", (e) => endTouch(e.changedTouches[0].clientX));
+  sliderTrack.addEventListener("touchend", (e) => {
+    if (e.changedTouches.length > 0 && e.touches.length === 0) {
+      endTouch(e.changedTouches[0].clientX);
+    } else {
+      resetTouchState();
+    }
+  });
+  sliderTrack.addEventListener("touchcancel", resetTouchState);
+  
   sliderTrack.addEventListener("mousedown", (e) => startTouch(e.clientX, e.clientY));
   window.addEventListener("mousemove", (e) => moveTouch(e.clientX, e.clientY));
   window.addEventListener("mouseup", (e) => endTouch(e.clientX));
+  
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) resetTouchState();
+  });
+  
+  window.addEventListener("blur", resetTouchState);
+  
   slides.forEach((s) => s.addEventListener("scroll", () => {
-    paginationUI.classList.add("fade-out");
+    if (dragging) {
+      resetTouchState();
+    }
+    paginationUI && paginationUI.classList.add("fade-out");
     clearTimeout(fadeT);
-    fadeT = setTimeout(() => paginationUI.classList.remove("fade-out"), 1200);
+    fadeT = setTimeout(() => paginationUI && paginationUI.classList.remove("fade-out"), 1200);
   }));
   const snakeBtn = document.getElementById("hidden-start-btn");
   const snakeWrap = document.getElementById("snake-game-wrapper");
