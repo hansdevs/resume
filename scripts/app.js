@@ -277,14 +277,17 @@
   let touchStartX = 0;
   let touchStartY = 0;
   let touchTimeout = null;
+  let safetyInterval = null;
   let lastTouchTime = 0;
-  const DECISION_THRESHOLD = 15;
-  const thresh = () => window.innerWidth * 0.2;
+  let touchId = null;
+  const DECISION_THRESHOLD = 20;
+  const thresh = () => window.innerWidth * 0.25;
   
   const resetTouchState = () => {
     dragging = false;
     horizDrag = false;
     decided = false;
+    touchId = null;
     if (touchTimeout) {
       clearTimeout(touchTimeout);
       touchTimeout = null;
@@ -293,16 +296,39 @@
     sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
   };
   
-  const startTouch = (x, y) => {
+  // Aggressive safety net - runs every 500ms to check for stuck states
+  const startSafetyCheck = () => {
+    if (safetyInterval) clearInterval(safetyInterval);
+    safetyInterval = setInterval(() => {
+      if (dragging && Date.now() - lastTouchTime > 1500) {
+        console.log("Safety reset triggered");
+        resetTouchState();
+      }
+    }, 500);
+  };
+  startSafetyCheck();
+  
+  const startTouch = (x, y, id) => {
     const now = Date.now();
-    if (now - lastTouchTime < 100) {
+    // Debounce rapid touches
+    if (now - lastTouchTime < 50) {
+      return;
+    }
+    
+    // If we're already in a touch and get a new one, reset
+    if (dragging) {
       resetTouchState();
       return;
     }
+    
     lastTouchTime = now;
+    touchId = id;
     
     if (touchTimeout) clearTimeout(touchTimeout);
-    touchTimeout = setTimeout(resetTouchState, 3000);
+    touchTimeout = setTimeout(() => {
+      console.log("Touch timeout reset");
+      resetTouchState();
+    }, 1500);
     
     dragging = true;
     decided = false;
@@ -310,42 +336,66 @@
     touchStartX = x;
     touchStartY = y;
   };
-  const moveTouch = (x, y) => {
+  
+  const moveTouch = (x, y, id) => {
     if (!dragging) return;
+    if (touchId !== null && id !== touchId) {
+      resetTouchState();
+      return;
+    }
+    
+    lastTouchTime = Date.now();
+    
     const dx = x - touchStartX;
     const dy = y - touchStartY;
+    
     if (!decided) {
       if (Math.abs(dx) < DECISION_THRESHOLD && Math.abs(dy) < DECISION_THRESHOLD) return;
-      horizDrag = Math.abs(dx) > Math.abs(dy) * 2;
+      // Much stronger vertical bias - horizontal must be 2.5x vertical
+      horizDrag = Math.abs(dx) > Math.abs(dy) * 2.5;
       decided = true;
       if (!horizDrag) {
+        // Vertical scroll - immediately release
         dragging = false;
+        horizDrag = false;
         if (touchTimeout) clearTimeout(touchTimeout);
         touchTimeout = null;
+        touchId = null;
         return;
       }
       sliderTrack.style.transition = "none";
     }
+    
     if (!horizDrag) {
       resetTouchState();
       return;
     }
+    
     const pct = -current * 33.3333 - (dx / window.innerWidth) * 33.3333;
     if (pct <= 0 && pct >= -66.6666) sliderTrack.style.transform = `translateX(${pct}%)`;
   };
-  const endTouch = (x) => {
+  
+  const endTouch = (x, id) => {
     if (touchTimeout) {
       clearTimeout(touchTimeout);
       touchTimeout = null;
+    }
+    
+    // Validate this is the same touch
+    if (touchId !== null && id !== touchId) {
+      resetTouchState();
+      return;
     }
     
     const wasHorizDrag = horizDrag;
     const wasDragging = dragging;
     const startX = touchStartX;
     
+    // Reset all state immediately
     dragging = false;
     horizDrag = false;
     decided = false;
+    touchId = null;
     sliderTrack.style.transition = "transform .55s ease";
     
     if (!wasDragging || !wasHorizDrag) {
@@ -360,46 +410,56 @@
   
   sliderTrack.addEventListener("touchstart", (e) => {
     if (e.touches.length === 1) {
-      startTouch(e.touches[0].clientX, e.touches[0].clientY);
+      startTouch(e.touches[0].clientX, e.touches[0].clientY, e.touches[0].identifier);
     } else {
       resetTouchState();
     }
   }, { passive: true });
+  
   sliderTrack.addEventListener("touchmove", (e) => {
     if (e.touches.length !== 1) {
       resetTouchState();
       return;
     }
-    moveTouch(e.touches[0].clientX, e.touches[0].clientY);
+    moveTouch(e.touches[0].clientX, e.touches[0].clientY, e.touches[0].identifier);
     if (horizDrag && decided) e.preventDefault();
   }, { passive: false });
+  
   sliderTrack.addEventListener("touchend", (e) => {
-    if (e.changedTouches.length > 0 && e.touches.length === 0) {
-      endTouch(e.changedTouches[0].clientX);
+    if (e.touches.length === 0 && e.changedTouches.length > 0) {
+      endTouch(e.changedTouches[0].clientX, e.changedTouches[0].identifier);
     } else {
       resetTouchState();
     }
   });
+  
   sliderTrack.addEventListener("touchcancel", resetTouchState);
   
-  sliderTrack.addEventListener("mousedown", (e) => startTouch(e.clientX, e.clientY));
-  window.addEventListener("mousemove", (e) => moveTouch(e.clientX, e.clientY));
-  window.addEventListener("mouseup", (e) => endTouch(e.clientX));
+  // Mouse events (desktop)
+  sliderTrack.addEventListener("mousedown", (e) => startTouch(e.clientX, e.clientY, 'mouse'));
+  window.addEventListener("mousemove", (e) => moveTouch(e.clientX, e.clientY, 'mouse'));
+  window.addEventListener("mouseup", (e) => endTouch(e.clientX, 'mouse'));
   
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) resetTouchState();
-  });
-  
+  // Reset on any potential interruption
+  document.addEventListener("visibilitychange", resetTouchState);
   window.addEventListener("blur", resetTouchState);
+  window.addEventListener("pagehide", resetTouchState);
+  window.addEventListener("focus", resetTouchState);
+  document.addEventListener("contextmenu", resetTouchState);
   
+  // Reset when scrolling happens (means vertical scroll won)
   slides.forEach((s) => s.addEventListener("scroll", () => {
-    if (dragging) {
-      resetTouchState();
-    }
+    resetTouchState();
     paginationUI && paginationUI.classList.add("fade-out");
     clearTimeout(fadeT);
     fadeT = setTimeout(() => paginationUI && paginationUI.classList.remove("fade-out"), 1200);
   }));
+  
+  // Also reset on window scroll
+  window.addEventListener("scroll", () => {
+    if (dragging) resetTouchState();
+  }, { passive: true });
+  
   const snakeBtn = document.getElementById("hidden-start-btn");
   const snakeWrap = document.getElementById("snake-game-wrapper");
   if (snakeBtn && snakeWrap) {

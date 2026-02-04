@@ -1830,11 +1830,39 @@ footer {
 .skills-category h3 {
   font-size: 1.5rem;
   color: #a78bfa;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 2px solid rgba(167, 139, 250, 0.3);
   font-weight: 600;
   display: inline-block;
+}
+
+.skills-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-bullet-list li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.skills-bullet-list li::before {
+  content: "•";
+  color: var(--secondary-color);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.skills-bullet-list li.skill-experience,
+.skills-bullet-list li.skill-exploring {
+  color: var(--text-light);
+  font-style: italic;
 }
 
 .skills-list {
