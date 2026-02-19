@@ -12,16 +12,16 @@
   var HI_KEY = "snake-hi";
 
   var iconSrcs = [
-    "../images/vscode.png",
-    "../images/gitlogo.png",
-    "../images/docker.png",
-    "../images/supabase.png",
-    "../images/Xcode.png",
-    "../images/eclipselogo.png",
-    "../images/IntelliJDEAlogo.png",
-    "../images/swiftplaygrounds.png",
-    "../images/ubuntu.png",
-    "../images/appstorelogo.png"
+    "/images/vscode.png",
+    "/images/gitlogo.png",
+    "/images/docker.png",
+    "/images/supabase.png",
+    "/images/Xcode.png",
+    "/images/eclipselogo.png",
+    "/images/IntelliJDEAlogo.png",
+    "/images/swiftplaygrounds.png",
+    "/images/ubuntu.png",
+    "/images/appstorelogo.png"
   ];
   var icons = [];
   var iconsReady = 0;
