@@ -1,103 +1,25 @@
 (() => {
   "use strict";
 
-  const initSkillsAnimation = () => {
-    const skillTags = document.querySelectorAll('#skill-tags .skill-tag-animated');
-    const experienceLabel = document.querySelector('.experience-label');
-    const experienceTags = document.querySelectorAll('#experience-tags .skill-tag-animated');
-    const toolIcons = document.querySelectorAll('#tools-showcase .tool-icon-animated');
-    const skillsSection = document.getElementById('skills-section');
-    
-    if (!skillsSection) return;
-    
-    let hasAnimated = false;
-    
-    const animateWithEasedStagger = (items, baseDelay = 0, initialStagger = 80, decay = 0.92) => {
-      let currentDelay = baseDelay;
-      let currentStagger = initialStagger;
-      
-      items.forEach((item, index) => {
-        setTimeout(() => {
-          item.classList.add('visible');
-        }, currentDelay);
-        
-        currentDelay += currentStagger;
-        currentStagger *= decay;
-      });
-      
-      return currentDelay;
-    };
-    
-    const runAnimation = () => {
-      if (hasAnimated) return;
-      hasAnimated = true;
-      
-      const phase1End = animateWithEasedStagger(skillTags, 0, 90, 0.9);
-      
-      setTimeout(() => {
-        if (experienceLabel) experienceLabel.classList.add('visible');
-      }, phase1End + 150);
-      
-      const phase2Start = phase1End + 300;
-      animateWithEasedStagger(experienceTags, phase2Start, 70, 0.88);
-      
-      const phase3Start = phase2Start + (experienceTags.length * 50) + 200;
-      animateWithEasedStagger(toolIcons, phase3Start, 100, 0.85);
-    };
-    
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !hasAnimated) {
-          runAnimation();
-        }
-      });
-    };
-    
-    const homeSlide = document.getElementById('home-slide');
-    if (homeSlide) {
-      homeSlide.addEventListener('scroll', () => {
-        if (!hasAnimated) {
-          const rect = skillsSection.getBoundingClientRect();
-          const slideRect = homeSlide.getBoundingClientRect();
-          if (rect.top < slideRect.bottom - 100) {
-            runAnimation();
-          }
-        }
-      });
-    }
-    
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: 0.15,
-      rootMargin: '0px'
-    });
-    
-    observer.observe(skillsSection);
-  };
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSkillsAnimation);
-  } else {
-    initSkillsAnimation();
-  }
-  
   const codeSnippets = [
-    'print("Hi, I\'m Hans")'
+    'Full-Stack & React Engineer',
+    'Building modern web applications.'
   ];
-  
+
   let currentSnippetIndex = 0;
   let currentCharIndex = 0;
   let isDeleting = false;
-  const typingSpeed = 120;
-  const deletingSpeed = 40;
-  const pauseBeforeDelete = 5000;
-  const pauseBeforeType = 500;
-  
+  const typingSpeed = 55;
+  const deletingSpeed = 25;
+  const pauseBeforeDelete = 1800;
+  const pauseBeforeType = 300;
+
   function typeWriter() {
     const typingElement = document.getElementById('typing-text');
     if (!typingElement) return;
-    
+
     const currentSnippet = codeSnippets[currentSnippetIndex];
-    
+
     if (!isDeleting && currentCharIndex < currentSnippet.length) {
       typingElement.textContent = currentSnippet.substring(0, currentCharIndex + 1);
       currentCharIndex++;
@@ -115,9 +37,9 @@
       setTimeout(typeWriter, pauseBeforeType);
     }
   }
-  
+
   setTimeout(typeWriter, 1000);
-  
+
   const matrixSnippets = [
     { code: `def bubble_sort(arr):
     n = len(arr)
@@ -175,7 +97,7 @@
     }
 }` }
   ];
-  
+
   const positions = [
     { x: 5, y: 10 },
     { x: 70, y: 15 },
@@ -186,366 +108,184 @@
     { x: 65, y: 50 },
     { x: 20, y: 30 }
   ];
-  
+
   const currentPositions = [...positions].sort(() => Math.random() - 0.5);
-  
   const heroSection = document.querySelector('.hero');
   const elements = [];
-  
-  matrixSnippets.forEach((snippet, index) => {
-    const pos = currentPositions[index];
-    const codeDiv = document.createElement('div');
-    codeDiv.className = 'matrix-code';
-    codeDiv.style.left = `${pos.x}%`;
-    codeDiv.style.top = `${pos.y}%`;
-    codeDiv.id = `matrix-code-${index}`;
-    heroSection.insertBefore(codeDiv, heroSection.querySelector('.hero-overlay'));
-    elements.push(codeDiv);
-  });
-  
-  matrixSnippets.forEach((snippet, index) => {
-    let charIndex = 0;
-    let isDeleting = false;
-    const speed = 25 + Math.random() * 20;
-    const pauseTime = 3000 + Math.random() * 2000;
-    const initialDelay = Math.random() * 3000;
-    
-    function swapPosition() {
-      const otherIndex = Math.floor(Math.random() * elements.length);
-      if (otherIndex === index) return;
-      
-      const myElement = elements[index];
-      const otherElement = elements[otherIndex];
-      
-      const myPos = { 
-        x: parseFloat(myElement.style.left), 
-        y: parseFloat(myElement.style.top) 
-      };
-      const otherPos = { 
-        x: parseFloat(otherElement.style.left), 
-        y: parseFloat(otherElement.style.top) 
-      };
-      
-      myElement.style.left = `${otherPos.x}%`;
-      myElement.style.top = `${otherPos.y}%`;
-      otherElement.style.left = `${myPos.x}%`;
-      otherElement.style.top = `${myPos.y}%`;
-    }
-    
-    function typeMatrix() {
-      const element = document.getElementById(`matrix-code-${index}`);
-      if (!element) return;
-      
-      if (!isDeleting && charIndex < snippet.code.length) {
-        element.textContent = snippet.code.substring(0, charIndex + 1);
-        charIndex++;
-        setTimeout(typeMatrix, speed);
-      } else if (isDeleting && charIndex > 0) {
-        element.textContent = snippet.code.substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(typeMatrix, speed / 2);
-      } else if (!isDeleting && charIndex === snippet.code.length) {
-        isDeleting = true;
-        setTimeout(typeMatrix, pauseTime);
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        
-        setTimeout(() => {
-          const myElement = elements[index];
-          myElement.style.opacity = '0';
-          
+
+  if (heroSection) {
+    matrixSnippets.forEach((snippet, index) => {
+      const pos = currentPositions[index];
+      const codeDiv = document.createElement('div');
+      codeDiv.className = 'matrix-code';
+      codeDiv.style.left = `${pos.x}%`;
+      codeDiv.style.top = `${pos.y}%`;
+      codeDiv.id = `matrix-code-${index}`;
+      heroSection.insertBefore(codeDiv, heroSection.querySelector('.hero-overlay'));
+      elements.push(codeDiv);
+    });
+
+    matrixSnippets.forEach((snippet, index) => {
+      let charIndex = 0;
+      let isDel = false;
+      const speed = 25 + Math.random() * 20;
+      const pauseTime = 3000 + Math.random() * 2000;
+      const initialDelay = Math.random() * 3000;
+
+      function swapPosition() {
+        const otherIndex = Math.floor(Math.random() * elements.length);
+        if (otherIndex === index) return;
+
+        const myElement = elements[index];
+        const otherElement = elements[otherIndex];
+
+        const myPos = {
+          x: parseFloat(myElement.style.left),
+          y: parseFloat(myElement.style.top)
+        };
+        const otherPos = {
+          x: parseFloat(otherElement.style.left),
+          y: parseFloat(otherElement.style.top)
+        };
+
+        myElement.style.left = `${otherPos.x}%`;
+        myElement.style.top = `${otherPos.y}%`;
+        otherElement.style.left = `${myPos.x}%`;
+        otherElement.style.top = `${myPos.y}%`;
+      }
+
+      function typeMatrix() {
+        const element = document.getElementById(`matrix-code-${index}`);
+        if (!element) return;
+
+        if (!isDel && charIndex < snippet.code.length) {
+          element.textContent = snippet.code.substring(0, charIndex + 1);
+          charIndex++;
+          setTimeout(typeMatrix, speed);
+        } else if (isDel && charIndex > 0) {
+          element.textContent = snippet.code.substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(typeMatrix, speed / 2);
+        } else if (!isDel && charIndex === snippet.code.length) {
+          isDel = true;
+          setTimeout(typeMatrix, pauseTime);
+        } else if (isDel && charIndex === 0) {
+          isDel = false;
           setTimeout(() => {
-            swapPosition();
+            const myElement = elements[index];
+            myElement.style.opacity = '0';
             setTimeout(() => {
-              myElement.style.opacity = '1';
-              setTimeout(typeMatrix, 300);
-            }, 100);
-          }, 500);
-        }, 200);
+              swapPosition();
+              setTimeout(() => {
+                myElement.style.opacity = '1';
+                setTimeout(typeMatrix, 300);
+              }, 100);
+            }, 500);
+          }, 200);
+        }
       }
-    }
-    
-    setTimeout(typeMatrix, initialDelay);
-  });
-  
-  document.querySelectorAll(".invisible-spacer").forEach((el) => el.remove());
-  const sliderContainer = document.querySelector(".slider-container");
-  const sliderTrack = document.querySelector(".slider-track");
-  const slides = Array.from(document.querySelectorAll(".slide"));
-  const dots = Array.from(document.querySelectorAll(".pagination-dot"));
-  const topNavLinks = Array.from(document.querySelectorAll(".main-nav .nav-link"));
-  const footerLinks = Array.from(document.querySelectorAll("footer .footer-links a[data-slide]"));
-  const heroCTAs = Array.from(document.querySelectorAll(".hero .cta-button[data-slide]"));
-  const stickyNav = document.querySelector(".sticky-nav");
-  const heroArrow = document.querySelector(".scroll-indicator");
-  const paginationUI = document.querySelector(".pagination");
-  let current = 0;
-  let fadeT;
-  let hRAF;
-  const px = (v) => parseFloat(getComputedStyle(v).paddingTop) + parseFloat(getComputedStyle(v).paddingBottom);
-  const getSlideHeight = (s) => s.scrollHeight - px(s);
-  const syncHeight = () => {
-    cancelAnimationFrame(hRAF);
-    hRAF = requestAnimationFrame(() => {
-      if (!sliderContainer) return;
-      sliderContainer.style.height = `${getSlideHeight(slides[current])}px`;
-    });
-  };
-  const RO = new ResizeObserver(syncHeight);
-  const MO = new MutationObserver(syncHeight);
-  const watchSlide = () => {
-    RO.disconnect();
-    MO.disconnect();
-    const s = slides[current];
-    RO.observe(s);
-    MO.observe(s, { childList: true, subtree: true, attributes: true });
-    s.querySelectorAll("img").forEach((img) => !img.complete && img.addEventListener("load", syncHeight, { once: true }));
-    syncHeight();
-  };
-  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
-  const sliderTop = () => sliderContainer.offsetTop;
-  const navH = () => (stickyNav ? stickyNav.offsetHeight : 0);
-  const inView = () => window.scrollY >= sliderTop() - navH() - 2;
-  const scrollToSlider = (force = false) => {
-    if (force || !inView()) {
-      window.scrollTo({ top: sliderTop() - navH(), behavior: "smooth" });
-    }
-  };
-  const animateBars = () => {
-    if (current !== 1) return;
-    document.querySelectorAll(".skill-level").forEach((bar) => {
-      const w = bar.dataset.level || bar.style.width;
-      bar.dataset.level = w;
-      bar.style.width = "0";
-      requestAnimationFrame(() => (bar.style.width = w));
-    });
-  };
-  const go = (idx) => {
-    current = clamp(idx, 0, slides.length - 1);
-    sliderTrack.style.transition = "transform .55s ease";
-    sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
-    slides[current].scrollTop = 0;
-    dots.forEach((d, i) => d.classList.toggle("active", i === current));
-    topNavLinks.concat(footerLinks).forEach((l) => l.classList.toggle("active", +l.dataset.slide === current));
-    animateBars();
-    watchSlide();
-  };
-  const bind = (el) => el.addEventListener("click", (e) => {
-    e.preventDefault();
-    go(+el.dataset.slide);
-    scrollToSlider(el.closest(".hero"));
-  });
-  [...topNavLinks, ...footerLinks, ...heroCTAs].forEach(bind);
-  dots.forEach((d, i) => d.addEventListener("click", (e) => {
-    e.preventDefault();
-    go(i);
-    scrollToSlider();
-  }));
-  heroArrow && heroArrow.addEventListener("click", () => stickyNav && window.scrollTo({ top: stickyNav.offsetTop, behavior: "smooth" }));
-  window.addEventListener("scroll", () => {
-    if (!stickyNav) return;
-    const scrolled = window.scrollY > 100;
-    heroArrow && (heroArrow.style.opacity = scrolled ? "0" : "1");
-    stickyNav.classList.toggle("nav-scrolled", scrolled);
-  });
-  let dragging = false;
-  let horizDrag = false;
-  let decided = false;
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchTimeout = null;
-  let safetyInterval = null;
-  let lastTouchTime = 0;
-  let touchId = null;
-  const DECISION_THRESHOLD = 25;
-  const thresh = () => window.innerWidth * 0.28;
-  
-  const resetTouchState = () => {
-    dragging = false;
-    horizDrag = false;
-    decided = false;
-    touchId = null;
-    if (touchTimeout) {
-      clearTimeout(touchTimeout);
-      touchTimeout = null;
-    }
-    sliderTrack.style.transition = "transform .4s ease";
-    sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
-  };
-  
-  const startSafetyCheck = () => {
-    if (safetyInterval) clearInterval(safetyInterval);
-    safetyInterval = setInterval(() => {
-      if (dragging && Date.now() - lastTouchTime > 600) {
-        resetTouchState();
-      }
-    }, 200);
-  };
-  startSafetyCheck();
-  
-  const startTouch = (x, y, id) => {
-    const now = Date.now();
-    if (now - lastTouchTime < 30) {
-      return;
-    }
-    
-    if (dragging) {
-      resetTouchState();
-      return;
-    }
-    
-    lastTouchTime = now;
-    touchId = id;
-    
-    if (touchTimeout) clearTimeout(touchTimeout);
-    touchTimeout = setTimeout(resetTouchState, 800);
-    
-    dragging = true;
-    decided = false;
-    horizDrag = false;
-    touchStartX = x;
-    touchStartY = y;
-  };
-  
-  const moveTouch = (x, y, id) => {
-    if (!dragging) return;
-    if (touchId !== null && id !== touchId) {
-      resetTouchState();
-      return;
-    }
-    
-    lastTouchTime = Date.now();
-    
-    const dx = x - touchStartX;
-    const dy = y - touchStartY;
-    
-    if (!decided) {
-      if (Math.abs(dx) < DECISION_THRESHOLD && Math.abs(dy) < DECISION_THRESHOLD) return;
-      horizDrag = Math.abs(dx) > Math.abs(dy) * 2.5;
-      decided = true;
-      if (!horizDrag) {
-        dragging = false;
-        horizDrag = false;
-        if (touchTimeout) clearTimeout(touchTimeout);
-        touchTimeout = null;
-        touchId = null;
-        return;
-      }
-      sliderTrack.style.transition = "none";
-    }
-    
-    if (!horizDrag) {
-      resetTouchState();
-      return;
-    }
-    
-    const pct = -current * 33.3333 - (dx / window.innerWidth) * 33.3333;
-    if (pct <= 0 && pct >= -66.6666) sliderTrack.style.transform = `translateX(${pct}%)`;
-  };
-  
-  const endTouch = (x, id) => {
-    if (touchTimeout) {
-      clearTimeout(touchTimeout);
-      touchTimeout = null;
-    }
-    
-    if (touchId !== null && id !== touchId) {
-      resetTouchState();
-      return;
-    }
-    
-    const wasHorizDrag = horizDrag;
-    const wasDragging = dragging;
-    const startX = touchStartX;
-    
-    dragging = false;
-    horizDrag = false;
-    decided = false;
-    touchId = null;
-    sliderTrack.style.transition = "transform .55s ease";
-    
-    if (!wasDragging || !wasHorizDrag) {
-      sliderTrack.style.transform = `translateX(-${current * 33.3333}%)`;
-      return;
-    }
-    const diff = startX - x;
-    if (diff > thresh()) go(current + 1);
-    else if (diff < -thresh()) go(current - 1);
-    else go(current);
-  };
-  
-  sliderTrack.addEventListener("touchstart", (e) => {
-    if (e.touches.length === 1) {
-      startTouch(e.touches[0].clientX, e.touches[0].clientY, e.touches[0].identifier);
-    } else {
-      resetTouchState();
-    }
-  }, { passive: true });
-  
-  sliderTrack.addEventListener("touchmove", (e) => {
-    if (e.touches.length !== 1) {
-      resetTouchState();
-      return;
-    }
-    moveTouch(e.touches[0].clientX, e.touches[0].clientY, e.touches[0].identifier);
-    if (horizDrag && decided) e.preventDefault();
-  }, { passive: false });
-  
-  sliderTrack.addEventListener("touchend", (e) => {
-    if (e.touches.length === 0 && e.changedTouches.length > 0) {
-      endTouch(e.changedTouches[0].clientX, e.changedTouches[0].identifier);
-    } else {
-      resetTouchState();
-    }
-  });
-  
-  sliderTrack.addEventListener("touchcancel", resetTouchState);
-  
-  sliderTrack.addEventListener("mousedown", (e) => startTouch(e.clientX, e.clientY, 'mouse'));
-  window.addEventListener("mousemove", (e) => moveTouch(e.clientX, e.clientY, 'mouse'));
-  window.addEventListener("mouseup", (e) => endTouch(e.clientX, 'mouse'));
-  
-  document.addEventListener("visibilitychange", resetTouchState);
-  window.addEventListener("blur", resetTouchState);
-  window.addEventListener("pagehide", resetTouchState);
-  window.addEventListener("focus", resetTouchState);
-  document.addEventListener("contextmenu", resetTouchState);
-  
-  slides.forEach((s) => s.addEventListener("scroll", () => {
-    resetTouchState();
-    paginationUI && paginationUI.classList.add("fade-out");
-    clearTimeout(fadeT);
-    fadeT = setTimeout(() => paginationUI && paginationUI.classList.remove("fade-out"), 1200);
-  }));
-  
-  window.addEventListener("scroll", () => {
-    if (dragging) resetTouchState();
-  }, { passive: true });
-  
-  const snakeBtn = document.getElementById("hidden-start-btn");
-  const snakeWrap = document.getElementById("snake-game-wrapper");
-  if (snakeBtn && snakeWrap) {
-    snakeBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      snakeWrap.style.display = snakeWrap.style.display === "block" ? "none" : "block";
-      requestAnimationFrame(() => requestAnimationFrame(syncHeight));
+
+      setTimeout(typeMatrix, initialDelay);
     });
   }
-  window.addEventListener("resize", syncHeight);
-  go(0);
-  
-  window.revealEmail = function() {
-    const emailReveal = document.getElementById("email-reveal");
-    const emailText = document.getElementById("email-text");
-    if (emailReveal && !emailReveal.classList.contains('show')) {
-      emailReveal.classList.add('show');
-      setTimeout(() => {
-        if (emailText) {
-          emailText.select();
-          emailText.setSelectionRange(0, 99999);
-          navigator.clipboard.writeText(emailText.value);
-        }
-      }, 400);
+
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener('click', () => {
+      const nav = document.getElementById('main-nav');
+      if (nav) {
+        window.scrollTo({
+          top: nav.offsetTop,
+          behavior: 'smooth'
+        });
+      } else {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      }
+    });
+  }
+
+  const stickyNav = document.getElementById('main-nav');
+  const navLinks = document.querySelectorAll('.sticky-nav .nav-link');
+  const sections = document.querySelectorAll('.section');
+
+  function updateActiveNav() {
+    const navH = stickyNav ? stickyNav.offsetHeight : 0;
+    let currentId = '';
+
+    sections.forEach(section => {
+      const top = section.offsetTop - navH - 20;
+      if (window.scrollY >= top) {
+        currentId = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+    });
+
+    // Nav shadow
+    if (stickyNav) {
+      stickyNav.classList.toggle('scrolled', window.scrollY > 100);
     }
-  };
+
+    // Scroll indicator fade
+    if (scrollIndicator) {
+      scrollIndicator.style.opacity = window.scrollY > 100 ? '0' : '1';
+    }
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target && stickyNav) {
+        window.scrollTo({
+          top: target.offsetTop - stickyNav.offsetHeight,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  const fadeEls = document.querySelectorAll('.section');
+  const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in', 'visible');
+      }
+    });
+  }, { threshold: 0.08 });
+
+  fadeEls.forEach(el => {
+    el.classList.add('fade-in');
+    fadeObserver.observe(el);
+  });
+
+  const emailCard = document.getElementById('email-reveal');
+  if (emailCard) {
+    const email = ['hansgamlien', '@', 'gmail.com'].join('');
+    let revealed = false;
+
+    emailCard.addEventListener('click', () => {
+      if (!revealed) {
+        emailCard.classList.add('revealed');
+        emailCard.querySelector('span').textContent = email;
+        revealed = true;
+      }
+      navigator.clipboard.writeText(email).then(() => {
+        const toast = document.createElement('div');
+        toast.className = 'email-copied-toast show';
+        toast.textContent = 'Email copied to clipboard';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 300);
+        }, 1800);
+      });
+    });
+  }
+
 })();

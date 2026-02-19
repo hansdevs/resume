@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,">
+<title>Snake Game Thing - Hans Gamlien</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f0f23;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+h1 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.score {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 16px;
+  min-height: 1.2em;
+}
+.game-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+}
+canvas {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15,15,35,0.85);
+  border-radius: 6px;
+  gap: 16px;
+}
+.overlay span {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+.overlay button {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #ccc;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s;
+  display: none;
+}
+.overlay button:hover {
+  border-color: #8b5cf6;
+  color: #fff;
+}
+.controls {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+}
+.back {
+  margin-top: 24px;
+  color: #888;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.back:hover { color: #fff; }
+</style>
+</head>
+<body>
+<h1>Snake</h1>
+<div class="score" id="game-score"></div>
+<div class="game-wrap">
+  <canvas id="snake-canvas"></canvas>
+  <div class="overlay" id="game-overlay">
+    <span id="game-message">Tap or Press to Start</span>
+    <button id="restart-btn">Restart</button>
+  </div>
+</div>
+<div class="controls">WASD / Arrow Keys &middot; Swipe on mobile</div>
+<a href="../" class="back">&larr; Return to Portfolio</a>
+<script src="../scripts/snake-game.js"></script>
+</body>
+</html>

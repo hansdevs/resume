@@ -5,112 +5,65 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
-    color: #fff;
-    overflow-x: hidden;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(139, 92, 246, 0.03) 2px,
-        rgba(139, 92, 246, 0.03) 4px
-    );
-    pointer-events: none;
-    z-index: 100;
-    animation: scanlines 8s linear infinite;
-}
-
-@keyframes scanlines {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(20px); }
-}
-
-#canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f23;
+    color: #e0e0e0;
+    min-height: 100vh;
 }
 
 .content {
-    position: relative;
-    z-index: 1;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 40px 24px;
     text-align: center;
 }
 
-.logo-container {
-    margin-bottom: 60px;
-}
-
 .logo {
-    max-width: 350px;
+    max-width: 260px;
     height: auto;
-    filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+    margin-bottom: 48px;
 }
 
 .coming-soon {
-    font-size: 1.5rem;
-    font-weight: 300;
-    letter-spacing: 4px;
-    margin-top: 40px;
-    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 6px;
     text-transform: uppercase;
+    color: #ffffff;
 }
 
 .date {
-    display: none;
-}
-
-.subtitle {
-    display: none;
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: #888;
+    letter-spacing: 1px;
 }
 
 .back-link {
-    margin-top: 50px;
+    margin-top: 48px;
     display: inline-block;
-    color: #fff;
+    color: #aaa;
     text-decoration: none;
-    padding: 15px 30px;
-    border: 1px solid rgba(139, 92, 246, 0.5);
-    transition: all 0.3s;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-radius: 5px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: color 0.2s;
 }
 
 .back-link:hover {
-    background: rgba(139, 92, 246, 0.2);
-    border-color: #8b5cf6;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    color: #fff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .logo {
+        max-width: 180px;
+        margin-bottom: 36px;
+    }
+
     .coming-soon {
         font-size: 1.2rem;
-        letter-spacing: 3px;
-    }
-    .logo {
-        max-width: 250px;
+        letter-spacing: 4px;
     }
 }

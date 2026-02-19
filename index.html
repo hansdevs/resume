@@ -3,662 +3,424 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hans Gamlien - Developer & CS Student</title>
-<script>
-if (window.location.pathname.endsWith('/index.html')) {
-    window.history.replaceState(null, '', window.location.pathname.replace('/index.html', '/') + window.location.search + window.location.hash);
-}
-</script>
+<title>Hans Gamlien - Full-Stack & React Engineer</title>
 <link rel="stylesheet" href="styles/styles.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
 <section class="hero">
-<div class="hero-overlay"></div>
-<div class="hero-content">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
     <div class="typing-container">
-        <div class="typing-text" id="typing-text"></div>
+      <div class="typing-text" id="typing-text"></div>
     </div>
-</div>
-<div class="scroll-indicator">
+  </div>
+  <div class="scroll-indicator">
     <span>SCROLL DOWN</span>
     <i class="fas fa-chevron-down"></i>
-</div>
+  </div>
 </section>
-<nav class="main-nav sticky-nav">
-<div class="container">
-    <ul>
-        <li><a href="#" class="nav-link active" data-slide="0">Home</a></li>
-        <li><a href="#" class="nav-link" data-slide="1">Resume</a></li>
-        <li><a href="#" class="nav-link" data-slide="2">Connect</a></li>
-    </ul>
-</div>
-</nav>
-<div class="slider-container">
-<div class="slider-track">
-    <div class="slide" id="home-slide">
-        <div class="container">
-            <section class="about-section">
-                <div class="section-header">
-                    <h2 class="section-title">About</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>Hey! I'm a Computer Science student at Utah State University and the founder of Cordinova, where we're building the future of workforce management through the USU Sandbox program. I love creating with React, Next.js, TypeScript for the web, and Swift for iOS. Whether it's a startup idea or a passion project, I'm all about building solutions that actually make people's lives easier.</p>
-                    </div>
-                </div>
-            </section>
-            <section class="skills-showcase" id="skills-section">
-                <div class="section-header">
-                    <h2 class="section-title">Technical Skills</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="skills-consolidated">
-                    <div class="skill-tags-container" id="skill-tags">
-                        <span class="skill-tag-animated" data-index="0">HTML/CSS</span>
-                        <span class="skill-tag-animated" data-index="1">TypeScript</span>
-                        <span class="skill-tag-animated" data-index="2">JavaScript</span>
-                        <span class="skill-tag-animated" data-index="3">React</span>
-                        <span class="skill-tag-animated" data-index="4">Next.js</span>
-                        <span class="skill-tag-animated" data-index="5">Tailwind CSS</span>
-                        <span class="skill-tag-animated" data-index="6">Node.js</span>
-                        <span class="skill-tag-animated" data-index="7">Python</span>
-                        <span class="skill-tag-animated" data-index="8">PostgreSQL</span>
-                        <span class="skill-tag-animated" data-index="9">Git</span>
-                    </div>
-                    <div class="experience-tags-container" id="experience-tags">
-                        <p class="experience-label">Experience with</p>
-                        <div class="experience-tags">
-                            <span class="skill-tag-animated secondary" data-index="0">Bootstrap</span>
-                            <span class="skill-tag-animated secondary" data-index="1">Java</span>
-                            <span class="skill-tag-animated secondary" data-index="2">Swift</span>
-                            <span class="skill-tag-animated secondary" data-index="3">Lua</span>
-                            <span class="skill-tag-animated secondary" data-index="4">Django</span>
-                        </div>
-                    </div>
-                    <div class="tools-showcase" id="tools-showcase">
-                        <div class="tool-icon-animated" data-index="0">
-                            <img src="images/vscode.png" alt="VS Code">
-                            <span>VS Code</span>
-                        </div>
-                        <div class="tool-icon-animated" data-index="1">
-                            <img src="images/Xcode.png" alt="Xcode">
-                            <span>Xcode</span>
-                        </div>
-                        <div class="tool-icon-animated" data-index="2">
-                            <img src="images/IntelliJDEAlogo.png" alt="IntelliJ">
-                            <span>IntelliJ</span>
-                        </div>
-                        <div class="tool-icon-animated" data-index="3">
-                            <img src="images/gitlogo.png" alt="Git">
-                            <span>Git</span>
-                        </div>
-                        <div class="tool-icon-animated" data-index="4">
-                            <img src="images/supabase.png" alt="Supabase">
-                            <span>Supabase</span>
-                        </div>
-                        <div class="tool-icon-animated" data-index="5">
-                            <img src="images/docker.png" alt="Docker">
-                            <span>Docker</span>
-                        </div>
-                        <div class="tool-icon-animated" data-index="6">
-                            <img src="images/jira.svg" alt="Jira">
-                            <span>Jira</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="projects-section">
-                <div class="section-header">
-                    <h2 class="section-title">Current Projects</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="featured-project">
-                    <div class="project-image">
-                        <img src="images/coordinovalogo.png" alt="Sandbox Startup - Workforce Management" class="featured-img">
-                        <div class="project-overlay">
-                            <div class="project-category">Web Application</div>
-                        </div>
-                    </div>
-                    <div class="project-details">
-                        <h3>Sandbox Startup: Cordinova</h3>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Supabase</span>
-                        </div>
-                        <p class="project-description">
-                            Reimagining workforce management, helping businesses not duct-tape different tools together to function. Save money, use Cordinova.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://cordinova.com/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Visit Website</a>
-                            <a href="https://cordinova.com/updates" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-book-open"></i> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="featured-project">
-                    <div class="project-image">
-                        <img src="images/usuhonorsprogramlogo.png" alt="Honors Capstone" class="featured-img">
-                        <div class="project-overlay">
-                            <div class="project-category">Honors Capstone</div>
-                        </div>
-                    </div>
-                    <div class="project-details">
-                        <h3>Nightlife Social Dynamics Research</h3>
-                        <div class="project-tech">
-                            <span class="tech-tag">Social Research</span>
-                            <span class="tech-tag">Data Analysis</span>
-                            <span class="tech-tag">UX Research</span>
-                        </div>
-                        <p class="project-description">
-                            An anonymous social experiment exploring how marginalized groups experience nightlife venues, collecting user-generated data to identify patterns in venue comfort and accessibility.
-                        </p>
-                        <div class="project-links">
-                            <a href="capstone/" class="project-link"><i class="fas fa-lock"></i> View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="featured-project">
-                    <div class="project-image">
-                        <img src="images/thecozycoffeecompany.png" alt="The Cozy Coffee Company" class="featured-img">
-                        <div class="project-overlay">
-                            <div class="project-category">Video Game</div>
-                        </div>
-                    </div>
-                    <div class="project-details">
-                        <h3>The Cozy Coffee Company</h3>
-                        <div class="project-tech">
-                            <span class="tech-tag">Lua</span>
-                            <span class="tech-tag">Defold Engine</span>
-                            <span class="tech-tag">Supabase</span>
-                            <span class="tech-tag">iOS/iPadOS</span>
-                            <span class="tech-tag">Google Play</span>
-                            <span class="tech-tag">Steam</span>
-                        </div>
-                        <p class="project-description">
-                            A competitive coffee shop tycoon game where players compete on the same block, strategically managing their business to attract customers while sabotaging rivals to dominate the neighborhood market.
-                        </p>
-                        <div class="project-links">
-                            <a href="coffeegame/" class="project-link"><i class="fas fa-gamepad"></i> View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="section-header" style="margin-top: 60px;">
-                    <h2 class="section-title">Past Projects</h2>
-                    <div class="section-divider"></div>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/ricochet.jpg" alt="Ricochet - Swift Student Challenge 2025" class="project-icon">
-                            <div class="project-overlay">
-                                <div class="project-category">Swift Student Challenge 2025</div>
-                            </div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3>Ricochet</h3>
-                            <p>A fast-paced square-shooting game where you aim balls to destroy falling blocks before they reach the bottom. Built entirely in Swift with no external libraries for high-intensity gameplay.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">Swift</span>
-                                <span class="tech-tag">Game Development</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/hansdevs/BallGame_Playgrounds" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/safespend.png" alt="SafeSpend - Swift Student Challenge 2024" class="project-icon">
-                            <div class="project-overlay">
-                                <div class="project-category">Swift Student Challenge 2024</div>
-                            </div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3>SafeSpend</h3>
-                            <p>A personal finance app with a loan calculator that helps users manage their finances and make informed decisions. The app provides intuitive tools for tracking expenses, setting budgets, and planning for future financial goals.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">Swift</span>
-                                <span class="tech-tag">UIKit</span>
-                                <span class="tech-tag">SwiftUI</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/hansdevs/SafeSpend" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/IntelliJDEAlogo.png" alt="BeladysAnomaly" class="project-icon">
-                            <div class="project-overlay">
-                                <div class="project-category">Class Assignment</div>
-                            </div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3>Beladys Anomaly</h3>
-                            <p>CS3100 project where we're tasked with programming the phenomenon in which increasing the number of page frames results in an increase in the number of page faults for certain memory access patterns. This phenomenon is commonly experienced when using the first-in first-out (FIFO) page replacement algorithm.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">Java</span>
-                                <span class="tech-tag">Memory Management</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/hansdevs/BeladysAnomaly" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/dispatchsaas.png" alt="Dispatch SaaS" class="project-icon">
-                            <div class="project-overlay">
-                                <div class="project-category">Web Application Demo</div>
-                            </div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3>Dispatch SaaS</h3>
-                            <p>A comprehensive project management SaaS platform designed to streamline team collaboration and project tracking. Built as a solo startup venture, Dispatch SaaS offers intuitive project organization, real-time collaboration tools, and efficient workflow management for modern teams.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">SQL</span>
-                                <span class="tech-tag">Supabase</span>
-                                <span class="tech-tag">Vercel</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://www.dispatchsaas.com/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> View Demo</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/freelance-project.png" alt="Freelance Jobboard" class="project-icon">
-                            <div class="project-overlay">
-                                <div class="project-category">Web Application Demo</div>
-                            </div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3>Freelance Jobboard Website</h3>
-                            <p>A modern job board platform concept where companies can post remote freelance opportunities and users can easily browse and apply for gigs.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">JavaScript</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/hansdevs/Freelance_Concept" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="freelancedashboard/" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-card-image">
-                            <img src="images/vscode.png" alt="Web Development Final Project" class="project-icon">
-                            <div class="project-overlay">
-                                <div class="project-category">Class Assignment</div>
-                            </div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3>Intro To Web Development Final Project</h3>
-                            <p>CS2410 Final Project, Fall 2024 with Dr. Chad Mano. Created a Movies, TV, and People website with comprehensive browsing and information features. See readme.md for more details.</p>
-                            <div class="project-card-tech">
-                                <span class="tech-tag">HTML</span>
-                                <span class="tech-tag">CSS</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">API Integration</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/hansdevs/2410FinalProject2024" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                                <a href="/cs2410FinalProject/" class="project-link"><i class="fas fa-external-link-alt"></i> View Demo</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="github-section">
-                    <div class="github-card">
-                        <img src="images/gitlogo.png" alt="GitHub" class="github-logo">
-                        <div class="github-content">
-                            <h3>More Projects on GitHub</h3>
-                            <p>Check out my GitHub profile to see my contributions to open source projects and personal repositories.</p>
-                            <a href="https://github.com/hansdevs" class="github-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> Visit GitHub Profile
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-    <div class="slide" id="resume-slide">
-        <div class="container">
-            <section class="resume-section">
-                <h2 class="section-title">Professional Summary</h2>
-                <div class="summary-content">
-                    <p>
-                        Computer Science student and startup founder driving innovation as CEO of Cordinova through the USU Sandbox program. Combines strong technical expertise in full-stack development (React, Next.js, TypeScript) with exceptional communication skills to lead product development and team collaboration. Proven ability to translate complex technical concepts into user-friendly solutions, with a track record of building scalable workforce management platforms and award-winning applications. Thrives in fast-paced environments where technical excellence meets strategic thinking.
-                    </p>
-                </div>
-            </section>
-            <section class="resume-section">
-                <h2 class="section-title">Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Languages & Frameworks</h3>
-                        <ul class="skill-list">
-                            <li><span class="skill-tag">TypeScript, JavaScript, HTML/CSS</span></li>
-                            <li><span class="skill-tag">React, Next.js, Tailwind CSS</span></li>
-                            <li><span class="skill-tag">Python, Java, Swift</span></li>
-                            <li><span class="skill-tag">Node.js, PostgreSQL</span></li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Tools & Technologies</h3>
-                        <ul class="skill-list">
-                            <li><span class="skill-tag">Git, GitHub, VS Code</span></li>
-                            <li><span class="skill-tag">Xcode, IntelliJ IDEA</span></li>
-                            <li><span class="skill-tag">Supabase, Jira</span></li>
-                            <li><span class="skill-tag">Figma, Lucidchart</span></li>
-                            <li><span class="skill-tag">Terminal, ZSH</span></li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Core Strengths</h3>
-                        <ul class="skill-list">
-                            <li><span class="skill-tag">Full-Stack Development</span></li>
-                            <li><span class="skill-tag">Technical Leadership</span></li>
-                            <li><span class="skill-tag">Team Communication</span></li>
-                            <li><span class="skill-tag">Problem Solving</span></li>
-                            <li><span class="skill-tag">Startup Operations</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <section class="resume-section">
-                <h2 class="section-title">Experience</h2>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="job-title-company">
-                            <h3>Founder & Chief Executive Officer</h3>
-                            <h4>Cordinova</h4>
-                        </div>
-                        <div class="job-meta">
-                            <div class="job-location">Logan, UT</div>
-                            <div class="job-date">May 2025 - Current</div>
-                        </div>
-                    </div>
-                    <ul class="job-description">
-                        <li>Founded and lead a venture-backed startup through the USU Sandbox program, developing an innovative workforce management and scheduling platform.</li>
-                        <li>Direct all business operations including strategic planning, product development, and market positioning.</li>
-                        <li>Architect and implement full-stack web application using React, TypeScript, Next.js, and Supabase, ensuring scalable and maintainable code.</li>
-                        <li>Manage cross-functional team of co-founders, establishing development workflows and engineering best practices.</li>
-                        <li>Drive product vision and roadmap, translating business requirements into technical specifications and deliverables.</li>
-                        <li>Coordinate with mentors, advisors, and stakeholders to refine business model and accelerate growth strategy.</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="job-title-company">
-                            <h3>Tech Repair &amp; Service Coordinator</h3>
-                            <h4>Techy</h4>
-                        </div>
-                        <div class="job-meta">
-                            <div class="job-location">Logan, UT</div>
-                            <div class="job-date">May 2025 - Current</div>
-                        </div>
-                    </div>
-               <ul class="job-description">
-  <li>Performed diagnostics and repairs on smartphones, tablets, laptops, and other consumer electronics.</li>
-  <li>Managed front desk operations including customer check-in, intake notes, and repair ticket tracking.</li>
-  <li>Processed sales transactions and promoted relevant accessories and protection plans.</li>
-  <li>Maintained a clean and organized workspace to ensure efficient repair workflow.</li>
-  <li>Communicated repair timelines, pricing, and service details clearly to customers.</li>
-</ul>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="job-title-company">
-                            <h3>Student Web Developer (Spring 2025 Semester)</h3>
-                            <h4>USU Information Technology</h4>
-                        </div>
-                        <div class="job-meta">
-                            <div class="job-location">Logan, UT</div>
-                            <div class="job-date">December 2024 - May 2025</div>
-                        </div>
-                    </div>
-                    <ul class="job-description">
-                        <li>Developed a website using HTML, CSS, and JavaScript to display student data.</li>
-                        <li>Provided technical support for users experiencing issues with web applications.</li>
-                        <li>Developed and maintained interfaces between multiple systems using XML, XMS, and XSLT.</li>
-                        <li>Built responsive websites using modern frameworks such as Bootstrap 4.0+.</li>
-                        <li>Provided technical support when needed, troubleshooting issues with web hosting providers or CMS systems.</li>
-                        <li>Provided customer service support for all incoming inquiries.</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="job-title-company">
-                            <h3>Lead Laptop / Desktop Tech</h3>
-                            <h4>PC EMT</h4>
-                        </div>
-                        <div class="job-meta">
-                            <div class="job-location">Johns Creek, GA</div>
-                            <div class="job-date">August 2020 - May 2024</div>
-                        </div>
-                    </div>
-                    <ul class="job-description">
-                        <li>Provided technical support to end users for hardware and software issues related to desktop computers, laptops, peripherals, and network access.</li>
-                        <li>Trained new technicians in proper operation and servicing of equipment as needed.</li>
-                        <li>Established quality assurance protocols to ensure that products met industry standards.</li>
-                        <li>Managed inventory levels for spare parts, ordering replacements as required.</li>
-                        <li>Brainstormed creative ideas for tech solutions to address real-world problems.</li>
-                        <li>Developed and maintained technical project plans for large-scale projects, ensuring successful completion on time and within budget.</li>
-                        <li>Provided technical support on escalated customer issues and troubleshoot complex problems quickly.</li>
-                    </ul>
-                </div>
-            </section>
-            <section class="resume-section">
-                <h2 class="section-title">Education</h2>
-                <div class="education-item">
-                    <div class="education-header">
-                        <div class="degree-school">
-                            <h3>Bachelor of Science (B.S.) in Engineering Candidate</h3>
-                            <h4>Utah State University</h4>
-                        </div>
-                        <div class="education-meta">
-                            <div class="education-location">Logan, UT</div>
-                            <div class="education-date">Expected graduation Dec 2026</div>
-                        </div>
-                    </div>
-                    <div class="education-details">
-                        <div class="coursework">
-                            <h5>Relevant Coursework</h5>
-                            <ul>
-                                <li>Introduction to Event Driven Programming and GUIs · 2410</li>
-                                <li>Algorithms and Data Structures CS3 (QI) · 2420</li>
-                                <li>Developing Dynamic, Database-Driven, Web Applications · 2610</li>
-                                <li>Computer Organization and Architecture · 2810</li>
-                                <li>Operating Systems & Concurrency · 3100</li>
-                                <li>Introduction To Software Engineering · 3450</li>
-                                <li>Applied Machine Learning · 4320</li>
-                                <li>Advanced Algorithms · 5050</li>
-                                <li>Technology Startup Software Engineering · 5313</li>
-                                <li>Technology Startup Business Principles · 5311</li>
-                            </ul>
-                        </div>
-                        <div class="honors">
-                            <h5>Awards & Honors</h5>
-                            <ul>
-                                <li><a href="https://web.sandbox.ing/" target="_blank" rel="noopener noreferrer">Sandbox Student</a></li>
-                                <li><a href="https://www.usu.edu/honors/" target="_blank" rel="noopener noreferrer">Honors Student</a></li>
-                                <li>Cum Laude</li>
-                                <li>Undergraduate Research</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="education-item">
-                    <div class="education-header">
-                        <div class="degree-school">
-                            <h3>Bachelor of Science (B.S.) in Computer Science Candidate</h3>
-                            <h4>University of North Georgia</h4>
-                        </div>
-                        <div class="education-meta">
-                            <div class="education-location">Dahlonega, GA</div>
-                            <div class="education-date"><strong>Transferred</strong></div>
-                        </div>
-                    </div>
-                    <div class="education-details">
-                        <div class="coursework">
-                            <h5>Relevant Coursework</h5>
-                            <ul>
-                                <li>Computer Science I</li>
-                                <li>Computer Science II</li>
-                                <li>CyberSecurity 2050</li>
-                            </ul>
-                        </div>
-                        <div class="honors">
-                            <h5>Awards & Honors</h5>
-                            <ul>
-                                <li>President's List, Spring 2023</li>
-                                <li>Dean's List, Fall 2023</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="resume-section">
-                <h2 class="section-title">Certifications</h2>
-                <ul class="certification-list">
-                    <li>Foundations of CyberSecurity Certification by Google</li>
-                    <li>2022 (NSA) Center of Academic Excellence in Cyber Defense</li>
-                </ul>
-            </section>
-            <section class="resume-section">
-                <h2 class="section-title">Volunteer Experience</h2>
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="job-title-company">
-                            <h3>Delivery Driver</h3>
-                            <h4>Meals by Grace</h4>
-                        </div>
-                        <div class="job-meta">
-                            <div class="job-location">Cumming, GA</div>
-                            <div class="job-date">January 2022 - June 2022</div>
-                        </div>
-                    </div>
-                    <ul class="job-description">
-                        <li>Adhered to delivery schedules and deadlines.</li>
-                        <li>Observed rules and safety regulations of organization while carrying out assigned tasks.</li>
-                        <li>Developed strong communication skills while providing customer service to visitors at volunteer center.</li>
-                        <li>Participated in community clean-up and enrichment projects.</li>
-                    </ul>
-                </div>
-            </section>
-            <section class="resume-section">
-                <h2 class="section-title">References</h2>
-                <p style="text-align: center; color: #666; font-size: 1.1rem;">Professional references available upon request</p>
-            </section>
-        </div>
-    </div>
-    <div class="slide" id="connect-slide">
-        <div class="container">
-            <section class="connect-section">
-                <h2 class="section-title">Contact</h2>
-                <div class="email-contact">
-                    <div class="email-icon" id="email-icon" onclick="revealEmail()">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email</h3>
-                    <p class="email-description">Preferred method of contact. Response within 24-48 hours.<br>
-                    <span class="email-note">Note: Sales and marketing inquiries will not be reviewed.</span></p>
-                    <div class="email-reveal" id="email-reveal">
-                        <label for="email-text" class="sr-only">Email address</label>
-                        <input type="text" value="hansgamlien@gmail.com" id="email-text" readonly aria-label="Email address">
-                    </div>
-                </div>
-            </section>
-            <section class="connect-section">
-                <h2 class="section-title">Connect</h2>
-                <div class="connect-grid">
-                    <div class="connect-item">
-                        <div class="connect-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <h3>GitHub</h3>
-                        <a href="https://github.com/hansdevs" target="_blank" rel="noopener noreferrer" class="connect-button">
-                            <i class="fab fa-github"></i> Connect on GitHub
-                        </a>
-                    </div>
-                    <div class="connect-item">
-                        <div class="connect-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <h3>LinkedIn</h3>
-                        <a href="https://www.linkedin.com/in/hans-gamlien-59ab1a265/" target="_blank" rel="noopener noreferrer" class="connect-button">
-                            <i class="fab fa-linkedin"></i> Connect on LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </section>
-            <div class="hidden-start-container">
-                <button id="hidden-start-btn" class="hidden-start-btn">Bored?</button>
-            </div>
-            <div id="snake-game-wrapper" class="snake-game-wrapper">
-                <canvas id="snake-canvas" width="400" height="400"></canvas>
-                <div id="game-overlay" class="game-overlay">
-                    <div id="game-message">Press Start to Play</div>
-                    <div id="game-score">Score: 0</div>
-                    <button id="restart-game-btn" class="snake-game-button">Restart Game</button>
-                </div>
-                <div class="game-controls">
-                    <p>Desktop: Use W, A, S, D keys to move</p>
-                    <p>Mobile: Swipe in the direction you want to go</p>
-                </div>
-            </div>
-        </div>
-        <div class="slide thank-you-slide" id="thank-you-slide">
-            <div class="container">
-                <section class="thank-you-section connect-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Thank You!</h2>
-                        <div class="section-divider"></div>
-                    <div class="thank-you-content">
-                        <div class="thank-you-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <h3 class="thank-you-heading">Your message has been sent successfully</h3>
-                        <p class="thank-you-text">Thank you for reaching out! I appreciate your interest and will get back to you as soon as possible.</p>
-                        <div class="thank-you-actions">
-                            <a href="#" class="cta-button primary" data-slide="0">Return to Home</a>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 
-<footer>
-<div class="container">
-    <div class="footer-content">
-        <div class="footer-info">
-            <p>&copy; 2026 Hans Gamlien</p>
+<nav class="sticky-nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="#about" class="nav-link active">About</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a Computer Science student at Utah State University (Cum Laude, expected Dec 2026) and the founder of <strong>Cordinova</strong>, built through USU's Sandbox Startup Incubator. I specialize in React, Next.js, and TypeScript — shipping full-stack production applications from architecture to deployment.</p>
+          <p>When I'm not building software I'm leading device repair operations as Lead Technician at Techy, or conducting honors undergraduate research on how marginalized communities experience public spaces.</p>
         </div>
-        <div class="footer-links">
-            <a href="#" data-slide="0">Home</a>
-            <a href="#" data-slide="1">Resume</a>
-            <a href="#" data-slide="2">Connect</a>
+        <div class="about-details">
+          <div class="detail-card">
+            <i class="fas fa-graduation-cap"></i>
+            <div>
+              <strong>Utah State University</strong>
+              <span>B.S. Computer Science — Cum Laude</span>
+              <span class="muted">Expected Dec 2026</span>
+            </div>
+          </div>
+          <div class="detail-card">
+            <i class="fas fa-award"></i>
+            <div>
+              <strong>Honors & Programs</strong>
+              <span>Honors Undergraduate Research</span>
+              <span>Sandbox Startup Incubator SB05</span>
+            </div>
+          </div>
+          <div class="detail-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Logan, Utah</strong>
+              <span>US Citizen</span>
+            </div>
+          </div>
         </div>
-        <div class="footer-social">
-            <a href="https://github.com/hansdevs" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/hans-gamlien-59ab1a265/" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/hansdevs/resume" target="_blank" rel="noopener noreferrer" aria-label="View Portfolio Source Code"><i class="fas fa-code"></i></a>
-        </div>
+      </div>
     </div>
-</div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="container">
+      <h2 class="section-title">Work Experience</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <h3>Lead Technician</h3>
+              <span class="timeline-company">Techy — Logan, Utah</span>
+            </div>
+            <span class="timeline-date">May 2025 – Present</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Led device diagnostics and advanced hardware repairs across laptops, desktops, gaming consoles, and mobile devices, ensuring accurate issue identification and efficient turnaround.</li>
+            <li>Managed repair ticket workflow and customer communication, maintaining high service quality while providing team coordination and oversight.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <h3>Student Web Developer</h3>
+              <span class="timeline-company">USU Information Technology — Logan, Utah</span>
+            </div>
+            <span class="timeline-date">Dec 2024 – May 2025</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Developed and maintained responsive web pages using HTML, CSS, JavaScript, XML, and XSLT within Modern Campus CMS to support university departments and student communications.</li>
+            <li>Collaborated in an Agile Scrum environment to deliver web updates, troubleshoot hosting/CMS issues, and provide ongoing technical support.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Current Projects</h2>
+
+      <div class="project-grid">
+          <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/coordinovalogo.png" alt="Cordinova">
+            <span class="project-badge">Web Application</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Cordinova</h3>
+            <span class="project-org">Sandbox Startup Incubator SB05 — Utah State University</span>
+            <span class="project-date-label">May 2025 – Present</span>
+            <p>Reimagining workforce management, helping businesses not duct-tape different tools together to function. Save money, use Cordinova.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">Docker</span>
+            </div>
+            <div class="project-links">
+              <a href="https://cordinova.com/" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fas fa-external-link-alt"></i> View Live</a>
+              <a href="https://cordinova.com/updates" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fas fa-book-open"></i> Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/usuhonorsprogramlogo.png" alt="Honors Capstone">
+            <span class="project-badge">Honors Capstone</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Nightlife Social Dynamics Research</h3>
+            <span class="project-org">University Honors Program — Utah State University</span>
+            <span class="project-date-label">Aug 2024 – Present</span>
+            <p>An anonymous social experiment exploring how marginalized groups experience nightlife venues, collecting user-generated data to identify patterns in venue comfort and accessibility.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">React Native</span>
+              <span class="tech-tag">Data Analysis</span>
+              <span class="tech-tag">UX Research</span>
+            </div>
+            <div class="project-links">
+              <a href="capstone/" class="project-link"><i class="fas fa-eye"></i> View Project</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/thecozycoffeecompany.png" alt="The Cozy Coffee Company">
+            <span class="project-badge">Video Game</span>
+          </div>
+          <div class="project-card-body">
+            <h3>The Cozy Coffee Company</h3>
+            <span class="project-date-label">In Development</span>
+            <p>A competitive coffee shop tycoon game where players compete on the same block, strategically managing their business to attract customers while sabotaging rivals to dominate the neighborhood market.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">Lua</span>
+              <span class="tech-tag">Defold Engine</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">iOS/iPadOS</span>
+              <span class="tech-tag">Steam</span>
+            </div>
+            <div class="project-links">
+              <a href="coffeegame/" class="project-link"><i class="fas fa-eye"></i> View Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 48px;">Past Projects</h2>
+
+      <div class="project-grid">
+          <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/ricochet.jpg" alt="Ricochet">
+            <span class="project-badge">Swift Student Challenge 2025</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Ricochet</h3>
+            <p>A fast-paced square-shooting game where you aim balls to destroy falling blocks before they reach the bottom. Built entirely in Swift with no external libraries for high-intensity gameplay.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">Swift</span>
+              <span class="tech-tag">Game Development</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/hansdevs/BallGame_Playgrounds" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github"></i> View Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/safespend.png" alt="SafeSpend">
+            <span class="project-badge">Swift Student Challenge 2024</span>
+          </div>
+          <div class="project-card-body">
+            <h3>SafeSpend</h3>
+            <p>A personal finance app with a loan calculator that helps users manage their finances and make informed decisions. Provides intuitive tools for tracking expenses, setting budgets, and planning for future financial goals.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">Swift</span>
+              <span class="tech-tag">UIKit</span>
+              <span class="tech-tag">SwiftUI</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/hansdevs/SafeSpend" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github"></i> View Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/IntelliJDEAlogo.png" alt="Beladys Anomaly">
+            <span class="project-badge">Class Assignment</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Belady's Anomaly</h3>
+            <p>CS3100 project demonstrating the phenomenon where increasing page frames results in more page faults for certain memory access patterns using FIFO page replacement.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Memory Management</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/hansdevs/BeladysAnomaly" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github"></i> View Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/dispatchsaas.png" alt="Dispatch SaaS">
+            <span class="project-badge">Web Application</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Dispatch SaaS</h3>
+            <p>A comprehensive project management SaaS platform designed to streamline team collaboration and project tracking. Built as a solo startup venture with intuitive project organization and real-time collaboration tools.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">SQL</span>
+              <span class="tech-tag">Supabase</span>
+              <span class="tech-tag">Vercel</span>
+            </div>
+            <div class="project-links">
+              <a href="https://www.dispatchsaas.com/" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fas fa-external-link-alt"></i> View Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/freelance-project.png" alt="Freelance Jobboard">
+            <span class="project-badge">Web Application</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Freelance Jobboard Website</h3>
+            <p>A modern job board platform concept where companies can post remote freelance opportunities and users can easily browse and apply for gigs.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/hansdevs/Freelance_Concept" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github"></i> View Code</a>
+              <a href="freelancedashboard/" class="project-link"><i class="fas fa-external-link-alt"></i> View Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/vscode.png" alt="CS2410 Final Project">
+            <span class="project-badge">Class Assignment</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Intro To Web Dev Final Project</h3>
+            <p>CS2410 Final Project, Fall 2024. A Movies, TV, and People website with comprehensive browsing and information features powered by API integration.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">API Integration</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/hansdevs/2410FinalProject2024" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github"></i> View Code</a>
+              <a href="cs2410FinalProject/" class="project-link"><i class="fas fa-external-link-alt"></i> View Live</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-img">
+            <img src="images/minigameicon.png" alt="Snake Game">
+            <span class="project-badge">Fun</span>
+          </div>
+          <div class="project-card-body">
+            <h3>Snake Game</h3>
+            <p>Classic snake game built with vanilla JavaScript and HTML Canvas. Collects app icons as food — playable on desktop and mobile with touch controls.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Canvas</span>
+            </div>
+            <div class="project-links">
+              <a href="snake/" class="project-link"><i class="fas fa-gamepad"></i> Play</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="github-cta">
+        <img src="images/gitlogo.png" alt="GitHub" class="github-cta-icon">
+        <div>
+          <h4>More on GitHub</h4>
+          <p>Check out more projects and contributions.</p>
+        </div>
+        <a href="https://github.com/hansdevs" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fab fa-github"></i> Visit Profile</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4><i class="fas fa-code"></i> Languages</h4>
+          <div class="skill-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Swift</span>
+            <span class="tag">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4><i class="fas fa-layer-group"></i> Frameworks & Libraries</h4>
+          <div class="skill-tags">
+            <span class="tag">React</span>
+            <span class="tag">React Native</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">TanStack Query</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4><i class="fas fa-tools"></i> Developer Tools</h4>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Zsh</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">IntelliJ IDEA</span>
+            <span class="tag">Xcode</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4><i class="fas fa-cloud"></i> Platforms & Cloud</h4>
+          <div class="skill-tags">
+            <span class="tag">Supabase</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Vercel</span>
+            <span class="tag">Stripe</span>
+            <span class="tag">Microsoft OAuth</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4><i class="fas fa-pen-ruler"></i> Design & Collaboration</h4>
+          <div class="skill-tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Lucidchart</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h4><i class="fas fa-language"></i> Languages</h4>
+          <div class="skill-tags">
+            <span class="tag">English <span class="muted">(Native)</span></span>
+            <span class="tag">German <span class="muted">(Novice)</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-card email-reveal" id="email-reveal">
+          <i class="fas fa-envelope"></i>
+          <span>Click to reveal email</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 Hans Gamlien. Built from scratch.</p>
+  </div>
 </footer>
+
 <script src="scripts/app.js"></script>
-<script src="scripts/snake-game.js"></script>
 </body>
 </html>
