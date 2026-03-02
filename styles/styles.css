@@ -719,6 +719,85 @@ main {
   transform: translateY(0);
 }
 
+.rustscript-card {
+  background: #1a1a1a;
+  border: 2px solid #e05d26;
+  position: relative;
+  overflow: hidden;
+}
+
+.rustscript-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 30% 0%, rgba(224, 93, 38, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rustscript-card:hover {
+  border-color: #f57c3a;
+  box-shadow: 0 8px 32px rgba(224, 93, 38, 0.25), 0 0 0 1px rgba(224, 93, 38, 0.1);
+  transform: translateY(-4px);
+}
+
+.rustscript-img {
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #222 100%) !important;
+}
+
+.rustscript-badge {
+  background: rgba(224, 93, 38, 0.2) !important;
+  color: #f5a06c !important;
+  border: 1px solid rgba(224, 93, 38, 0.35);
+}
+
+.rustscript-title {
+  color: #e05d26 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+}
+
+.rustscript-card .project-card-body .project-org {
+  color: #b0b0b0;
+}
+
+.rustscript-card .project-card-body .project-date-label {
+  color: #999;
+}
+
+.rustscript-card .project-card-body p {
+  color: #c0c0c0;
+}
+
+.rustscript-card .project-card-body p code {
+  background: rgba(224, 93, 38, 0.15);
+  color: #f5a06c;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-family: 'Courier New', monospace;
+}
+
+.rustscript-tag {
+  background: rgba(224, 93, 38, 0.12) !important;
+  color: #f5a06c !important;
+  border-color: rgba(224, 93, 38, 0.25) !important;
+}
+
+.rustscript-link {
+  color: #e8e8e8 !important;
+  border-color: rgba(224, 93, 38, 0.35) !important;
+}
+
+.rustscript-link:hover {
+  background: rgba(224, 93, 38, 0.15) !important;
+  border-color: #e05d26 !important;
+  color: #f5a06c !important;
+}
+
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
