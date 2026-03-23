@@ -284,6 +284,8 @@
           toast.classList.remove('show');
           setTimeout(() => toast.remove(), 300);
         }, 1800);
+      }).catch(() => {
+        window.prompt('Copy this email address:', email);
       });
     });
   }
