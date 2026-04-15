@@ -338,6 +338,11 @@ main {
   border-color: #3b3b5c;
 }
 
+.timeline-item.currentwork {
+  border-left: 3px solid var(--secondary-color);
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.06) 0%, var(--light-color) 40%);
+}
+
 .timeline-header {
   display: flex;
   justify-content: space-between;
@@ -414,6 +419,10 @@ main {
   border-color: #3b3b5c;
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.project-card-wide {
+  grid-column: 1 / -1;
 }
 
 .project-card-img {
