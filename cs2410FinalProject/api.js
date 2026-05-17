@@ -1,3 +1,7 @@
+/*
+API key included for demo purposes, free, read-only, public movie API, otherwise wouldn't be here
+*/
+
 // Note: You need to replace this with your own API key
 const apiKey = "973ad735564a942c02b13be685b43bb7";
 
