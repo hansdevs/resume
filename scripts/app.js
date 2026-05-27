@@ -250,20 +250,6 @@
     });
   });
 
-  const fadeEls = document.querySelectorAll('.section');
-  const fadeObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in', 'visible');
-      }
-    });
-  }, { threshold: 0.08 });
-
-  fadeEls.forEach(el => {
-    el.classList.add('fade-in');
-    fadeObserver.observe(el);
-  });
-
   const emailCard = document.getElementById('email-reveal');
   if (emailCard) {
     const email = ['hansgamlien', '@', 'gmail.com'].join('');
