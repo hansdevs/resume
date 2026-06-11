@@ -17,16 +17,24 @@
     (data.experience || []).forEach((job) => {
       const now = job.current ? ' <span class="entry__now">· now</span>' : "";
       const bullets = (job.bullets || []).map((b) => `<li>${b}</li>`).join("");
+      const logo = job.logo
+        ? `<div class="entry__logo entry__logo--${job.logoMod || "default"}">
+             <img src="${job.logo}" alt="${job.company} logo" loading="lazy" decoding="async">
+           </div>`
+        : "";
       mount.appendChild(
         el(
           "div",
-          "entry",
-          `<div class="entry__head">
-             <div class="entry__lead">
-               <div class="entry__role">${job.role}</div>
-               <div class="entry__org">${job.company} · ${job.location}</div>
+          "entry" + (job.logo ? "" : " entry--nologo"),
+          `${logo}
+           <div class="entry__body">
+             <div class="entry__head">
+               <div class="entry__lead">
+                 <div class="entry__role">${job.role}</div>
+                 <div class="entry__org">${job.company} · ${job.location}</div>
+               </div>
+               <div class="entry__date">${job.date}${now}</div>
              </div>
-             <div class="entry__date">${job.date}${now}</div>
              <ul class="entry__bullets">${bullets}</ul>
            </div>`
         )

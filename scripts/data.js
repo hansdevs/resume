@@ -35,6 +35,8 @@ window.PORTFOLIO = {
       company: "R. R. Donnelley",
       location: "Logan, Utah",
       date: "May 2026 – Aug 2026",
+      logo: "images/rrdlogo.png",
+      logoMod: "rrd",
       bullets: [
         "Wrote Perl and Python scripts and worked with ServiceNow workflows to resolve production and infrastructure issues.",
         "Supported production systems through monitoring, incident resolution, deployments, and Linux/Windows Server troubleshooting.",
@@ -45,6 +47,8 @@ window.PORTFOLIO = {
       company: "Techy",
       location: "Logan, Utah",
       date: "May 2025 – May 2026",
+      logo: "images/techylogo.jpeg",
+      logoMod: "techy",
       bullets: [
         "Led device diagnostics and advanced hardware repairs across laptops, desktops, gaming consoles, and mobile devices, ensuring accurate issue identification and efficient turnaround.",
         "Managed repair ticket workflow and customer communication, maintaining high service quality while providing team coordination and oversight.",
@@ -55,6 +59,8 @@ window.PORTFOLIO = {
       company: "USU Information Technology",
       location: "Logan, Utah",
       date: "Dec 2024 – May 2025",
+      logo: "images/usulogo.png",
+      logoMod: "usu",
       bullets: [
         "Developed and maintained responsive web pages using HTML, CSS, JavaScript, XML, and XSLT within Modern Campus CMS to support university departments and student communications.",
         "Collaborated in an Agile Scrum environment to deliver web updates, troubleshoot hosting/CMS issues, and provide ongoing technical support.",
