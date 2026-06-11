@@ -159,7 +159,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
 .entries { display: flex; flex-direction: column; }
 .entry {
   display: grid;
-  grid-template-columns: 56px 1fr;
+  grid-template-columns: 56px minmax(0, 1fr);
   gap: 20px;
   padding: 24px 0;
   border-top: 1px solid var(--rule);
@@ -326,7 +326,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
   .term { max-width: 100%; font-size: 0.76rem; }
   .game { letter-spacing: 0.1em; }
   .skill-row { grid-template-columns: 1fr; gap: 4px; }
-  .entry { grid-template-columns: 46px 1fr; gap: 14px; }
+  .entry { grid-template-columns: 46px minmax(0, 1fr); gap: 14px; }
   .entry__logo { width: 46px; height: 46px; border-radius: 11px; }
   .entry__logo img { padding: 7px; }
   .entry__logo--rrd img { padding: 6px; }
