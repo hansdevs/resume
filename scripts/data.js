@@ -1,0 +1,221 @@
+window.PORTFOLIO = {
+  profile: {
+    name: "Hans Gamlien",
+    role: "Full-Stack & React Engineer",
+    blurb:
+      "Computer Science at Utah State University. I build production web apps — and the occasional compiler.",
+    email: "hansgamlien@gmail.com",
+    phone: "770-330-0922",
+    location: "Logan, Utah",
+    citizenship: "US Citizen",
+    gradDate: "2026-12-19",
+    education: {
+      school: "Utah State University",
+      degree: "B.S. Computer Science",
+      honor: "Cum Laude",
+      expected: "Dec 2026",
+      highlights: [
+        "Honors Undergraduate Research",
+        "HackUSU 2026 — 3rd Place",
+        "Sandbox Startup Incubator SB05",
+      ],
+    },
+    links: {
+      github: "https://github.com/hansdevs",
+      linkedin: "https://www.linkedin.com/in/hans-gamlien-59ab1a265",
+      site: "https://hansgamlien.dev/",
+      resume: "Hans_Gamlien_Resume.pdf",
+    },
+  },
+
+  experience: [
+    {
+      current: true,
+      role: "IT Production Support Specialist — Summer Intern",
+      company: "R. R. Donnelley",
+      location: "Logan, Utah",
+      date: "May 2026 – Aug 2026",
+      bullets: [
+        "Wrote Perl and Python scripts and worked with ServiceNow workflows to resolve production and infrastructure issues.",
+        "Supported production systems through monitoring, incident resolution, deployments, and Linux/Windows Server troubleshooting.",
+      ],
+    },
+    {
+      role: "Lead Technical Support Specialist",
+      company: "Techy",
+      location: "Logan, Utah",
+      date: "May 2025 – May 2026",
+      bullets: [
+        "Led device diagnostics and advanced hardware repairs across laptops, desktops, gaming consoles, and mobile devices, ensuring accurate issue identification and efficient turnaround.",
+        "Managed repair ticket workflow and customer communication, maintaining high service quality while providing team coordination and oversight.",
+      ],
+    },
+    {
+      role: "Web Developer Intern",
+      company: "USU Information Technology",
+      location: "Logan, Utah",
+      date: "Dec 2024 – May 2025",
+      bullets: [
+        "Developed and maintained responsive web pages using HTML, CSS, JavaScript, XML, and XSLT within Modern Campus CMS to support university departments and student communications.",
+        "Collaborated in an Agile Scrum environment to deliver web updates, troubleshoot hosting/CMS issues, and provide ongoing technical support.",
+      ],
+    },
+  ],
+
+  projects: [
+    {
+      slug: "cordinova",
+      name: "Cordinova",
+      status: "building",
+      org: "Sandbox Startup Incubator SB05 — Utah State University",
+      date: "May 2025 – Present",
+      blurb:
+        "Reimagining workforce management so businesses stop duct-taping tools together. Save money, use Cordinova.",
+      tech: ["React", "TypeScript", "Next.js", "Supabase", "Docker"],
+      img: "images/cordinova.png",
+      alt: "Cordinova",
+      links: [
+        { label: "View Live", href: "https://cordinova.com/", icon: "fas fa-external-link-alt" },
+        { label: "Read More", href: "https://cordinova.com/updates", icon: "fas fa-book-open" },
+      ],
+    },
+    {
+      slug: "honors-capstone",
+      name: "Nightlife Social Dynamics Research",
+      status: "building",
+      org: "University Honors Program — Utah State University",
+      date: "Aug 2024 – Present",
+      blurb:
+        "A cross-platform React Native study of how marginalized groups experience safety in public nightlife spaces, with secure rating and feedback systems built on ethical research design.",
+      tech: ["React Native", "Data Analysis", "UX Research"],
+      img: "images/usuhonorsprogramlogo.png",
+      alt: "USU Honors Program",
+      links: [{ label: "View Project", href: "capstone/", icon: "fas fa-eye" }],
+    },
+    {
+      slug: "cozy-coffee",
+      name: "The Cozy Coffee Company",
+      status: "building",
+      org: "Indie Game — In Development",
+      date: "In Development",
+      blurb:
+        "A competitive coffee-shop tycoon game where players share a block, strategically managing their business to win customers while sabotaging rivals to dominate the neighborhood.",
+      tech: ["Lua", "Defold Engine", "Supabase", "iOS / iPadOS", "Steam"],
+      img: "images/thecozycoffeecompany.png",
+      alt: "The Cozy Coffee Company",
+      links: [{ label: "View Project", href: "coffeegame/", icon: "fas fa-eye" }],
+    },
+    {
+      slug: "rustscript",
+      name: "RustScript",
+      status: "award",
+      accent: "rust",
+      badge: "HackUSU 2026 — 3rd Place",
+      org: "Turing-Complete Compiled Language",
+      date: "Feb 27–28, 2026",
+      blurb:
+        "A compiled language that turns a single .rsx file into a self-contained HTML page. Python-like syntax, built-in UI, no framework. Download one binary and go — Windows, Linux & macOS.",
+      tech: ["Rust", "Compiler Design", "Language Design", "VS Code Extension"],
+      img: "images/icon.png",
+      alt: "RustScript",
+      links: [
+        { label: "Website", href: "https://hansdevs.github.io/rustscript/", icon: "fas fa-external-link-alt" },
+        { label: "Source", href: "https://github.com/hansdevs/rustscript/tree/main", icon: "fab fa-github" },
+        { label: "Extension", href: "https://marketplace.visualstudio.com/items?itemName=Hansg123.rustscript", icon: "fas fa-puzzle-piece" },
+      ],
+    },
+    {
+      slug: "ricochet",
+      name: "Ricochet",
+      status: "past",
+      org: "Swift Student Challenge 2025",
+      date: "2025",
+      blurb:
+        "A fast-paced square-shooting game where you aim balls to destroy falling blocks before they reach the bottom. Built entirely in Swift, no external libraries.",
+      tech: ["Swift", "Game Development"],
+      img: "images/ricochet.jpg",
+      alt: "Ricochet",
+      links: [{ label: "View Code", href: "https://github.com/hansdevs/BallGame_Playgrounds", icon: "fab fa-github" }],
+    },
+    {
+      slug: "safespend",
+      name: "SafeSpend",
+      status: "past",
+      org: "Swift Student Challenge 2024",
+      date: "2024",
+      blurb:
+        "A personal-finance app with a loan calculator that helps users track expenses, set budgets, and plan for future goals with intuitive tools.",
+      tech: ["Swift", "UIKit", "SwiftUI"],
+      img: "images/safespend.png",
+      alt: "SafeSpend",
+      links: [{ label: "View Code", href: "https://github.com/hansdevs/SafeSpend", icon: "fab fa-github" }],
+    },
+    {
+      slug: "beladys-anomaly",
+      name: "Belady's Anomaly",
+      status: "past",
+      org: "CS3100 — Operating Systems",
+      date: "2025",
+      blurb:
+        "A demonstration of the phenomenon where increasing page frames produces more page faults for certain memory access patterns under FIFO page replacement.",
+      tech: ["Java", "Memory Management"],
+      img: "images/IntelliJDEAlogo.png",
+      alt: "Belady's Anomaly",
+      links: [{ label: "View Code", href: "https://github.com/hansdevs/BeladysAnomaly", icon: "fab fa-github" }],
+    },
+    {
+      slug: "dispatch",
+      name: "Dispatch SaaS",
+      status: "past",
+      org: "Web Application",
+      date: "2025",
+      blurb:
+        "A SaaS concept for repair shops and service businesses — organizing jobs, tracking projects, and improving team collaboration through simple workflow tools.",
+      tech: ["React", "SQL", "Supabase", "Vercel"],
+      img: "images/dispatchsaas.png",
+      alt: "Dispatch SaaS",
+      links: [{ label: "View Live", href: "https://www.dispatchsaas.com/", icon: "fas fa-external-link-alt" }],
+    },
+    {
+      slug: "freelance",
+      name: "Freelance Jobboard",
+      status: "past",
+      org: "Web Application",
+      date: "2024",
+      blurb:
+        "A modern job-board concept where companies post remote freelance opportunities and users browse and apply for gigs.",
+      tech: ["HTML", "CSS", "JavaScript"],
+      img: "images/freelance-project.png",
+      alt: "Freelance Jobboard",
+      links: [
+        { label: "View Code", href: "https://github.com/hansdevs/Freelance_Concept", icon: "fab fa-github" },
+        { label: "View Live", href: "freelancedashboard/", icon: "fas fa-external-link-alt" },
+      ],
+    },
+    {
+      slug: "cs2410",
+      name: "Movies & TV Explorer",
+      status: "past",
+      org: "CS2410 Final Project — Fall 2024",
+      date: "2024",
+      blurb:
+        "A Movies, TV, and People website with comprehensive browsing and information features powered by API integration.",
+      tech: ["HTML", "CSS", "JavaScript", "API Integration"],
+      img: "images/vscode.png",
+      alt: "CS2410 Final Project",
+      links: [
+        { label: "View Code", href: "https://github.com/hansdevs/2410FinalProject2024", icon: "fab fa-github" },
+        { label: "View Live", href: "cs2410FinalProject/", icon: "fas fa-external-link-alt" },
+      ],
+    },
+  ],
+
+  skills: [
+    { label: "Languages", icon: "fas fa-code", items: ["TypeScript", "JavaScript", "Python", "Swift", "Rust", "HTML/CSS"] },
+    { label: "Frameworks & Libraries", icon: "fas fa-layer-group", items: ["React", "React Native", "Next.js", "Node.js", "TanStack Query", "Cargo"] },
+    { label: "Developer Tools", icon: "fas fa-terminal", items: ["Git", "GitHub", "Zsh", "VS Code", "IntelliJ IDEA", "Eclipse", "Xcode", "Jira", "Docker"] },
+    { label: "Platforms & Cloud", icon: "fas fa-cloud", items: ["Supabase", "Vercel", "Cloudflare", "Stripe"] },
+    { label: "Design & Collaboration", icon: "fas fa-pen-ruler", items: ["Figma", "Lucidchart"] },
+    { label: "Spoken", icon: "fas fa-language", items: ["English (Native)", "German (Novice)"] },
+  ],
+};

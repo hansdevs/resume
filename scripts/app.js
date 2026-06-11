@@ -1,279 +1,168 @@
 (() => {
   "use strict";
 
-  const codeSnippets = [
-    'Full-Stack & React Engineer',
-    'Building modern web applications.'
-  ];
+  const data = window.PORTFOLIO || {};
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const el = (tag, cls, html) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  };
 
-  let currentSnippetIndex = 0;
-  let currentCharIndex = 0;
-  let isDeleting = false;
-  const typingSpeed = 55;
-  const deletingSpeed = 25;
-  const pauseBeforeDelete = 1800;
-  const pauseBeforeType = 300;
-
-  function typeWriter() {
-    const typingElement = document.getElementById('typing-text');
-    if (!typingElement) return;
-
-    const currentSnippet = codeSnippets[currentSnippetIndex];
-
-    if (!isDeleting && currentCharIndex < currentSnippet.length) {
-      typingElement.textContent = currentSnippet.substring(0, currentCharIndex + 1);
-      currentCharIndex++;
-      setTimeout(typeWriter, typingSpeed);
-    } else if (isDeleting && currentCharIndex > 0) {
-      typingElement.textContent = currentSnippet.substring(0, currentCharIndex - 1);
-      currentCharIndex--;
-      setTimeout(typeWriter, deletingSpeed);
-    } else if (!isDeleting && currentCharIndex === currentSnippet.length) {
-      isDeleting = true;
-      setTimeout(typeWriter, pauseBeforeDelete);
-    } else if (isDeleting && currentCharIndex === 0) {
-      isDeleting = false;
-      currentSnippetIndex = (currentSnippetIndex + 1) % codeSnippets.length;
-      setTimeout(typeWriter, pauseBeforeType);
-    }
-  }
-
-  setTimeout(typeWriter, 1000);
-
-  const matrixSnippets = [
-    { code: `def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]` },
-    { code: `function binarySearch(arr, target) {
-    let left = 0, right = arr.length - 1;
-    while (left <= right) {
-        const mid = Math.floor((left + right) / 2);
-        if (arr[mid] === target) return mid;
-        if (arr[mid] < target) left = mid + 1;
-        else right = mid - 1;
-    }
-    return -1;
-}` },
-    { code: `public static void quickSort(int[] arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}` },
-    { code: `fn fibonacci(n: u32) -> u32 {
-    match n {
-        0 => 0,
-        1 => 1,
-        _ => fibonacci(n - 1) + fibonacci(n - 2)
-    }
-}` },
-    { code: `const dfs = (graph, node, visited = new Set()) => {
-    visited.add(node);
-    for (const neighbor of graph[node]) {
-        if (!visited.has(neighbor)) {
-            dfs(graph, neighbor, visited);
-        }
-    }
-    return visited;
-};` },
-    { code: `def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])
-    right = merge_sort(arr[mid:])
-    return merge(left, right)` },
-    { code: `.my-favorite-color {
-    color: #8b5cf6;
-    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-}` },
-    { code: `public class Main {
-    public static void main(String[] args) {
-        System.out.println("Check out my startup, Cordinova :)");
-    }
-}` }
-  ];
-
-  const positions = [
-    { x: 5, y: 10 },
-    { x: 70, y: 15 },
-    { x: 10, y: 65 },
-    { x: 75, y: 70 },
-    { x: 35, y: 40 },
-    { x: 15, y: 85 },
-    { x: 65, y: 50 },
-    { x: 20, y: 30 }
-  ];
-
-  const currentPositions = [...positions].sort(() => Math.random() - 0.5);
-  const heroSection = document.querySelector('.hero');
-  const elements = [];
-
-  if (heroSection) {
-    matrixSnippets.forEach((snippet, index) => {
-      const pos = currentPositions[index];
-      const codeDiv = document.createElement('div');
-      codeDiv.className = 'matrix-code';
-      codeDiv.style.left = `${pos.x}%`;
-      codeDiv.style.top = `${pos.y}%`;
-      codeDiv.id = `matrix-code-${index}`;
-      heroSection.insertBefore(codeDiv, heroSection.querySelector('.hero-overlay'));
-      elements.push(codeDiv);
-    });
-
-    matrixSnippets.forEach((snippet, index) => {
-      let charIndex = 0;
-      let isDel = false;
-      const speed = 25 + Math.random() * 20;
-      const pauseTime = 3000 + Math.random() * 2000;
-      const initialDelay = Math.random() * 3000;
-
-      function swapPosition() {
-        const otherIndex = Math.floor(Math.random() * elements.length);
-        if (otherIndex === index) return;
-
-        const myElement = elements[index];
-        const otherElement = elements[otherIndex];
-
-        const myPos = {
-          x: parseFloat(myElement.style.left),
-          y: parseFloat(myElement.style.top)
-        };
-        const otherPos = {
-          x: parseFloat(otherElement.style.left),
-          y: parseFloat(otherElement.style.top)
-        };
-
-        myElement.style.left = `${otherPos.x}%`;
-        myElement.style.top = `${otherPos.y}%`;
-        otherElement.style.left = `${myPos.x}%`;
-        otherElement.style.top = `${myPos.y}%`;
-      }
-
-      function typeMatrix() {
-        const element = document.getElementById(`matrix-code-${index}`);
-        if (!element) return;
-
-        if (!isDel && charIndex < snippet.code.length) {
-          element.textContent = snippet.code.substring(0, charIndex + 1);
-          charIndex++;
-          setTimeout(typeMatrix, speed);
-        } else if (isDel && charIndex > 0) {
-          element.textContent = snippet.code.substring(0, charIndex - 1);
-          charIndex--;
-          setTimeout(typeMatrix, speed / 2);
-        } else if (!isDel && charIndex === snippet.code.length) {
-          isDel = true;
-          setTimeout(typeMatrix, pauseTime);
-        } else if (isDel && charIndex === 0) {
-          isDel = false;
-          setTimeout(() => {
-            const myElement = elements[index];
-            myElement.style.opacity = '0';
-            setTimeout(() => {
-              swapPosition();
-              setTimeout(() => {
-                myElement.style.opacity = '1';
-                setTimeout(typeMatrix, 300);
-              }, 100);
-            }, 500);
-          }, 200);
-        }
-      }
-
-      setTimeout(typeMatrix, initialDelay);
+  function renderExperience() {
+    const mount = $("#experience-list");
+    if (!mount) return;
+    (data.experience || []).forEach((job) => {
+      const now = job.current ? ' <span class="entry__now">· now</span>' : "";
+      const bullets = (job.bullets || []).map((b) => `<li>${b}</li>`).join("");
+      mount.appendChild(
+        el(
+          "div",
+          "entry",
+          `<div class="entry__head">
+             <div class="entry__lead">
+               <div class="entry__role">${job.role}</div>
+               <div class="entry__org">${job.company} · ${job.location}</div>
+             </div>
+             <div class="entry__date">${job.date}${now}</div>
+             <ul class="entry__bullets">${bullets}</ul>
+           </div>`
+        )
+      );
     });
   }
 
-  const scrollIndicator = document.querySelector('.scroll-indicator');
-  if (scrollIndicator) {
-    scrollIndicator.addEventListener('click', () => {
-      const nav = document.getElementById('main-nav');
-      if (nav) {
-        window.scrollTo({
-          top: nav.offsetTop,
-          behavior: 'smooth'
+  function renderSkills() {
+    const mount = $("#skills-list");
+    if (!mount) return;
+    (data.skills || []).forEach((cat) => {
+      mount.appendChild(
+        el(
+          "div",
+          "skill-row",
+          `<div class="skill-row__label">${cat.label}</div>
+           <div class="skill-row__items">${(cat.items || []).join(", ")}</div>`
+        )
+      );
+    });
+  }
+
+  const STATUS = { building: "Building now", award: "Award", past: "Past" };
+
+  function buildCard(p) {
+    const status = p.badge || STATUS[p.status] || "";
+    const links = (p.links || [])
+      .map((l) => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`)
+      .join("");
+    const card = el("article", "card" + (p.accent === "rust" ? " card--rust" : ""));
+    card.dataset.status = p.status;
+    card.dataset.slug = p.slug;
+    card.innerHTML = `
+      <div class="card__media"><img src="${p.img}" alt="${p.alt}" loading="lazy"></div>
+      <div class="card__body">
+        <div class="card__status">${status}</div>
+        <h3 class="card__title">${p.name}</h3>
+        <div class="card__org">${p.org}</div>
+        <p class="card__desc">${p.blurb}</p>
+        <div class="card__tags">${(p.tech || []).join(" · ")}</div>
+        <div class="card__links">${links}</div>
+      </div>`;
+    return card;
+  }
+
+  function renderProjects() {
+    const track = $("#project-track");
+    const tabsEl = $("#project-tabs");
+    const prev = $("#prev-project");
+    const next = $("#next-project");
+    if (!track || !tabsEl) return;
+
+    const projects = data.projects || [];
+    projects.forEach((p) => track.appendChild(buildCard(p)));
+
+    const filters = [
+      { key: "all", label: "All" },
+      { key: "building", label: "Building now" },
+      { key: "award", label: "Awards" },
+      { key: "past", label: "Past" },
+    ].filter((f) => f.key === "all" || projects.some((p) => p.status === f.key));
+
+    filters.forEach((f, i) => {
+      const btn = el("button", "tab", f.label);
+      btn.type = "button";
+      btn.setAttribute("aria-pressed", String(i === 0));
+      btn.addEventListener("click", () => {
+        $$(".tab", tabsEl).forEach((t) => t.setAttribute("aria-pressed", "false"));
+        btn.setAttribute("aria-pressed", "true");
+        $$(".card", track).forEach((c) => {
+          c.classList.toggle("is-hidden", !(f.key === "all" || c.dataset.status === f.key));
         });
-      } else {
-        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-      }
-    });
-  }
-
-  const stickyNav = document.getElementById('main-nav');
-  const navLinks = document.querySelectorAll('.sticky-nav .nav-link');
-  const sections = document.querySelectorAll('.section');
-
-  function updateActiveNav() {
-    const navH = stickyNav ? stickyNav.offsetHeight : 0;
-    let currentId = '';
-
-    sections.forEach(section => {
-      const top = section.offsetTop - navH - 20;
-      if (window.scrollY >= top) {
-        currentId = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
-    });
-
-    // Nav shadow
-    if (stickyNav) {
-      stickyNav.classList.toggle('scrolled', window.scrollY > 100);
-    }
-
-    // Scroll indicator fade
-    if (scrollIndicator) {
-      scrollIndicator.style.opacity = window.scrollY > 100 ? '0' : '1';
-    }
-  }
-
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
-  updateActiveNav();
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target && stickyNav) {
-        window.scrollTo({
-          top: target.offsetTop - stickyNav.offsetHeight,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
-  const emailCard = document.getElementById('email-reveal');
-  if (emailCard) {
-    const email = ['hansgamlien', '@', 'gmail.com'].join('');
-    let revealed = false;
-
-    emailCard.addEventListener('click', () => {
-      if (!revealed) {
-        emailCard.classList.add('revealed');
-        emailCard.querySelector('span').textContent = email;
-        revealed = true;
-      }
-      navigator.clipboard.writeText(email).then(() => {
-        const toast = document.createElement('div');
-        toast.className = 'email-copied-toast show';
-        toast.textContent = 'Email copied to clipboard';
-        document.body.appendChild(toast);
-        setTimeout(() => {
-          toast.classList.remove('show');
-          setTimeout(() => toast.remove(), 300);
-        }, 1800);
-      }).catch(() => {
-        window.prompt('Copy this email address:', email);
+        track.scrollTo({ left: 0, behavior: "smooth" });
+        requestAnimationFrame(updateArrows);
       });
+      tabsEl.appendChild(btn);
     });
+
+    function step() {
+      const card = track.querySelector(".card:not(.is-hidden)");
+      const gap = parseFloat(getComputedStyle(track).columnGap || "16") || 16;
+      return card ? card.offsetWidth + gap : 300;
+    }
+    function updateArrows() {
+      if (!prev || !next) return;
+      const max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max;
+    }
+    prev && prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
+    next && next.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+    track.addEventListener("scroll", updateArrows, { passive: true });
+    window.addEventListener("resize", updateArrows);
+    updateArrows();
+
+    let down = false, startX = 0, startScroll = 0, moved = false;
+    track.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("a")) return;
+      down = true; moved = false;
+      startX = e.clientX; startScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener("pointermove", (e) => {
+      if (!down) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) { moved = true; track.style.scrollSnapType = "none"; }
+      track.scrollLeft = startScroll - dx;
+    });
+    const end = () => { down = false; track.style.scrollSnapType = ""; };
+    track.addEventListener("pointerup", end);
+    track.addEventListener("pointercancel", end);
+    track.addEventListener("click", (e) => { if (moved) e.preventDefault(); }, true);
   }
 
+  function initNav() {
+    const links = $$(".nav__links a");
+    const sections = links.map((l) => $(l.getAttribute("href"))).filter(Boolean);
+    if (!sections.length) return;
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 52;
+
+    const onScroll = () => {
+      const y = window.scrollY + navH + 40;
+      let id = "";
+      sections.forEach((s) => { if (y >= s.offsetTop) id = s.id; });
+      links.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  function boot() {
+    renderExperience();
+    renderSkills();
+    renderProjects();
+    initNav();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
 })();
