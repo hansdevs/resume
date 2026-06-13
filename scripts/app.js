@@ -16,6 +16,9 @@
     if (!mount) return;
     (data.experience || []).forEach((job) => {
       const now = job.current ? ' <span class="entry__now">· now</span>' : "";
+      const company = job.url
+        ? `<a class="entry__link" href="${job.url}" target="_blank" rel="noopener">${job.company}</a>`
+        : job.company;
       const bullets = (job.bullets || []).map((b) => `<li>${b}</li>`).join("");
       const logo = job.logo
         ? `<div class="entry__logo entry__logo--${job.logoMod || "default"}">
@@ -31,7 +34,7 @@
              <div class="entry__head">
                <div class="entry__lead">
                  <div class="entry__role">${job.role}</div>
-                 <div class="entry__org">${job.company} · ${job.location}</div>
+                 <div class="entry__org">${company} · ${job.location}</div>
                </div>
                <div class="entry__date">${job.date}${now}</div>
              </div>

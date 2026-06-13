@@ -192,6 +192,9 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
 
 .entry__logo--techy img { object-fit: cover; padding: 0; }
 
+.entry__logo--dispatch img { object-fit: cover; padding: 0; }
+.entry__logo--cordinova img { padding: 12px; }
+
 .entry:hover .entry__logo {
   border-color: var(--rule-2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 5px 16px rgba(0, 0, 0, 0.6);
@@ -207,6 +210,8 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
 }
 .entry__role { font-size: 1.04rem; font-weight: 600; color: var(--text); }
 .entry__org { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+.entry__link { color: var(--text); border-bottom: 1px solid var(--rule); padding-bottom: 1px; transition: border-color 0.15s, color 0.15s; }
+.entry__link:hover { border-bottom-color: var(--rule-2); }
 .entry__date {
   grid-column: 2;
   text-align: right;

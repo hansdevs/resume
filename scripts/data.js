@@ -31,6 +31,34 @@ window.PORTFOLIO = {
   experience: [
     {
       current: true,
+      role: "Founder",
+      company: "Dispatch",
+      location: "Logan, Utah",
+      url: "https://www.dispatchsaas.com/",
+      date: "2026 – Present",
+      logo: "images/dispatch-icon.svg",
+      logoMod: "dispatch",
+      bullets: [
+        "Building Dispatch, a native macOS command center that runs a workforce of AI coding agents — Claude Code, any OpenAI-compatible API, and local models — from a single board.",
+        "Designed a model-agnostic handoff protocol so agents plan, execute, review, and pass work to each other with live logs, status, and cost visible in one place.",
+      ],
+    },
+    {
+      current: true,
+      role: "Co-Founder",
+      company: "Cordinova",
+      location: "Logan, Utah",
+      url: "https://cordinova.com/",
+      date: "May 2025 – Present",
+      logo: "images/cordinova-c.png",
+      logoMod: "cordinova",
+      bullets: [
+        "Co-founded a workforce-management platform that replaces the patchwork of scheduling, time-tracking, and team-communication tools small businesses duct-tape together.",
+        "Architected and shipped the full stack — drag-and-drop scheduling, kiosk time clock, role-based access control, and reporting — in React, TypeScript, and Next.js on Supabase.",
+      ],
+    },
+    {
+      current: true,
       role: "IT Production Support Specialist — Summer Intern",
       company: "R. R. Donnelley",
       location: "Logan, Utah",
@@ -69,6 +97,21 @@ window.PORTFOLIO = {
   ],
 
   projects: [
+    {
+      slug: "dispatch",
+      name: "Dispatch",
+      status: "building",
+      org: "Native macOS App — Private Beta",
+      date: "2026 – Present",
+      blurb:
+        "A native macOS command center for running a workforce of AI agents. Dispatch detects the tools already on your machine — Claude Code, any OpenAI-compatible API, local models — gives each agent a desk, role, and project, then lets you assign tasks and watch them plan, execute, and hand off with live logs, status, and cost in the open.",
+      tech: ["Electron", "React", "TypeScript", "Three.js", "macOS"],
+      img: "images/dispatch-app.png",
+      alt: "Dispatch — AI agent command center for macOS",
+      links: [
+        { label: "View Live", href: "https://www.dispatchsaas.com/", icon: "fas fa-external-link-alt" },
+      ],
+    },
     {
       slug: "cordinova",
       name: "Cordinova",
@@ -168,19 +211,6 @@ window.PORTFOLIO = {
       img: "images/IntelliJDEAlogo.png",
       alt: "Belady's Anomaly",
       links: [{ label: "View Code", href: "https://github.com/hansdevs/BeladysAnomaly", icon: "fab fa-github" }],
-    },
-    {
-      slug: "dispatch",
-      name: "Dispatch SaaS",
-      status: "past",
-      org: "Web Application",
-      date: "2025",
-      blurb:
-        "A SaaS concept for repair shops and service businesses — organizing jobs, tracking projects, and improving team collaboration through simple workflow tools.",
-      tech: ["React", "SQL", "Supabase", "Vercel"],
-      img: "images/dispatchsaas.png",
-      alt: "Dispatch SaaS",
-      links: [{ label: "View Live", href: "https://www.dispatchsaas.com/", icon: "fas fa-external-link-alt" }],
     },
     {
       slug: "freelance",
