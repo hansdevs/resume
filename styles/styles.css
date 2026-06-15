@@ -274,7 +274,8 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
   transition: border-color 0.3s;
 }
 .card.is-hidden { display: none; }
-.card--flash { border-color: var(--term-accent); }
+.card--rust { border-color: rgba(244, 169, 78, 0.3); }
+.card--rust .card__status { color: var(--term-accent); }
 .card__media {
   height: 128px;
   display: flex; align-items: center; justify-content: center;
