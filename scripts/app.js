@@ -161,7 +161,7 @@
     const onScroll = () => {
       const y = window.scrollY + navH + 40;
       let id = "";
-      sections.forEach((s) => { if (y >= s.offsetTop) id = s.id; });
+      sections.forEach((s) => { if (s.offsetParent !== null && y >= s.offsetTop) id = s.id; });
       links.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
     };
     window.addEventListener("scroll", onScroll, { passive: true });

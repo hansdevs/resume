@@ -309,6 +309,40 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
 .skill-row__label { font-size: 0.9rem; color: var(--muted); }
 .skill-row__items { font-size: 0.94rem; color: var(--text); }
 
+.gh-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.gh-head__stat { font-size: 1.02rem; color: var(--muted); }
+.gh-head__stat strong { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gh-head__link { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+.gh-head__link:hover { color: var(--text); border-bottom-color: var(--text); }
+
+.gh-cal__grid { display: grid; grid-template-rows: repeat(7, 10px); grid-auto-flow: column; grid-auto-columns: 10px; gap: 3px; }
+.gh-cal__d { border-radius: 1px; background: rgba(255, 255, 255, 0.055); }
+.gh-cal__d--x { background: transparent; }
+.gh-cal__d--1 { background: rgba(244, 169, 78, 0.28); }
+.gh-cal__d--2 { background: rgba(244, 169, 78, 0.5); }
+.gh-cal__d--3 { background: rgba(244, 169, 78, 0.75); }
+.gh-cal__d--4 { background: var(--term-accent); }
+
+.gh-meta { font-family: var(--mono); font-size: 0.73rem; color: var(--muted); margin-top: 12px; }
+.gh-meta--sub { color: var(--faint); margin-top: 4px; }
+
+.gh-langs { margin-top: 28px; }
+.gh-langs__bar { display: flex; gap: 2px; height: 6px; }
+.gh-langs__seg { border-radius: 1px; }
+.gh-langs__seg--0 { background: var(--term-accent); }
+.gh-langs__seg--1 { background: rgba(255, 255, 255, 0.55); }
+.gh-langs__seg--2 { background: rgba(255, 255, 255, 0.38); }
+.gh-langs__seg--3 { background: rgba(255, 255, 255, 0.24); }
+.gh-langs__seg--4 { background: rgba(255, 255, 255, 0.14); }
+.gh-langs__labels { font-family: var(--mono); font-size: 0.73rem; color: var(--muted); margin-top: 8px; }
+
+.gh-repos { margin-top: 28px; display: flex; flex-direction: column; }
+.gh-repos__row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 18px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--rule); }
+.gh-repos__name { font-size: 0.94rem; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--rule); padding-bottom: 1px; transition: border-color 0.15s; justify-self: start; }
+.gh-repos__name:hover { border-bottom-color: var(--text); }
+.gh-repos__lang { font-family: var(--mono); font-size: 0.73rem; color: var(--muted); }
+.gh-repos__time { font-family: var(--mono); font-size: 0.73rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+
 .foot {
   display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
   padding: 34px 0 56px;
@@ -327,8 +361,20 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
 .foot__social svg { width: 16px; height: 16px; display: block; }
 
 @media (max-width: 720px) {
-  .nav__links { display: none; }
+  .nav__links {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(to right, #000 86%, transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 86%, transparent);
+    gap: 16px;
+    min-width: 0;
+    padding-right: 14px;
+  }
+  .nav__links::-webkit-scrollbar { display: none; }
   .masthead { padding: 38px 0 34px; }
+  .gh-repos__row { grid-template-columns: minmax(0, 1fr) auto; }
+  .gh-repos__lang { display: none; }
   .term { max-width: 100%; font-size: 0.76rem; }
   .game { letter-spacing: 0.1em; }
   .skill-row { grid-template-columns: 1fr; gap: 4px; }

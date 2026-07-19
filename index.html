@@ -3,15 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Hans Gamlien — Full-Stack & React Engineer. Computer Science at Utah State University building production web applications with React, Next.js, and TypeScript.">
+<meta name="description" content="Hans Gamlien. Computer Science senior at Utah State University and co-founder of Cordinova. I build web apps with React, Next.js, and TypeScript.">
 <meta name="theme-color" content="#000000">
-<meta property="og:title" content="Hans Gamlien — Full-Stack & React Engineer">
-<meta property="og:description" content="Computer Science at Utah State University. I build production web apps — and the occasional compiler.">
+<meta property="og:title" content="Hans Gamlien · Full-Stack Engineer">
+<meta property="og:description" content="Computer Science senior at Utah State University. Co-founder of Cordinova. I build web apps, native tools, and once a compiler.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hansgamlien.dev/">
+<meta property="og:image" content="https://hansgamlien.dev/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hans Gamlien · Full-Stack Engineer">
+<meta name="twitter:description" content="Computer Science senior at Utah State University. Co-founder of Cordinova. I build web apps, native tools, and once a compiler.">
+<meta name="twitter:image" content="https://hansgamlien.dev/images/og.png">
+<link rel="canonical" href="https://hansgamlien.dev/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='45' font-family='Helvetica,Arial,sans-serif' font-weight='600' font-size='32' fill='%23fff' text-anchor='middle'%3EHG%3C/text%3E%3C/svg%3E">
-<title>Hans Gamlien — Full-Stack & React Engineer</title>
+<title>Hans Gamlien · Full-Stack Engineer</title>
 <link rel="stylesheet" href="styles/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Hans Gamlien","url":"https://hansgamlien.dev/","jobTitle":"Full-Stack Engineer","email":"mailto:hansgamlien@gmail.com","alumniOf":{"@type":"CollegeOrUniversity","name":"Utah State University"},"sameAs":["https://github.com/hansdevs","https://www.linkedin.com/in/hans-gamlien-59ab1a265"]}
+</script>
 </head>
 <body>
 
@@ -20,8 +31,9 @@
     <a href="#top" class="nav__name">Hans Gamlien</a>
     <div class="nav__links">
       <a href="#about">About</a>
-      <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#github">GitHub</a>
+      <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
@@ -32,7 +44,7 @@
 
   <header class="masthead">
     <h1 class="masthead__name">Hans Gamlien</h1>
-    <p class="masthead__role">Full-Stack &amp; React Engineer</p>
+    <p class="masthead__role">Full-Stack Engineer</p>
     <p class="masthead__meta">
       <a href="mailto:hansgamlien@gmail.com">hansgamlien@gmail.com</a>
       <span>·</span> Logan, Utah <span>·</span> US Citizen
@@ -45,7 +57,7 @@
     <div class="term" id="term">
       <div class="term__out" id="term-out"></div>
       <div class="term__line">
-        <span class="tp">hans ~ </span><span class="ta">% </span><input class="term__field" id="term-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal input" placeholder="type a command — try ls">
+        <span class="tp">hans ~ </span><span class="ta">% </span><input class="term__field" id="term-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal input" placeholder="type a command, try help">
       </div>
     </div>
   </header>
@@ -53,19 +65,14 @@
   <section class="section" id="about">
     <h2 class="section__title">About</h2>
     <div class="prose">
-      <p>I'm a Computer Science student at Utah State University, graduating <strong>Cum Laude</strong> in December 2026. I'm currently an IT Production Support Specialist Intern at R. R. Donnelley — working across production systems, Python and Perl scripting, ServiceNow, deployments, and infrastructure support.</p>
-      <p>I also co-founded <strong>Cordinova</strong> through USU's Sandbox Startup Incubator, where I build full-stack workforce-management software with React, Next.js, TypeScript, and Supabase. More recently I started <strong>Dispatch</strong>, a native macOS app for running a workforce of AI coding agents from one board. On the side I design languages and ship small games.</p>
+      <p>I'm a Computer Science senior at Utah State University, graduating <strong>Cum Laude</strong> in December 2026. This summer I'm an IT intern at R. R. Donnelley, where I write Python and Perl for production systems and help with deployments, ServiceNow, and infrastructure.</p>
+      <p>Outside of class I co-founded <strong>Cordinova</strong>, a workforce management platform for small businesses. I build the product with React, Next.js, TypeScript, and Supabase through USU's Sandbox incubator. Lately I've been working on <strong>Dispatch</strong>, a macOS app for running several AI coding agents at once. When something sounds hard I usually try to build it anyway. That's how I ended up writing a compiler at a hackathon.</p>
       <ul class="facts">
-        <li><span>Education</span> Utah State University — B.S. Computer Science, Cum Laude (Dec 2026)</li>
+        <li><span>Education</span> Utah State University · B.S. Computer Science, Cum Laude (Dec 2026)</li>
         <li><span>Honors</span> Honors Undergraduate Research · HackUSU 2026, 3rd Place · Sandbox SB05</li>
         <li><span>Location</span> Logan, Utah · US Citizen</li>
       </ul>
     </div>
-  </section>
-
-  <section class="section" id="experience">
-    <h2 class="section__title">Experience</h2>
-    <div class="entries" id="experience-list"></div>
   </section>
 
   <section class="section" id="projects">
@@ -79,6 +86,16 @@
     <div class="tabs" id="project-tabs" aria-label="Filter projects"></div>
     <div class="slider" id="project-track" role="group" tabindex="0" aria-label="Projects"></div>
     <p class="more"><a href="https://github.com/hansdevs" target="_blank" rel="noopener">More on GitHub&#8239;↗</a></p>
+  </section>
+
+  <section class="section" id="github" hidden>
+    <h2 class="section__title">GitHub</h2>
+    <div id="github-mount"></div>
+  </section>
+
+  <section class="section" id="experience">
+    <h2 class="section__title">Experience</h2>
+    <div class="entries" id="experience-list"></div>
   </section>
 
   <section class="section" id="skills">
@@ -114,6 +131,7 @@
 
 <script src="scripts/data.js"></script>
 <script defer src="scripts/app.js"></script>
+<script defer src="scripts/github.js"></script>
 <script defer src="scripts/snakegame.js"></script>
 <script defer src="scripts/terminal.js"></script>
 </body>

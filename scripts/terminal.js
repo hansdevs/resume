@@ -47,9 +47,9 @@
 
   const FILES = {
     "about.txt": [
-      "Hans Gamlien — Full-Stack & React Engineer",
-      "CS @ Utah State University · Cum Laude · Dec 2026",
-      "I build production web apps, and the occasional compiler.",
+      "Hans Gamlien · Full-Stack Engineer",
+      "CS senior @ Utah State · Cum Laude · Dec 2026",
+      "I co-founded a startup and once wrote a compiler for fun.",
     ],
     "contact.txt": [
       "email:    " + EMAIL,
@@ -66,14 +66,46 @@
     note("scrolling to " + id);
     sec.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+  function runGithub() {
+    if (!window.HG_GITHUB) return note("github: not loaded");
+    const pendingLine = note("fetching github stats…");
+    window.HG_GITHUB.load().then((d) => {
+      pendingLine.remove();
+      if (!d) { note("github: API unreachable, see github.com/hansdevs"); saveState(); return; }
+      const user = d.user, repos = d.repos, contrib = d.contrib;
+      if (contrib && Array.isArray(contrib.contributions)) {
+        const total = contrib.contributions.reduce((a, x) => a + x.count, 0);
+        addLine('<span class="tw">' + total.toLocaleString("en-US") + " contributions in the last year</span>");
+        if (typeof d.pubCommits === "number" && d.pubCommits <= total) {
+          const priv = total - d.pubCommits;
+          const privShown = priv >= 100 ? Math.round(priv / 10) * 10 : priv;
+          addLine('<span class="tw">about ' + privShown.toLocaleString("en-US") + " in private repos · " + d.pubCommits.toLocaleString("en-US") + " public commits</span>");
+        }
+      }
+      if (user && user.public_repos != null) {
+        const since = user.created_at ? " · since " + new Date(user.created_at).getFullYear() : "";
+        addLine('<span class="tw">' + user.public_repos + " public repos" + since + "</span>");
+      }
+      if (Array.isArray(repos)) {
+        const counts = {};
+        repos.forEach((r) => { if (!r.fork && r.language) counts[r.language] = (counts[r.language] || 0) + 1; });
+        const top = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5).map((x) => x[0]);
+        if (top.length) addLine('<span class="tw">top languages: ' + esc(top.join(", ")) + "</span>");
+      }
+      addLine('<a class="t-link" href="https://github.com/hansdevs" target="_blank" rel="noopener">github.com/hansdevs</a>');
+      saveState();
+    });
+  }
+
   const ACTIONS = {
     "experience.txt": () => jumpTo("experience"),
     "projects.txt": () => jumpTo("projects"),
     "skills.txt": () => jumpTo("skills"),
+    "github.txt": () => runGithub(),
     "resume.txt": () => { note("opening résumé in a new tab…"); window.open(RESUME_URL, "_blank", "noopener"); },
   };
 
-  const FILE_LIST = ["about.txt", "experience.txt", "projects.txt", "skills.txt", "contact.txt", "resume.txt", "snake.js"];
+  const FILE_LIST = ["about.txt", "experience.txt", "projects.txt", "skills.txt", "github.txt", "contact.txt", "resume.txt", "snake.js"];
 
   function viewOrAct(name) {
     if (ACTIONS[name]) { ACTIONS[name](); return true; }
@@ -94,13 +126,19 @@
 
     if (name === "cat" || name === "open" || name === "view" || name === "less") {
       const f = (parts[0] || "").toLowerCase();
-      if (!f) return note("usage: open &lt;file&gt; — try <span class='ta'>ls</span>");
-      if (!viewOrAct(f)) note(name + ": " + esc(parts[0] || "") + ": no such file — try <span class='ta'>ls</span>");
+      if (!f) return note("usage: open &lt;file&gt;, try <span class='ta'>ls</span>");
+      if (!viewOrAct(f)) note(name + ": " + esc(parts[0] || "") + ": no such file, try <span class='ta'>ls</span>");
       return;
     }
+    if (name === "help" || name === "?") {
+      addLine('<span class="tw">commands:</span> <span class="ta">ls</span> · <span class="ta">open &lt;file&gt;</span> · <span class="ta">github</span> · <span class="ta">clear</span> · <span class="ta">snake.js</span>');
+      note("arrow keys browse history");
+      return;
+    }
+    if (name === "github" || name === "gh") return runGithub();
     if (viewOrAct(name)) return;
     if (name === "clear" || name === "cls") return clearOut();
-    note("zsh: command not found: " + esc(name) + " — try <span class='ta'>ls</span>");
+    note("zsh: command not found: " + esc(name) + ", try <span class='ta'>help</span>");
   }
 
   function onGameKey(e) {

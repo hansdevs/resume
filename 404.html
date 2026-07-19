@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='45' font-family='Helvetica,Arial,sans-serif' font-weight='600' font-size='32' fill='%23fff' text-anchor='middle'%3EHG%3C/text%3E%3C/svg%3E">
+<title>404 · Hans Gamlien</title>
+<link rel="stylesheet" href="/styles/styles.css">
+<style>
+.err-wrap { min-height: 100svh; display: flex; align-items: center; }
+.err-wrap .term { margin-top: 0; width: 100%; cursor: default; }
+.err-links { display: flex; gap: 18px; margin-top: 14px; }
+.err-links a { font-size: 0.9rem; color: var(--text); border-bottom: 1px solid var(--rule); padding-bottom: 1px; transition: border-color 0.15s; }
+.err-links a:hover { border-bottom-color: var(--text); }
+</style>
+</head>
+<body>
+
+<main class="doc">
+  <div class="err-wrap">
+    <div>
+      <div class="term">
+        <div class="term__out" style="min-height:0">
+          <div class="t-line"><span class="tp">hans ~ </span><span class="ta">% </span><span class="ta">open <span id="err-path">this page</span></span></div>
+          <div class="t-line tw">zsh: no such file or directory</div>
+          <div class="t-line"><span class="tdim">the page you are looking for does not exist</span></div>
+        </div>
+      </div>
+      <div class="err-links">
+        <a href="/">Back to the site</a>
+        <a href="https://github.com/hansdevs" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var p = document.getElementById("err-path");
+  if (p && location.pathname && location.pathname !== "/404.html") p.textContent = location.pathname;
+})();
+</script>
+</body>
+</html>
