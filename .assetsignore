@@ -8,5 +8,11 @@ build
 package.json
 package-lock.json
 
+.wrangler
+.dev.vars
+.env
+.env.*
+.SECURE_CONFIG.txt
+
 # GitHub Pages custom domain marker; meaningless on Cloudflare.
 CNAME
