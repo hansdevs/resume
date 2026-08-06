@@ -2,3 +2,4 @@
 .SECURE_CONFIG.txt
 .env
 docs/
+node_modules/

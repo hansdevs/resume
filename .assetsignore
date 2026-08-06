@@ -1,0 +1,12 @@
+# Repo plumbing the site never serves.
+.git
+.gitignore
+README.md
+wrangler.jsonc
+node_modules
+build
+package.json
+package-lock.json
+
+# GitHub Pages custom domain marker; meaningless on Cloudflare.
+CNAME
