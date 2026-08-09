@@ -1,12 +1,15 @@
-// Cloudflare Workers config: an assets-only Worker serving the portfolio
-// as static files from the repo root. The name must stay "resume" to match
-// the Worker created in the dashboard.
-// Cloudflare Test Deploy 08.05.2026
 {
   "name": "resume",
+  "main": "src/index.js",
   "compatibility_date": "2026-08-05",
+  "observability": { "enabled": true },
   "assets": {
     "directory": ".",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "CONTACT_FROM": "Portfolio <contact@hansgamlien.dev>"
   }
 }

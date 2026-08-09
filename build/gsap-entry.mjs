@@ -1,6 +1,3 @@
-// GSAP + the full free plugin set (free since 3.13), bundled to
-// scripts/gsap.bundle.js. ScrollSmoother is deliberately absent: Lenis
-// owns smooth scrolling here and the two fight over the scroller.
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';

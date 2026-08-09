@@ -112,7 +112,7 @@
     if (days) {
       const head = el("div", "gh-head");
       head.appendChild(el("p", "gh-head__stat", "<strong>" + total.toLocaleString("en-US") + "</strong> contributions in the last year"));
-      const a = el("a", "gh-head__link", "@" + USER + "&#8239;&#8599;");
+      const a = el("a", "gh-head__link", "@" + USER);
       a.href = "https://github.com/" + USER;
       a.target = "_blank";
       a.rel = "noopener";

@@ -5,7 +5,8 @@
   "description": "hansgamlien.dev portfolio: static site plus bundled interaction libraries",
   "scripts": {
     "dev": "node build/dev.mjs",
-    "build": "node build/build.mjs"
+    "build": "node build/build.mjs",
+    "dev:static": "node build/dev-static.mjs"
   },
   "dependencies": {
     "animejs": "^4.2.2",

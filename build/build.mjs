@@ -1,5 +1,3 @@
-// One-shot production build of every bundle. Run from the project root:
-//   npm run build
 import { build } from 'esbuild';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -14,14 +12,6 @@ export const targets = [
   {
     entryPoints: [join(root, 'build/gsap-entry.mjs')],
     outfile: join(root, 'scripts/gsap.bundle.js')
-  },
-  {
-    entryPoints: [join(root, 'build/motion-entry.mjs')],
-    outfile: join(root, 'scripts/motion.bundle.js')
-  },
-  {
-    entryPoints: [join(root, 'build/physics-entry.mjs')],
-    outfile: join(root, 'scripts/physics.bundle.js')
   },
   {
     entryPoints: [join(root, 'build/react-island.jsx')],

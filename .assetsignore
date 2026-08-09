@@ -1,10 +1,12 @@
-# Repo plumbing the site never serves.
 .git
 .gitignore
 README.md
 wrangler.jsonc
 node_modules
 build
+src
+docs
+.superpowers
 package.json
 package-lock.json
 
@@ -14,5 +16,5 @@ package-lock.json
 .env.*
 .SECURE_CONFIG.txt
 
-# GitHub Pages custom domain marker; meaningless on Cloudflare.
 CNAME
+DEPLOY.md
