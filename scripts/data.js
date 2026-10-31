@@ -49,20 +49,9 @@ window.PORTFOLIO = {
   ],
 
   rig: {
-    coffee: "Oatmilk Shaken Espresso",
     machines: [
-      {
-        art: "penguin",
-        name: "Framework 13 Pro",
-        os: "Fedora Workstation 44",
-        note: "AMD. Repairable by design. Everything that matters runs here.",
-      },
-      {
-        art: "apple",
-        name: "MacBook Pro",
-        os: "macOS",
-        note: "Xcode and Swift for Apple platforms, plus local LLM workflows.",
-      },
+      { art: "framework", name: "Framework 13 Pro" },
+      { art: "apple", name: "Apple MacBook Pro" },
     ],
   },
 
@@ -82,7 +71,7 @@ window.PORTFOLIO = {
       ],
     },
     {
-      role: "IT Production Support Specialist · Summer Intern",
+      role: "IT Production Support Specialist",
       company: "R. R. Donnelley",
       location: "Logan, Utah",
       url: "https://www.rrd.com/",
@@ -124,25 +113,6 @@ window.PORTFOLIO = {
 
   projects: [
     {
-      slug: "mountone",
-      category: "Concept",
-      active: false,
-      name: "Mount One",
-      year: 2026,
-      status: "shipped",
-      org: "Product Concept · Framework Inspired",
-      date: "2026",
-      blurb:
-        "A concept product page for a 3D printed NAS, built to find the ceiling of what a static site can do. Four bays, no fans, no tools. The machine only exists as a 3D model, so the page renders it live and scroll pulls the assembly apart. A full configurator prices a build nobody can buy. Proof of concept, not a company.",
-      tech: ["Three.js", "React", "Framer Motion", "GSAP", "Zustand", "esbuild"],
-      img: "images/mountone.png",
-      alt: "Mount One passive cooling and power budget panels",
-      links: [
-        { label: "View Live", href: "https://mount.hansgamlien.dev/" },
-        { label: "Source", href: "https://github.com/hansdevs/mountone" },
-      ],
-    },
-    {
       slug: "cordinova",
       category: "Startup",
       active: true,
@@ -160,23 +130,6 @@ window.PORTFOLIO = {
         { label: "View Live", href: "https://cordinova.com/" },
         { label: "Read More", href: "https://cordinova.com/updates" },
       ],
-    },
-    {
-      slug: "wildfire-capstone",
-      logoArt: true,
-      category: "Research",
-      active: true,
-      name: "Wildfire Risk Model",
-      year: 2026,
-      status: "building",
-      org: "Honors Undergraduate Research · Utah State University",
-      date: "Aug 2025 – Dec 2026",
-      blurb:
-        "My Honors capstone: a neural network that identifies areas at elevated wildfire risk from the Wasatch Front up to Logan, using weather and environmental variables. I built the integrations with meteorological and geospatial datasets and tuned the features and evaluation.",
-      tech: ["Python", "PyTorch", "scikit-learn", "GeoPandas", "Xarray"],
-      img: "images/usuhonorsprogramlogo.png",
-      alt: "USU Honors Program",
-      links: [{ label: "View Project", href: "capstone/" }],
     },
     {
       slug: "rustscript",
@@ -219,20 +172,23 @@ window.PORTFOLIO = {
       links: [{ label: "View Live", href: "https://www.dispatchsaas.com/" }],
     },
     {
-      slug: "cozy-coffee",
-      category: "Game",
+      slug: "mountone",
+      category: "Concept",
       active: false,
-      name: "The Cozy Coffee Company",
+      name: "Mount One",
       year: 2026,
-      status: "on hold",
-      org: "Indie Game · Paused",
-      date: "On Hold",
+      status: "shipped",
+      org: "Product Concept · Framework Inspired",
+      date: "2026",
       blurb:
-        "A coffee shop tycoon game where rival players share one block. Run your shop, win customers, and sabotage the competition.",
-      tech: ["Game Design", "Supabase", "iOS / iPadOS", "Steam"],
-      img: "images/thecozycoffeecompany.png",
-      alt: "The Cozy Coffee Company",
-      links: [{ label: "View Project", href: "coffeegame/" }],
+        "A concept product page for a 3D printed NAS, built to find the ceiling of what a static site can do. Four bays, no fans, no tools. The machine only exists as a 3D model, so the page renders it live and scroll pulls the assembly apart. A full configurator prices a build nobody can buy. Proof of concept, not a company.",
+      tech: ["Three.js", "React", "Framer Motion", "GSAP", "Zustand", "esbuild"],
+      img: "images/mountone.png",
+      alt: "Mount One passive cooling and power budget panels",
+      links: [
+        { label: "View Live", href: "https://mount.hansgamlien.dev/" },
+        { label: "Source", href: "https://github.com/hansdevs/mountone" },
+      ],
     },
     {
       slug: "portfolio",
@@ -345,8 +301,8 @@ window.PORTFOLIO = {
   ],
 
   skills: [
-    { label: "Languages", items: ["TypeScript", "JavaScript", "Python", "Rust", "Swift", "HTML/CSS", "Perl", "XML", "XSLT", "COBOL"] },
-    { label: "Frameworks & Libraries", items: ["React", "React Native", "Next.js", "Node.js", "TanStack Query", "PyTorch", "Cargo"] },
+    { label: "Languages", items: ["TypeScript", "JavaScript", "Python", "Rust", "HTML/CSS", "Perl", "XML", "XSLT", "COBOL"] },
+    { label: "Frameworks & Libraries", items: ["React", "Next.js", "Node.js", "React Native", "TanStack Query", "Cargo"] },
     { label: "Developer Tools", items: ["Git", "GitHub", "Zsh", "VS Code", "IntelliJ IDEA", "Xcode", "Jira", "Docker", "ServiceNow"] },
     { label: "Platforms & Cloud", items: ["Supabase", "Vercel", "Cloudflare", "Stripe", "Linux", "Windows Server"] },
     { label: "Design & Collaboration", items: ["Figma", "Lucidchart", "Agile / Scrum"] },

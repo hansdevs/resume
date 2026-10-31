@@ -29,7 +29,6 @@
     github: ["M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.2 11.19.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.38-1.34-1.75-1.34-1.75-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.58-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.28-1.53 3.29-1.21 3.29-1.21.66 1.64.24 2.86.12 3.16.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.53-5.49 5.82.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .31.21.68.83.56A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"],
     linkedin: ["M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"]
   };
-  var COFFEE = ["M3 8.5h13.5v5.8a5.2 5.2 0 0 1-5.2 5.2H8.2A5.2 5.2 0 0 1 3 14.3V8.5z", "M16.5 9.6h2.1a2.7 2.7 0 0 1 0 5.4h-2.1", "M6.6 2.6v2.4", "M10.2 2v3", "M13.8 2.6v2.4"];
 
   function icon(paths, cls, stroke) {
     var s = document.createElementNS(NS, "svg");
@@ -98,29 +97,49 @@
     host.appendChild(el("span", "json__p json__brace", "}"));
   }
 
-  function renderRig() {
-    var rig = P.rig;
-    var host = mount("rig-panels");
-    if (!rig || !host) return;
+  function typeLines(host, lines) {
+    if (reduced) {
+      lines.forEach(function (l) { l.el.textContent = l.text; });
+      return;
+    }
+    var cur = el("span", "tl__cur");
+    function run(i) {
+      if (i >= lines.length) return;
+      var txt = document.createTextNode("");
+      lines[i].el.append(txt, cur);
+      (function tick() {
+        if (txt.data.length < lines[i].text.length) {
+          txt.data = lines[i].text.slice(0, txt.data.length + 1);
+          setTimeout(tick, 48);
+        } else {
+          setTimeout(function () { run(i + 1); }, 360);
+        }
+      })();
+    }
+    new IntersectionObserver(function (entries, io) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      run(0);
+    }, { threshold: 0.3 }).observe(host);
+  }
 
-    rig.machines.forEach(function (m) {
+  function renderRig() {
+    var host = mount("rig-panels");
+    if (!host || !P.rig) return;
+    var lines = P.rig.machines.map(function (m) {
       var fig = el("figure", "rig__panel");
       var art = el("pre", "art");
       art.setAttribute("aria-hidden", "true");
-      var raw = (window.PIXEL_ART && window.PIXEL_ART[m.art]) || "";
-      art.innerHTML = raw
+      art.innerHTML = ((window.PIXEL_ART && window.PIXEL_ART[m.art]) || "")
         .split("\n")
         .map(function (l) { return '<span class="artln">' + (l || " ") + "</span>"; })
         .join("");
-      var cap = el("figcaption", "rig__cap");
-      cap.append(
-        el("div", "rig__os", m.os),
-        el("div", "rig__name", m.name),
-        el("p", "rig__note", m.note)
-      );
-      fig.append(art, cap);
+      var name = el("figcaption", "rig__name");
+      fig.append(art, name);
       host.appendChild(fig);
+      return { el: name, text: m.name };
     });
+    typeLines(host, lines);
   }
 
   function renderExperience() {
@@ -157,7 +176,7 @@
     copy.textContent = "Have a project in mind?";
     copy.insertAdjacentElement("afterend", el("p", "mail__sub",
       "I am open to full-time software engineering roles, freelance work, and interesting engineering problems. Every message lands straight in my inbox."));
-    mount("contact-links").append(link(P.profile.links.resume, "resume"));
+    mount("contact-links").append(link(P.profile.links.resume, "resume", "btn btn--solid"));
 
     var gh = mount("gh-cta");
     if (gh) {

@@ -1,5 +1,6 @@
 # Hans Gamlien Portfolio Website
 
-This is a personal portfolio website for Hans Gamlien, showcasing skills, projects, and professional experience.
+This is my personal portfolio website.
 
-Updated 06/10/2026
+Updated 10/31/2026
+- Happy Halloween 
