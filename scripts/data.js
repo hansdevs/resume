@@ -301,11 +301,10 @@ window.PORTFOLIO = {
   ],
 
   skills: [
-    { label: "Languages", items: ["TypeScript", "JavaScript", "Python", "Rust", "HTML/CSS", "Perl", "XML", "XSLT", "COBOL"] },
+    { label: "Languages", items: ["Python", "TypeScript", "JavaScript", "Rust", "HTML/CSS"] },
     { label: "Frameworks & Libraries", items: ["React", "Next.js", "Node.js", "React Native", "TanStack Query", "Cargo"] },
-    { label: "Developer Tools", items: ["Git", "GitHub", "Zsh", "VS Code", "IntelliJ IDEA", "Xcode", "Jira", "Docker", "ServiceNow"] },
-    { label: "Platforms & Cloud", items: ["Supabase", "Vercel", "Cloudflare", "Stripe", "Linux", "Windows Server"] },
-    { label: "Design & Collaboration", items: ["Figma", "Lucidchart", "Agile / Scrum"] },
+    { label: "Developer Tools", items: ["Git", "GitHub", "VS Code", "IntelliJ", "Xcode", "Docker", "ServiceNow"] },
+    { label: "Platforms & Cloud", items: ["CloudFlare", "Supabase", "Vercel", "Stripe"] },
     { label: "Spoken", items: ["English (Native)", "German (Novice)"] },
   ],
 };
